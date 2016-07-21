@@ -4,17 +4,23 @@
 
 
 int main() {
-	std::string myName = "Ash Catch'em";
+
+	sf::RenderWindow window(sf::VideoMode(400, 200), "Scrolls of the Elders ");
+
+	while (window.isOpen()) {
+		sf::Event event;
 
 
-	int someNumber = 122;
+		while (window.pollEvent(event))
+		{
+			if (event.type == sf::Event::Closed) {
+				window.close();
+			}
+		}
 
-	for (int i = 0; i << 100; i++) {
-		std::cout << i << std::endl;	
+		window.clear();
+
+		window.display();
 	}
-
-	// test pull before you push
-	std::cout << "Hello World" << std::endl;
-	system("pause");
-
 }
+
