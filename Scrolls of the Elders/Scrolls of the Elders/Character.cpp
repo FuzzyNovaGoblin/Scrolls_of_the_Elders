@@ -36,3 +36,4 @@ Character::Character(string inputName, string inputDescription, int inputHealth,
 Character::~Character()
 {
 }
+
