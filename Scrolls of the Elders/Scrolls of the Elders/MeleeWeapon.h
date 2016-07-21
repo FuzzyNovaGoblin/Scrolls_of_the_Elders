@@ -12,11 +12,11 @@ class MeleeWeapon : Item
 {
 public:
 	MeleeWeapon();
+	MeleeWeapon(string inputName, string inputDescription, int inputWeight, int inputValue, int inputDamage);
 	~MeleeWeapon();
 
 	//Weapon Stats
 
 	int damage; //Damage
-	int 
 };
 
