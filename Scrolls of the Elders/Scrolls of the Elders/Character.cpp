@@ -17,6 +17,21 @@ Character::Character()
 	endurance = 1;
 }
 
+Character::Character(string inputName, string inputDescription, int inputHealth, int inputMana, int inputGold, int inputStrength, int inputIntelligence, int inputDexterity, int inputDefense, int inputConstitution, int inputEndurance)
+{
+	name = inputName;
+	description = inputDescription;
+	health = inputHealth;
+	mana = inputMana;
+	gold = inputGold;
+	strength = inputStrength;
+	intelligence = inputIntelligence;
+	dexterity = inputDexterity;
+	defense = inputDefense;
+	constitution = inputConstitution;
+	endurance = inputEndurance;
+}
+
 
 Character::~Character()
 {
