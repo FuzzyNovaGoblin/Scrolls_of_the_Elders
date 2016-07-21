@@ -19,7 +19,8 @@ int main() {
 
 	while (window.isOpen()) {
 		sf::Event event;
-		bool pause = false;
+		sf::Texture texture;
+		sf::Sprite petRock(texture);
 
 		while (window.pollEvent(event))
 		{
