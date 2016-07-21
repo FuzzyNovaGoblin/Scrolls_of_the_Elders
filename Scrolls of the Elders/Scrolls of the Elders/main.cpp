@@ -1,6 +1,16 @@
 #include <iostream>
 #include <string>
+#include <vector>
+
 #include <SFML\Graphics.hpp>
+#include <SFML\Graphics\Rect.hpp>
+#include <SFML\System\Clock.hpp>
+
+#include "Character.h"
+#include "Enemy.h"
+#include "Player.h"
+#include "Item.h"
+#include "Weapon.h"
 
 
 int main() {
@@ -9,7 +19,7 @@ int main() {
 
 	while (window.isOpen()) {
 		sf::Event event;
-
+		bool pause = false;
 
 		while (window.pollEvent(event))
 		{
@@ -19,8 +29,12 @@ int main() {
 		}
 
 		window.clear();
+		if (!pause) {
 
+		}
 		window.display();
 	}
 }
+
+
 
