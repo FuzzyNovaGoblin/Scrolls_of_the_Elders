@@ -9,7 +9,8 @@ int main() {
 
 	while (window.isOpen()) {
 		sf::Event event;
-
+		sf::Texture texture;
+		sf::Sprite petRock(texture);
 
 		while (window.pollEvent(event))
 		{

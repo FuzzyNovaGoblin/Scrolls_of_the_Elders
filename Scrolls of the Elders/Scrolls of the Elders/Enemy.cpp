@@ -4,7 +4,7 @@
 
 Enemy::Enemy()
 {
-	sf::Texture petRock;
+	//sf::Texture petRock;
 }
 
 

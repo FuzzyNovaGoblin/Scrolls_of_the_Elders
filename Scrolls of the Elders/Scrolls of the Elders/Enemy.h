@@ -1,4 +1,9 @@
 #pragma once
+
+#include <SFML\Graphics.hpp>
+#include <SFML\Graphics\Rect.hpp>
+#include <SFML\System\Clock.hpp>
+
 #include "Character.h"
 class Enemy:Character
 {
