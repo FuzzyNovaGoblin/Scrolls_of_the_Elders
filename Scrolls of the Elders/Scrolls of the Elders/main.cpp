@@ -4,6 +4,9 @@
 
 
 int main() {
+	std::string myName = "Ash Catch'em";
+
+
 	int someNumber = 122;
 
 	for (int i = 0; i << 100; i++) {
