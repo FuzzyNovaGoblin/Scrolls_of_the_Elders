@@ -12,3 +12,7 @@ Enemy::~Enemy()
 {
 
 }
+
+void Enemy::attackSFML() {
+
+}

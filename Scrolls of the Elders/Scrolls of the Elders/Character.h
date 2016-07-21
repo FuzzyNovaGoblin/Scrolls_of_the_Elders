@@ -32,7 +32,7 @@ public:
 
 	//Functions
 	virtual void attackSFML(); //Actuator and Animation for Attack (Sword)
-	virtual void attack(); //Attack Function (Sword)
+	virtual void attack(Character enemy); //Attack Function (Sword)
 	virtual void magicSFML(); //Actuator and Animation for Attack (Magic)
 	virtual void magic(); //Attack Function (Magic)
 	virtual void rangedSFML(); //Actuator and Animation for Attack (Ranged)

@@ -9,7 +9,7 @@ int main() {
 
 	while (window.isOpen()) {
 		sf::Event event;
-
+		bool pause = false;
 
 		while (window.pollEvent(event))
 		{
@@ -19,8 +19,12 @@ int main() {
 		}
 
 		window.clear();
+		if (!pause) {
 
+		}
 		window.display();
 	}
 }
+
+
 
