@@ -10,7 +10,7 @@
 #include "Enemy.h"
 #include "Player.h"
 #include "Item.h"
-#include "Weapon.h"
+#include "MeleeWeapon.h"
 
 
 int main() {
@@ -31,9 +31,7 @@ int main() {
 		}
 
 		window.clear();
-		if (!pause) {
-
-		}
+		
 		window.display();
 	}
 }
