@@ -1,4 +1,5 @@
 #pragma once
+#include <SFML\Graphics.hpp>
 class Input
 {
 public:
@@ -9,19 +10,19 @@ public:
 		{
 			if (event.key.code == sf::Keyboard::W)
 			{
-				movingUp = true;
+				//movingUp = true;
 			}
 			if (event.key.code == sf::Keyboard::S)
 			{
-				movingDown = true;
+				//movingDown = true;
 			}
 			if (event.key.code == sf::Keyboard::A)
 			{
-				movingLeft = true;
+				//movingLeft = true;
 			}
 			if (event.key.code == sf::Keyboard::D)
 			{
-				movingRight = true;
+				//movingRight = true;
 			}
 		}
 
@@ -30,19 +31,19 @@ public:
 		{
 			if (event.key.code == sf::Keyboard::W)
 			{
-				movingUp = false;
+				//movingUp = false;
 			}
 			if (event.key.code == sf::Keyboard::S)
 			{
-				movingDown = false;
+				//movingDown = false;
 			}
 			if (event.key.code == sf::Keyboard::A)
 			{
-				movingLeft = false;
+				//movingLeft = false;
 			}
 			if (event.key.code == sf::Keyboard::D)
 			{
-				movingRight = false;
+				//movingRight = false;
 			}
 		}
 		

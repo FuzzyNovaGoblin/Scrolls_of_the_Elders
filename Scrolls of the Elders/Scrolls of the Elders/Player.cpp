@@ -17,6 +17,26 @@ Player::Player()
 	endurance = 1;
 }
 
+Player::Player(string inputName, string inputDescription, int inputHealth, int inputMana, int inputGold, int inputStrength, int inputIntelligence, int inputDexterity, int inputDefense, int inputConstitution, int inputEndurance, sf::Texture inputTexture, sf::Sprite inputSprite)
+{
+	name = inputName;
+	description = inputDescription;
+	health = inputHealth;
+	mana = inputMana;
+	gold = inputGold;
+	strength = inputStrength;
+	intelligence = inputIntelligence;
+	dexterity = inputDexterity;
+	defense = inputDefense;
+	constitution = inputConstitution;
+	endurance = inputEndurance;
+
+	characterSprite = inputSprite;
+
+	//Do texture stuff
+	
+	//End of texture stuff
+}
 
 Player::~Player()
 {
@@ -51,21 +71,24 @@ void Player::equipMelee(MeleeWeapon meleeWeapon) {
 	rightHandWeapon = meleeWeapon;
 }
 
-void Player::update(sf::Sprite playerSprite) {
+void Player::update() {
 	
 	//Do all other checks here:
 
 	//Movement checks here
+
+	sf::Vector2f movement(0, 0);
+
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
-		playerSprite.move(0, 1);
+		movement.y -= 1;
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
-		playerSprite.move(0, -1);
+		movement.y += 1;
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
-		playerSprite.move(1, 0);
+		movement.x -= 1;
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
-		playerSprite.move(-1, 0);
+		movement.x += 1;
 	}
 }
