@@ -74,7 +74,7 @@ void Player::equipMelee(MeleeWeapon meleeWeapon) {
 void Player::update() {
 	
 	//Do all other checks here:
-
+	sf::Vector2f playerPos = characterSprite.getPosition();
 	//Movement checks here
 
 	sf::Vector2f movement(0, 0);
