@@ -15,7 +15,7 @@ class Character
 public:
 	Character();
 
-	Character(string inputName, string inputDescription, int inputHealth, int inputMana, int inputGold, int inputStrength, int inputIntelligence, int inputDexterity, int inputDefense, int inputConstitution, int inputEndurance);
+	Character(string inputName, string inputDescription, int inputHealth, int inputMana, int inputGold, int inputStrength, int inputIntelligence, int inputDexterity, int inputDefense, int inputConstitution, int inputEndurance, sf::Texture inputTexture, sf::Sprite inputSprite);
 
 	~Character();
 
@@ -36,5 +36,11 @@ public:
 	int constitution; //Magical Resist
 	int endurance; //Stamina + How much you can carry
 	int level; //Stats scale with level, MENU TO CHOOSE?
+
+	//Sprite
+
+	sf::Texture characterTexture;
+
+	sf::Sprite characterSprite;
 };
 
