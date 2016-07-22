@@ -15,6 +15,15 @@
 
 int main() {
 
+	//Do not include in actual code
+	sf::Texture playerTex;
+
+	playerTex.loadFromFile("resources/character/char.gif");
+
+	sf::Sprite playerSprite;
+	playerSprite.setTexture(playerTex);
+	//Do include in actual code
+
 	sf::RenderWindow window(sf::VideoMode(400, 200), "Scrolls of the Elders ");
 
 	sf::Texture texture;
@@ -33,6 +42,10 @@ int main() {
 		}
 
 		window.clear();
+		
+		//Do not include in actual code
+		window.draw(playerSprite);
+		//Do not include in actual code
 		
 		window.display();
 	}
