@@ -54,7 +54,7 @@ void Player::attack(Character target) {
 
 		//This is my code, no touch...
 		
-		target.health -= currentDamage;
+		target.currentHealth -= currentDamage;
 
 	}
 	else {
@@ -62,7 +62,7 @@ void Player::attack(Character target) {
 
 		//This is my code, no touch...
 
-		target.health -= currentDamage;
+		target.currentHealth -= currentDamage;
 
 	}
 }
