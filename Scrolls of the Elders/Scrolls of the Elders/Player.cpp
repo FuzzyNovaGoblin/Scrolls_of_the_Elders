@@ -17,7 +17,7 @@ void Player::attackSFML() {
 
 void Player::attack(Character target) {
 	int currentDamage = (strength / 2) + (rand() % strength);
-	currentDamage += 
+	currentDamage += rightHandWeapon.damage;
 	if (currentDamage > strength) {
 		//Yo Grant, here is where you can tell it to do critical display
 
