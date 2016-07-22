@@ -17,10 +17,12 @@ int main() {
 
 	sf::RenderWindow window(sf::VideoMode(400, 200), "Scrolls of the Elders ");
 
+	sf::Texture texture;
+	texture.loadFromFile("resources/character/petRock.png");
+
 	while (window.isOpen()) {
 		sf::Event event;
-		sf::Texture texture;
-		texture.loadFromFile("petRock.png");
+	
 		sf::Sprite petRock(texture);
 
 		while (window.pollEvent(event))
