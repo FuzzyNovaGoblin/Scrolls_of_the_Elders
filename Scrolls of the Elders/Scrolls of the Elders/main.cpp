@@ -22,6 +22,7 @@ int main() {
 
 	sf::Sprite playerSprite;
 	playerSprite.setTexture(playerTex);
+	playerSprite.setTextureRect(sf::IntRect(2,2,3,4));
 	//Do include in actual code
 
 	sf::RenderWindow window(sf::VideoMode(1780, 980), "Scrolls of the Elders ");
