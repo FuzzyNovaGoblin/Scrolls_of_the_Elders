@@ -20,7 +20,7 @@ int main() {
 	//Do not include in actual code
 	sf::Texture playerTex;
 
-
+	sf::Sprite playerSprite;
 
 	sf::RenderWindow window(sf::VideoMode(1780, 980), "Scrolls of the Elders ");
 
