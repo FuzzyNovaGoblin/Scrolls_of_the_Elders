@@ -20,6 +20,7 @@ int main() {
 	while (window.isOpen()) {
 		sf::Event event;
 		sf::Texture texture;
+		texture.loadFromFile("petRock.png");
 		sf::Sprite petRock(texture);
 
 		while (window.pollEvent(event))
