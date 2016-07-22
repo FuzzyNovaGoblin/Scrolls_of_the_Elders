@@ -26,8 +26,10 @@ public:
 	
 	//Stats
 
-	int health; //Starting Health for Player is 100
-	int mana; //Starting Mana for Player is 100
+	int health; //Starting Health for Player is 100, Max Health
+	int currentHealth; //Current Health
+	int mana; //Starting Mana for Player is 100, Max Mana
+	int currentMana; //Current Mana
 	int gold; //5 Gold for Bread
 	int strength; //Physical Damage + Ability to Use Armor / Weapons
 	int intelligence; //Magical Damage + Ability to Use Spells
