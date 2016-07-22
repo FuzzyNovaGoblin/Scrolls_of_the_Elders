@@ -17,10 +17,10 @@ Player::Player()
 	endurance = 1;
 }
 
-Player::Player(string inputName, string inputDescription, int inputHealth, int inputMana, int inputGold, int inputStrength, int inputIntelligence, int inputDexterity, int inputDefense, int inputConstitution, int inputEndurance, sf::Texture inputTexture, sf::Sprite inputSprite)
+Player::Player(int inputHealth, int inputMana, int inputGold, int inputStrength, int inputIntelligence, int inputDexterity, int inputDefense, int inputConstitution, int inputEndurance)
 {
-	name = inputName;
-	description = inputDescription;
+	//name = inputName;
+	//description = inputDescription;
 	health = inputHealth;
 	mana = inputMana;
 	gold = inputGold;
@@ -31,8 +31,9 @@ Player::Player(string inputName, string inputDescription, int inputHealth, int i
 	constitution = inputConstitution;
 	endurance = inputEndurance;
 
-	characterSprite = inputSprite;
-
+	//characterSprite = inputSprite;
+	sf::Texture inputTexture;
+	sf::Sprite inputSprite;
 	//Do texture stuff
 	
 	//End of texture stuff
@@ -40,6 +41,7 @@ Player::Player(string inputName, string inputDescription, int inputHealth, int i
 
 Player::~Player()
 {
+
 }
 
 void Player::attackSFML() {
