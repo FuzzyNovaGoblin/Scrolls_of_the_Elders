@@ -15,13 +15,22 @@
 
 int main() {
 
+	//Do not include in actual code
+	sf::Texture playerTex;
+
+	playerTex.loadFromFile("resources/character/char.gif");
+
+	sf::Sprite playerSprite;
+	playerSprite.setTexture(playerTex);
+	//Do include in actual code
+
 	sf::RenderWindow window(sf::VideoMode(400, 200), "Scrolls of the Elders ");
 
 	while (window.isOpen()) {
 		sf::Event event;
 		sf::Texture texture;
-		texture.loadFromFile("petRock.png");
-		sf::Sprite petRock(texture);
+		//texture.loadFromFile("petRock.png");
+		//sf::Sprite petRock(texture);
 
 		while (window.pollEvent(event))
 		{
@@ -31,6 +40,10 @@ int main() {
 		}
 
 		window.clear();
+		
+		//Do not include in actual code
+		window.draw(playerSprite);
+		//Do not include in actual code
 		
 		window.display();
 	}
