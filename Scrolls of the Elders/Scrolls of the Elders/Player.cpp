@@ -82,13 +82,15 @@ void Player::update() {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
 		movement.y -= 1;
 	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
 		movement.y += 1;
 	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
 		movement.x -= 1;
 	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
 		movement.x += 1;
 	}
+
+	characterSprite.move(movement);
 }
