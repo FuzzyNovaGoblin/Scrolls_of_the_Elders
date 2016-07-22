@@ -15,8 +15,12 @@
 
 int main() {
 
-	
-	
+	Player myPlayer;
+
+	//Do not include in actual code
+	sf::Texture playerTex;
+
+
 
 	sf::RenderWindow window(sf::VideoMode(1780, 980), "Scrolls of the Elders ");
 
@@ -24,7 +28,7 @@ int main() {
 	while (window.isOpen()) {
 		sf::Event event;
 	
-	
+		myPlayer.update(playerSprite);
 
 		while (window.pollEvent(event))
 		{
