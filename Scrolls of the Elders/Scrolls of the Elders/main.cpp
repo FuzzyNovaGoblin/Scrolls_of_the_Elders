@@ -11,6 +11,7 @@
 #include "Player.h"
 #include "Item.h"
 #include "MeleeWeapon.h"
+#include "PetRock.h"
 
 
 int main() {
@@ -20,9 +21,12 @@ int main() {
 	//Do not include in actual code
 	sf::Texture playerTex;
 
+	
 
 
 	sf::RenderWindow window(sf::VideoMode(1780, 980), "Scrolls of the Elders ");
+
+	PetRock mini(window);
 
 
 	while (window.isOpen()) {
@@ -37,12 +41,13 @@ int main() {
 			}
 		}
 
+
 		window.clear();
 		
 		//Do not include in actual code
 	//	window.draw(playerSprite);
 		//Do not include in actual code
-		
+		mini.updatePetRock(); 
 		window.display();
 	}
 }
