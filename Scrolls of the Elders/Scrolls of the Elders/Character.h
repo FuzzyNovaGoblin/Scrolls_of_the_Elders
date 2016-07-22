@@ -44,7 +44,7 @@ public:
 	virtual void rangedSFML(); //Actuator and Animation for Attack (Ranged)
 	virtual void ranged(); //Attack Function (Ranged)
 	virtual void heal();
-	void update();
+	virtual void update();
 	virtual void move();
 	virtual void openDoor();
 	virtual void talk();

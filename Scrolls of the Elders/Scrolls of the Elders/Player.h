@@ -22,5 +22,6 @@ public:
 	void attackSFML(); //Actuator and Animation for Attack (Sword)
 	void attack(Character target); //Attack Function (Sword)
 	void equipMelee(MeleeWeapon meleeWeapon); //Equips the weapon
+	void update(sf::Sprite playerSprite);
 };
 

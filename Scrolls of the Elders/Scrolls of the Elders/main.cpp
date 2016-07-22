@@ -15,6 +15,8 @@
 
 int main() {
 
+	Player myPlayer;
+
 	//Do not include in actual code
 	sf::Texture playerTex;
 
@@ -29,8 +31,8 @@ int main() {
 
 	while (window.isOpen()) {
 		sf::Event event;
-	
-	
+
+		myPlayer.update(playerSprite);
 
 		while (window.pollEvent(event))
 		{

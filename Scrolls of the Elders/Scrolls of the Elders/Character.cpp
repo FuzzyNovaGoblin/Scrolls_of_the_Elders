@@ -55,9 +55,6 @@ void Character::ranged() {
 void Character::heal() {
 
 }
-void Character::update() {
-
-}
 void Character::move() {
 
 }
