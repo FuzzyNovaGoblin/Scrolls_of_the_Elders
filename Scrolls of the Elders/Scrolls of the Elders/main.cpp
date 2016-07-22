@@ -30,9 +30,7 @@ int main() {
 		}
 
 		window.clear();
-		if (!pause) {
-
-		}
+		
 		window.display();
 	}
 }
