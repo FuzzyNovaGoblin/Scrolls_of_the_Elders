@@ -28,7 +28,7 @@ int main() {
 	while (window.isOpen()) {
 		sf::Event event;
 	
-		myPlayer.update(playerSprite);
+	//	myPlayer.update(playerSprite);
 
 		while (window.pollEvent(event))
 		{
@@ -40,7 +40,7 @@ int main() {
 		window.clear();
 		
 		//Do not include in actual code
-		window.draw(playerSprite);
+	//	window.draw(playerSprite);
 		//Do not include in actual code
 		
 		window.display();

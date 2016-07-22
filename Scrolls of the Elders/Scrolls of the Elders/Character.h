@@ -36,19 +36,5 @@ public:
 	int constitution; //Magical Resist
 	int endurance; //Stamina + How much you can carry
 	int level; //Stats scale with level, MENU TO CHOOSE?
-
-	//Functions
-	virtual void attack(Character target); //Attack Function (Sword)
-	virtual void magicSFML(); //Actuator and Animation for Attack (Magic)
-	virtual void magic(); //Attack Function (Magic)
-	virtual void rangedSFML(); //Actuator and Animation for Attack (Ranged)
-	virtual void ranged(); //Attack Function (Ranged)
-	virtual void heal();
-	virtual void update();
-	virtual void move();
-	virtual void openDoor();
-	virtual void talk();
-	virtual void trade();
-	virtual void openChest();
 };
 

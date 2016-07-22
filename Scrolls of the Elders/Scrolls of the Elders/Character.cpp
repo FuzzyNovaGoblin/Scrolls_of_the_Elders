@@ -37,36 +37,3 @@ Character::~Character()
 {
 }
 
-void Character::attack(Character target) {
-
-} //Attack Function (Sword)
-void Character::magicSFML() {
-
-} //Actuator and Animation for Attack (Magic)
-void Character::magic() {
-
-} //Attack Function(Magic)
-void Character::rangedSFML() {
-
-} //Actuator and Animation for Attack (Ranged)
-void Character::ranged() {
-
-} //Attack Function (Ranged)
-void Character::heal() {
-
-}
-void Character::move() {
-
-}
-void Character::openDoor() {
-
-}
-void Character::talk() {
-
-}
-void Character::trade() {
-
-}
-void Character::openChest() {
-
-}
