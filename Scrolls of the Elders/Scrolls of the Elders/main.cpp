@@ -12,7 +12,6 @@
 #include "Item.h"
 #include "MeleeWeapon.h"
 
-
 int main() {
 
 	sf::RenderWindow window(sf::VideoMode(400, 200), "Scrolls of the Elders ");

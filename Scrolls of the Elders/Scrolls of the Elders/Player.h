@@ -21,6 +21,6 @@ public:
 
 	void attackSFML(); //Actuator and Animation for Attack (Sword)
 	void attack(Character target); //Attack Function (Sword)
-	void equip(); //Equips the weapon
+	void equipMelee(MeleeWeapon meleeWeapon); //Equips the melee weapon
 };
 

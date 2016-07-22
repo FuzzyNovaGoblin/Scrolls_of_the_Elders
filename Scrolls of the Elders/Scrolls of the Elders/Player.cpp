@@ -35,3 +35,7 @@ void Player::attack(Character target) {
 
 	}
 }
+
+void Player::equipMelee(MeleeWeapon meleeWeapon) {
+	rightHandWeapon = meleeWeapon;
+}
