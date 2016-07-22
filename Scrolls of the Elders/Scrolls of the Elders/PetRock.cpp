@@ -45,7 +45,7 @@ void PetRock::move() {
 	}
 }
 
-void PetRock::updatePetRock() {
+void PetRock::updatePetRock(Player &player) {
 
 	petRockSprite.setPosition(petRockPos.x, petRockPos.y);
 

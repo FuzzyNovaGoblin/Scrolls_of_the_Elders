@@ -5,6 +5,8 @@
 #include <SFML\System\Clock.hpp>
 
 #include "Character.h"
+#include "Player.h"
+
 class Enemy:Character
 {
 public:

@@ -19,8 +19,6 @@ Player::Player()
 
 Player::Player(int inputHealth, int inputMana, int inputGold, int inputStrength, int inputIntelligence, int inputDexterity, int inputDefense, int inputConstitution, int inputEndurance)
 {
-	//name = inputName;
-	//description = inputDescription;
 	health = inputHealth;
 	mana = inputMana;
 	gold = inputGold;
@@ -31,9 +29,6 @@ Player::Player(int inputHealth, int inputMana, int inputGold, int inputStrength,
 	constitution = inputConstitution;
 	endurance = inputEndurance;
 
-	//characterSprite = inputSprite;
-	sf::Texture inputTexture;
-	sf::Sprite inputSprite;
 	//Do texture stuff
 	
 	//End of texture stuff
@@ -41,7 +36,6 @@ Player::Player(int inputHealth, int inputMana, int inputGold, int inputStrength,
 
 Player::~Player()
 {
-
 }
 
 void Player::attackSFML() {
@@ -76,7 +70,7 @@ void Player::equipMelee(MeleeWeapon meleeWeapon) {
 void Player::update() {
 	
 	//Do all other checks here:
-	sf::Vector2f playerPos = characterSprite.getPosition();
+	playerPos = characterSprite.getPosition();
 	//Movement checks here
 
 	sf::Vector2f movement(0, 0);

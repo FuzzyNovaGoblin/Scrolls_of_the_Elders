@@ -22,6 +22,8 @@ public:
 
 	MeleeWeapon rightHandWeapon;
 
+	sf::Vector2f playerPos;
+
 	void attackSFML(); //Actuator and Animation for Attack (Sword)
 	void attack(Character target); //Attack Function (Sword)
 	void equipMelee(MeleeWeapon meleeWeapon); //Equips the weapon

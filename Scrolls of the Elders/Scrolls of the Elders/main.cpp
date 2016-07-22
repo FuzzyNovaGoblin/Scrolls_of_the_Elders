@@ -20,7 +20,7 @@ int main() {
 //	window.setFramerateLimit(10);
 	PetRock mini(window);
 	Player player(9,9,9,9,9,9,9,9,9);
-	float playerX = 0; 
+	float playerX = 0;
 	float playerY = 0;
 	while (window.isOpen()) {
 		sf::Event event;
@@ -35,6 +35,7 @@ int main() {
 
 		window.clear();
 		mini.updatePetRock(); 
+		player.update();
 		
 		window.display();
 	}

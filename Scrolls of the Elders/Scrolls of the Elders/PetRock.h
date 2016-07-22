@@ -24,7 +24,7 @@ public:
 	sf::Vector2f petRockPos;
 	float timer;
 	int petRockSkinInt = 0;
-	void updatePetRock();
+	void updatePetRock(Player &player);
 	void move();
 	PetRock(sf::RenderWindow& renderWindow);
 	~PetRock();
