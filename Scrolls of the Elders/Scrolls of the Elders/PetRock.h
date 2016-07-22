@@ -6,5 +6,6 @@ class PetRock :
 public:
 	PetRock();
 	~PetRock();
+	void updatePetRock();
 };
 
