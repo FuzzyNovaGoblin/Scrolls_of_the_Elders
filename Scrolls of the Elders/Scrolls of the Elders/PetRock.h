@@ -4,6 +4,8 @@
 #include <string>
 #include <vector>
 
+using namespace std;
+
 #include <SFML\Graphics.hpp>
 #include <SFML\Graphics\Rect.hpp>
 #include <SFML\System\Clock.hpp>
