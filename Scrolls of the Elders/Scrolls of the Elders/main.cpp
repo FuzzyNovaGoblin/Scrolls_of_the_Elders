@@ -19,7 +19,7 @@ int main() {
 	sf::RenderWindow window(sf::VideoMode(1780, 980), "Scrolls of the Elders ");
 //	window.setFramerateLimit(10);
 	PetRock mini(window);
-	Player player(9,9,9,9,9,9,9,9,9);
+	Player player(9,9,9,9,9,9,9,9,9,window); 
 	float playerX = 0;
 	float playerY = 0;
 	while (window.isOpen()) {
@@ -34,9 +34,8 @@ int main() {
 
 
 		window.clear();
-		mini.updatePetRock(); 
+		mini.updatePetRock(player);
 		player.update();
-		
 		window.display();
 	}
 }

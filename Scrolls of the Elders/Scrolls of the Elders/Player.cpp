@@ -1,7 +1,7 @@
 #include "Player.h"
 
 
-
+/*
 Player::Player()
 {
 	name = "Default Name";
@@ -16,8 +16,10 @@ Player::Player()
 	constitution = 1;
 	endurance = 1;
 }
+*/
 
-Player::Player(int inputHealth, int inputMana, int inputGold, int inputStrength, int inputIntelligence, int inputDexterity, int inputDefense, int inputConstitution, int inputEndurance)
+
+Player::Player(int inputHealth, int inputMana, int inputGold, int inputStrength, int inputIntelligence, int inputDexterity, int inputDefense, int inputConstitution, int inputEndurance, sf::RenderWindow& renderWindow) : renderWindow(renderWindow)
 {
 	health = inputHealth;
 	mana = inputMana;
@@ -30,7 +32,14 @@ Player::Player(int inputHealth, int inputMana, int inputGold, int inputStrength,
 	endurance = inputEndurance;
 
 	//Do texture stuff
-	
+	playerTex.loadFromFile("resources/character/player-Idle.png");
+	playerSkin[0] = sf::IntRect(0, 0, 100, 130);
+	playerSkin[1] = sf::IntRect(100, 0, 100, 130);
+	playerSkin[2] = sf::IntRect(0, 56, 40, 28);
+	playerSkin[3] = sf::IntRect(0, 56, 40, 28);
+
+
+	playerSprite.setTexture(playerTex);
 	//End of texture stuff
 }
 
@@ -75,6 +84,8 @@ void Player::update() {
 
 	sf::Vector2f movement(0, 0);
 
+	playerSprite.setPosition(playerPos.x, playerPos.y);
+
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
 		movement.y -= 1;
 	}
@@ -88,5 +99,23 @@ void Player::update() {
 		movement.x += 1;
 	}
 
+	if (clock.getElapsedTime().asSeconds() > 0.5) {
+		if (playerSkinInt == 0) {
+			playerSkinInt = 1;
+		}
+		else if (playerSkinInt == 1){
+			playerSkinInt = 2;
+		}
+		else if (playerSkinInt == 2) {
+			playerSkinInt = 3;
+		}
+		if (playerSkinInt == 3) {
+			playerSkinInt = 0;
+		}
+		clock.restart();
+	}
+
 	characterSprite.move(movement);
+	playerSprite.setTextureRect(sf::IntRect(playerSkin[playerSkinInt]));
+	renderWindow.draw(playerSprite);
 }

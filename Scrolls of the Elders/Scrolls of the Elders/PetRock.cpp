@@ -12,7 +12,8 @@ PetRock::PetRock(sf::RenderWindow& renderWindow) : renderWindow(renderWindow)
 	
 	petRockTex.loadFromFile("resources/character/petRock.png");
 	
-	
+	petRockPos.x = 300;
+	petRockPos.y = 300; 
 
 	petRockSprite.setPosition(petRockPos.x, petRockPos.y);
 
@@ -23,15 +24,6 @@ PetRock::PetRock(sf::RenderWindow& renderWindow) : renderWindow(renderWindow)
 
 	timer = clock.getElapsedTime().asSeconds();
 
-/*	if (timer > 0.1f)
-	{
-		if (petRockSkinInt == 0)
-			petRockSkinInt = 1;
-		else
-			petRockSkinInt = 0;
-		clock.restart();
-	}
-	*/
 }
 
 
@@ -39,14 +31,23 @@ PetRock::~PetRock()
 {
 }
 
-void PetRock::move() {
-	if (petRockPos.x > playerX) {
-
+void PetRock::move(Player &player) {
+	if (petRockPos.x > player.playerPos.x) {
+		petRockPos.x -= .1;
+	}
+	 if (petRockPos.x < player.playerPos.x) {
+		petRockPos.x += .1;
+	}
+	 if (petRockPos.y > player.playerPos.y) {
+		petRockPos.y -= .1;
+	}
+	 if (petRockPos.y < player.playerPos.y) {
+		petRockPos.y += .1;
 	}
 }
 
 void PetRock::updatePetRock(Player &player) {
-
+	move(player);
 	petRockSprite.setPosition(petRockPos.x, petRockPos.y);
 
 	if (clock.getElapsedTime().asSeconds() > 0.5) {

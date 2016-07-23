@@ -25,7 +25,7 @@ public:
 	float timer;
 	int petRockSkinInt = 0;
 	void updatePetRock(Player &player);
-	void move();
+	void move(Player &player);
 	PetRock(sf::RenderWindow& renderWindow);
 	~PetRock();
 };
