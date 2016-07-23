@@ -87,16 +87,16 @@ void Player::update() {
 	playerSprite.setPosition(playerPos.x, playerPos.y);
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
-		movement.y -= 1;
+		movement.y -= 0.2;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
-		movement.y += 1;
+		movement.y += 0.2;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
-		movement.x -= 1;
+		movement.x -= 0.2;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
-		movement.x += 1;
+		movement.x += 0.2;
 	}
 
 	if (clock.getElapsedTime().asSeconds() > 0.5) {
