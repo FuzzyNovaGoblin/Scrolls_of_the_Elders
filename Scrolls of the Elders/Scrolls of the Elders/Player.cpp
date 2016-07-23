@@ -33,8 +33,8 @@ Player::Player(int inputHealth, int inputMana, int inputGold, int inputStrength,
 
 	//Do texture stuff
 	playerTex.loadFromFile("resources/character/player-Idle.png");
-	playerSkin[0] = sf::IntRect(0, 0, 100, 130);
-	playerSkin[1] = sf::IntRect(100, 0, 100, 130);
+	playerSkin[0] = sf::IntRect(0, 0, 100, 120);
+	playerSkin[1] = sf::IntRect(100, 0, 100, 110);
 	playerSkin[2] = sf::IntRect(0, 56, 40, 28);
 	playerSkin[3] = sf::IntRect(0, 56, 40, 28);
 
