@@ -32,16 +32,16 @@ PetRock::~PetRock()
 }
 
 void PetRock::move(Player &player) {
-	if (petRockPos.x > player.playerPos.x) {
+	if (petRockPos.x - player.playerPos.x < 200 &&  petRockPos.x > player.playerPos.x) {
 		petRockPos.x -= .1;
 	}
-	 if (petRockPos.x < player.playerPos.x) {
+	 if (  player.playerPos.x - petRockPos.x < 200 && petRockPos.x < player.playerPos.x) {
 		petRockPos.x += .1;
 	}
-	 if (petRockPos.y > player.playerPos.y) {
+	 if (player.playerPos.x - petRockPos.x < 200 && petRockPos.y > player.playerPos.y) {
 		petRockPos.y -= .1;
 	}
-	 if (petRockPos.y < player.playerPos.y) {
+	 if (player.playerPos.x - petRockPos.x < 200 && petRockPos.y < player.playerPos.y) {
 		petRockPos.y += .1;
 	}
 }

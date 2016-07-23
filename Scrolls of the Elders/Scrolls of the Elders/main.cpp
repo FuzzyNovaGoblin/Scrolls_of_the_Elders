@@ -21,6 +21,10 @@ int main() {
 //	window.setFramerateLimit(10);
 	PetRock mini(window);
 	Player player(9,9,9,9,9,9,9,9,9,window);
+	sf::Sprite backGround;
+	sf::Texture backGroundTex;
+	backGroundTex.loadFromFile("resources/character/back.png");
+	backGround.setTexture(backGroundTex);
 	view.setCenter(sf::Vector2f(player.playerSprite.getPosition().x, player.playerSprite.getPosition().y));
 	view.setSize(1780, 980);
 
@@ -40,6 +44,7 @@ int main() {
 
 
 		window.clear();
+		window.draw(backGround);
 		mini.updatePetRock(player);
 		player.update();
 		window.display();
