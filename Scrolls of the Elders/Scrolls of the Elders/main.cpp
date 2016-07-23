@@ -17,13 +17,19 @@
 int main() {
 
 	sf::RenderWindow window(sf::VideoMode(1780, 980), "Scrolls of the Elders ");
+	sf::View view;
 //	window.setFramerateLimit(10);
 	PetRock mini(window);
-	Player player(9,9,9,9,9,9,9,9,9,window); 
-	float playerX = 0;
-	float playerY = 0;
+	Player player(9,9,9,9,9,9,9,9,9,window);
+	view.setCenter(sf::Vector2f(player.playerSprite.getPosition().x, player.playerSprite.getPosition().y));
+	view.setSize(1780, 980);
+
 	while (window.isOpen()) {
 		sf::Event event;
+
+		window.setView(view);
+
+		view.setCenter(sf::Vector2f(player.playerSprite.getPosition().x, player.playerSprite.getPosition().y));
 	
 		while (window.pollEvent(event))
 		{
