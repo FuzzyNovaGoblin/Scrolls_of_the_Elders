@@ -34,7 +34,7 @@ PetRock::~PetRock()
 void PetRock::move(Player &player) {
 	int distanceX = petRockPos.x - player.playerPos.x;
 	int distanceY = petRockPos.y - player.playerPos.y;
-	if (sqrt(distanceX * distanceX + distanceY * distanceY) < 400) {
+	if (sqrt(distanceX * distanceX + distanceY * distanceY) < 800) {
 		if (petRockPos.x > player.playerPos.x) {
 			petRockPos.x -= .1;
 		}

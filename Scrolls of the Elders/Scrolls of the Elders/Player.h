@@ -10,15 +10,21 @@
 #include "Character.h"
 #include "Item.h"
 #include "MeleeWeapon.h"
+#include "Input.h"
 
 class Player: Character
 {
 public:
 	sf::RenderWindow& renderWindow;
 	sf::Sprite playerSprite;
-	sf::Texture playerTex;
+	sf::Texture playerIdleTex;
+	sf::Texture playerForwardTex;
+	sf::Texture playerRightTex;
+	sf::Texture playerLeftTex;
+	sf::Texture playerBackTex;
 	sf::IntRect playerSkin[4];
 	sf::IntRect petRockSkin[3];
+	float animationSpeed;
 	int playerSkinInt = 0;
 	sf::Clock clock;
 	Player();

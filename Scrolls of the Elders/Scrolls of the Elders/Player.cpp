@@ -32,14 +32,18 @@ Player::Player(int inputHealth, int inputMana, int inputGold, int inputStrength,
 	endurance = inputEndurance;
 
 	//Do texture stuff
-	playerTex.loadFromFile("resources/character/player-Idle.png");
+	playerIdleTex.loadFromFile("resources/character/player-Idle.png");
+	playerForwardTex.loadFromFile("resources/character/Player-Walking.png");
+	playerRightTex.loadFromFile("resources/character/Player-Walking-Right.png");
+	playerLeftTex.loadFromFile("resources/character/Player-Walking-Left.png");
+	playerBackTex.loadFromFile("resources/character/Player-Walking-Up.png");
 	playerSkin[0] = sf::IntRect(0, 0, 128, 128);
 	playerSkin[1] = sf::IntRect(128, 0, 128, 128);
 	playerSkin[2] = sf::IntRect(0, 128, 128, 128);
 	playerSkin[3] = sf::IntRect(128, 128, 128, 128);
 
 
-	playerSprite.setTexture(playerTex);
+	
 	playerSprite.setOrigin(50, 65);
 	//End of texture stuff
 }
@@ -83,24 +87,44 @@ void Player::update() {
 	playerPos = characterSprite.getPosition();
 	//Movement checks here
 
+	//float testAnimSpeed = 0.5f;
+
 	sf::Vector2f movement(0, 0);
 
 	playerSprite.setPosition(playerPos.x, playerPos.y);
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
-		movement.y -= 0.2;
+		movement.y -= 0.5;
+		playerSprite.setTexture(playerForwardTex);
+		animationSpeed = 0.2;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
-		movement.y += 0.2;
+		movement.y += 0.5;
+		playerSprite.setTexture(playerForwardTex);
+		animationSpeed = 0.2;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
-		movement.x -= 0.2;
+		movement.x -= 0.5;
+		playerSprite.setTexture(playerForwardTex);
+		animationSpeed = 0.2;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
-		movement.x += 0.2;
+		movement.x += 0.5;
+		playerSprite.setTexture(playerForwardTex);
+		animationSpeed = 0.2;
 	}
 
-	if (clock.getElapsedTime().asSeconds() > 0.5) {
+	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::W) && !sf::Keyboard::isKeyPressed(sf::Keyboard::D) && !sf::Keyboard::isKeyPressed(sf::Keyboard::A) && !sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
+		playerSprite.setTexture(playerIdleTex);
+		animationSpeed = 0.5;
+	}
+	
+	
+
+
+
+
+	if (clock.getElapsedTime().asSeconds() > animationSpeed) {
 		if (playerSkinInt == 0) {
 			playerSkinInt = 1;
 		}
