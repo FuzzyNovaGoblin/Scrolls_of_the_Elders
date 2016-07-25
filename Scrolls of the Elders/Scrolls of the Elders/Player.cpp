@@ -55,8 +55,16 @@ Player::~Player()
 
 void Player::attackSFML() {
 	sf::Vector2i localPosition = sf::Mouse::getPosition(renderWindow);
+	sf::Vector2f worldPosition = renderWindow.mapPixelToCoords(localPosition);
 	double angle;
-	angle = atan2(localPosition.y, localPosition.x) * 180 / PI;
+	angle = atan2(worldPosition.y - playerPos.y, worldPosition.x - playerPos.x) * 180 / PI;
+	if (angle < 0) {
+		angle = angle * -1;
+	}
+	else if (angle > 0) {
+		angle = 360 - angle;
+	}
+	cout << angle << endl;
 }
 
 void Player::attack(Character target) {
