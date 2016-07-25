@@ -55,7 +55,6 @@ Player::~Player()
 
 void Player::attackSFML(std::vector<PetRock> &petRockList) {
 	sf::Vector2i localPosition = sf::Mouse::getPosition(renderWindow);
-	sf::Vector2f worldPosition = renderWindow.mapPixelToCoords(localPosition);
 	double angle;
 	angle = atan2(worldPosition.y - playerPos.y, worldPosition.x - playerPos.x) * 180 / PI;
 	if (angle < 0) {
