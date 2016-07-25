@@ -10,8 +10,8 @@ PetRock::PetRock(sf::RenderWindow& renderWindow, sf::Texture& petRockTex) : rend
 	petRockSkin[2] = sf::IntRect(0, 56, 40, 28);
 	
 	
-	float tempX = rand() % 500 + 1;
-	float tempY = rand() % 500 + 1;
+	float tempX = rand() % 4000 + 1;
+	float tempY = rand() % 3000 + 1;
 
 	petRockPos.x = tempX;
 	petRockPos.y = tempY; 
@@ -51,8 +51,18 @@ void PetRock::move(Player &player) {
 	}
 }
 
+void PetRock::attack(Player &player) {
+	if (petRockPos.x == player.playerPos.x) {
+		player.currentHealth -= 1;
+	}
+	if (petRockPos.y == player.playerPos.y) {
+		player.currentHealth -= 1;
+	}
+}
+
 void PetRock::updatePetRock(Player &player) {
 	move(player);
+	attack(player);
 	petRockSprite.setPosition(petRockPos.x, petRockPos.y);
 
 	if (clock.getElapsedTime().asSeconds() > 0.5) {

@@ -15,7 +15,7 @@
 
 #define PI 3.14159265
 
-class Player: Character
+class Player: public Character
 {
 public:
 	sf::RenderWindow& renderWindow;
@@ -29,6 +29,7 @@ public:
 	sf::IntRect petRockSkin[3];
 	float animationSpeed;
 	int playerSkinInt = 0;
+	bool alive;
 	sf::Clock clock;
 	Player();
 

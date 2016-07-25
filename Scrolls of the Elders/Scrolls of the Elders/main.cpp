@@ -33,7 +33,6 @@ int main() {
 		petRockList.push_back(newPetRock);
 	}
 
-	PetRock mini(window, petRockTex);
 	Player player(9,9,9,9,9,9,9,9,9,window);
 	sf::Sprite backGround;
 	sf::Texture backGroundTex;
@@ -65,10 +64,11 @@ int main() {
 	
 		window.clear();
 		window.draw(backGround);
+		player.update();
 		for (int i = 0; i < petRockList.size(); i++) {
 			petRockList.at(i).updatePetRock(player);
 		}
-		player.update();
+	
 		window.display();
 	}
 }

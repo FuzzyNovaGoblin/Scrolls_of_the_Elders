@@ -21,7 +21,8 @@ Player::Player()
 
 Player::Player(int inputHealth, int inputMana, int inputGold, int inputStrength, int inputIntelligence, int inputDexterity, int inputDefense, int inputConstitution, int inputEndurance, sf::RenderWindow& renderWindow) : renderWindow(renderWindow)
 {
-	health = inputHealth;
+	alive = true;
+	maxHealth = inputHealth;
 	mana = inputMana;
 	gold = inputGold;
 	strength = inputStrength;
@@ -30,7 +31,7 @@ Player::Player(int inputHealth, int inputMana, int inputGold, int inputStrength,
 	defense = inputDefense;
 	constitution = inputConstitution;
 	endurance = inputEndurance;
-
+	currentHealth = maxHealth;
 	//Do texture stuff
 	playerIdleTex.loadFromFile("resources/character/player-Idle.png");
 	playerForwardTex.loadFromFile("resources/character/Player-Walking.png");
@@ -86,66 +87,75 @@ void Player::equipMelee(MeleeWeapon meleeWeapon) {
 void Player::update()
 {
 	
-	//Do all other checks here:
-	playerPos = characterSprite.getPosition();
-	if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-		attackSFML();
-	}
-	//Movement checks here
-
-	//float testAnimSpeed = 0.5f;
-
-	sf::Vector2f movement(0, 0);
-
-	playerSprite.setPosition(playerPos.x, playerPos.y);
-
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
-		movement.y += 0.5;
-		playerSprite.setTexture(playerForwardTex);
-		animationSpeed = 0.2;
-	}
-
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
-		movement.x -= 0.5;
-		playerSprite.setTexture(playerLeftTex);
-		animationSpeed = 0.2;
-	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
-		movement.x += 0.5;
-		playerSprite.setTexture(playerRightTex);
-		animationSpeed = 0.2;
-	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
-		movement.y -= 0.5;
-		playerSprite.setTexture(playerBackTex);
-		animationSpeed = 0.2;
-	}
-	
-
-	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::W) && !sf::Keyboard::isKeyPressed(sf::Keyboard::D) && !sf::Keyboard::isKeyPressed(sf::Keyboard::A) && !sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
-		playerSprite.setTexture(playerIdleTex);
-		animationSpeed = 0.5;
-	}
-	
-	
-
-	if (clock.getElapsedTime().asSeconds() > animationSpeed) {
-		if (playerSkinInt == 0) {
-			playerSkinInt = 1;
+	if (alive) {
+		//Do all other checks here:
+		playerPos = characterSprite.getPosition();
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+			attackSFML();
 		}
-		else if (playerSkinInt == 1){
-			playerSkinInt = 2;
-		}
-		else if (playerSkinInt == 2) {
-			playerSkinInt = 3;
-		}
-		else {
-			playerSkinInt = 0;
-		}
-		clock.restart();
-	}
+		//Movement checks here
 
-	characterSprite.move(movement);
-	playerSprite.setTextureRect(sf::IntRect(playerSkin[playerSkinInt]));
-	renderWindow.draw(playerSprite);
+		//float testAnimSpeed = 0.5f;
+
+		sf::Vector2f movement(0, 0);
+
+		playerSprite.setPosition(playerPos.x, playerPos.y);
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
+			movement.y += 0.5;
+			playerSprite.setTexture(playerForwardTex);
+			animationSpeed = 0.2;
+		}
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
+			movement.x -= 0.5;
+			playerSprite.setTexture(playerLeftTex);
+			animationSpeed = 0.2;
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
+			movement.x += 0.5;
+			playerSprite.setTexture(playerRightTex);
+			animationSpeed = 0.2;
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
+			movement.y -= 0.5;
+			playerSprite.setTexture(playerBackTex);
+			animationSpeed = 0.2;
+		}
+
+
+		if (!sf::Keyboard::isKeyPressed(sf::Keyboard::W) && !sf::Keyboard::isKeyPressed(sf::Keyboard::D) && !sf::Keyboard::isKeyPressed(sf::Keyboard::A) && !sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
+			playerSprite.setTexture(playerIdleTex);
+			animationSpeed = 0.5;
+		}
+
+
+
+		if (clock.getElapsedTime().asSeconds() > animationSpeed) {
+			if (playerSkinInt == 0) {
+				playerSkinInt = 1;
+			}
+			else if (playerSkinInt == 1) {
+				playerSkinInt = 2;
+			}
+			else if (playerSkinInt == 2) {
+				playerSkinInt = 3;
+			}
+			else {
+				playerSkinInt = 0;
+			}
+			clock.restart();
+		}
+		
+		if (currentHealth <= 0) {
+			alive = false;
+		}
+
+		characterSprite.move(movement);
+		playerSprite.setTextureRect(sf::IntRect(playerSkin[playerSkinInt]));
+		renderWindow.draw(playerSprite);
+	}
+	else {
+
+	}
 }

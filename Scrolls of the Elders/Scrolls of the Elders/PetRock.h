@@ -27,7 +27,7 @@ public:
 	int petRockSkinInt = 0;
 	void updatePetRock(Player &player); // get a reference to the player
 	void move(Player &player);
+	void attack(Player &player);
 	PetRock(sf::RenderWindow& renderWindow, sf::Texture& petRockTex);
 	~PetRock();
 };
-

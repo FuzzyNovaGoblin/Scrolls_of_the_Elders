@@ -26,7 +26,7 @@ public:
 	
 	//Stats
 
-	int health; //Starting Health for Player is 100, Max Health
+	int maxHealth; //Starting Health for Player is 100, Max Health
 	int currentHealth; //Current Health
 	int mana; //Starting Mana for Player is 100, Max Mana
 	int currentMana; //Current Mana

@@ -6,7 +6,7 @@ Character::Character()
 {
 	name = "Default Name";
 	description = "If you see this, there is a bug, please submit a bug report.";
-	health = 100;
+	maxHealth = 100;
 	mana = 100;
 	gold = 0;
 	strength = 1;
@@ -21,7 +21,7 @@ Character::Character(string inputName, string inputDescription, int inputHealth,
 {
 	name = inputName;
 	description = inputDescription;
-	health = inputHealth;
+	maxHealth = inputHealth;
 	mana = inputMana;
 	gold = inputGold;
 	strength = inputStrength;
