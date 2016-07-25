@@ -12,6 +12,7 @@
 #include "Item.h"
 #include "MeleeWeapon.h"
 #include "Input.h"
+#include "PetRock.h"
 
 #define PI 3.14159265
 
@@ -42,9 +43,9 @@ public:
 
 	sf::Vector2f playerPos;
 	
-	void attackSFML(); //Actuator and Animation for Attack (Sword)
-	void attack(Character target); //Attack Function (Sword)
+	void attackSFML(std::vector<PetRock> &petRockList); //Actuator and Animation for Attack (Sword)
+	void attack(Character* target); //Attack Function (Sword)
 	void equipMelee(MeleeWeapon meleeWeapon); //Equips the weapon
-	void update();
+	void update(std::vector<PetRock> &petRockList);
 };
 
