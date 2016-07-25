@@ -11,13 +11,15 @@ MeleeWeapon::MeleeWeapon()
 	damage = 0;
 }
 
-MeleeWeapon::MeleeWeapon(string inputName, string inputDescription, int inputWeight, int inputValue, int inputDamage)
+MeleeWeapon::MeleeWeapon(string inputName, string inputDescription, int inputWeight, int inputValue, int inputDamage, string inputFilename)
 {
 	name = inputName;
 	description = inputDescription;
 	weight = inputWeight;
 	value = inputValue;
 	damage = inputDamage;
+	MeleeWeaponTexture.loadFromFile("resources/items" + inputFilename);
+	MeleeWeaponSprite.setTexture(MeleeWeaponTexture);
 }
 
 
