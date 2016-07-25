@@ -74,8 +74,7 @@ void Player::attackSFML(std::vector<PetRock> &petRockList) {
 			attack((Character*) &petRockList[i]);
 		}
 }
-
-void Player::attack(Character* target) {
+/*void Player::attack(Character* target) {
 	int currentDamage = (strength / 2) + (rand() % strength);
 	currentDamage += rightHandWeapon.damage;
 	if (currentDamage > strength) {
@@ -95,7 +94,7 @@ void Player::attack(Character* target) {
 
 	}
 }
-
+*/
 void Player::equipMelee(MeleeWeapon meleeWeapon) {
 	rightHandWeapon = meleeWeapon;
 }
