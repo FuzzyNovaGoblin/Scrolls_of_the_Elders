@@ -53,7 +53,9 @@ Player::~Player()
 }
 
 void Player::attackSFML() {
-
+	sf::Vector2i localPosition = sf::Mouse::getPosition(renderWindow);
+	double angle;
+	angle = atan2(localPosition.y, localPosition.x) * 180 / PI;
 }
 
 void Player::attack(Character target) {
@@ -81,10 +83,14 @@ void Player::equipMelee(MeleeWeapon meleeWeapon) {
 	rightHandWeapon = meleeWeapon;
 }
 
-void Player::update() {
+void Player::update()
+{
 	
 	//Do all other checks here:
 	playerPos = characterSprite.getPosition();
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+		attackSFML();
+	}
 	//Movement checks here
 
 	//float testAnimSpeed = 0.5f;

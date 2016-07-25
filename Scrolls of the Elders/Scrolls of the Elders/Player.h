@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <math.h>
 
 #include <SFML\Graphics.hpp>
 #include <SFML\Graphics\Rect.hpp>
@@ -11,6 +12,8 @@
 #include "Item.h"
 #include "MeleeWeapon.h"
 #include "Input.h"
+
+#define PI 3.14159265
 
 class Player: Character
 {
