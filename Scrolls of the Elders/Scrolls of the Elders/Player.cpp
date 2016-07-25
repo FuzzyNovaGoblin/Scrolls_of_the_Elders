@@ -53,7 +53,7 @@ Player::~Player()
 {
 }
 
-void Player::attackSFML() {
+void Player::attackSFML(std::vector<PetRock> &petRockList) {
 	sf::Vector2i localPosition = sf::Mouse::getPosition(renderWindow);
 	sf::Vector2f worldPosition = renderWindow.mapPixelToCoords(localPosition);
 	double angle;
@@ -64,10 +64,18 @@ void Player::attackSFML() {
 	else if (angle > 0) {
 		angle = 360 - angle;
 	}
-	cout << angle << endl;
+
+	rightHandWeapon.MeleeWeaponSprite.setPosition(playerPos.x, playerPos.y);
+	rightHandWeapon.MeleeWeaponSprite.setRotation(angle);
+
+	renderWindow.draw(rightHandWeapon.MeleeWeaponSprite);
+	for (int i = 0; i < petRockList.size; i++)
+		if (rightHandWeapon.MeleeWeaponSprite.getGlobalBounds().intersects(petRockList[i].petRockSprite.getGlobalBounds())) {
+			attack((Character*) &petRockList[i]);
+		}
 }
 
-void Player::attack(Character target) {
+void Player::attack(Character* target) {
 	int currentDamage = (strength / 2) + (rand() % strength);
 	currentDamage += rightHandWeapon.damage;
 	if (currentDamage > strength) {
@@ -75,7 +83,7 @@ void Player::attack(Character target) {
 
 		//This is my code, no touch...
 		
-		target.currentHealth -= currentDamage;
+		target->currentHealth -= currentDamage;
 
 	}
 	else {
@@ -83,7 +91,7 @@ void Player::attack(Character target) {
 
 		//This is my code, no touch...
 
-		target.currentHealth -= currentDamage;
+		target->currentHealth -= currentDamage;
 
 	}
 }
@@ -92,14 +100,14 @@ void Player::equipMelee(MeleeWeapon meleeWeapon) {
 	rightHandWeapon = meleeWeapon;
 }
 
-void Player::update()
+void Player::update(std::vector<PetRock> &petRockList)
 {
 	
 	if (alive) {
 		//Do all other checks here:
 		playerPos = characterSprite.getPosition();
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-			attackSFML();
+			attackSFML(petRockList);
 		}
 		//Movement checks here
 
