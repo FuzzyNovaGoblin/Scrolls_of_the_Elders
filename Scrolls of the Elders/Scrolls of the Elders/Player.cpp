@@ -137,9 +137,6 @@ void Player::update()
 	
 	
 
-
-
-
 	if (clock.getElapsedTime().asSeconds() > animationSpeed) {
 		if (playerSkinInt == 0) {
 			playerSkinInt = 1;

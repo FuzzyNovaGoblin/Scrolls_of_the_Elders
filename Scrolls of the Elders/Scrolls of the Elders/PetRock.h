@@ -10,7 +10,6 @@ using namespace std;
 #include <SFML\Graphics\Rect.hpp>
 #include <SFML\System\Clock.hpp>
 
-#include "Player.h"
 
 class PetRock :
 	public Enemy
@@ -26,9 +25,9 @@ public:
 	sf::Vector2f petRockPos;
 	float timer;
 	int petRockSkinInt = 0;
-	void updatePetRock(Player &player);
+	void updatePetRock(Player &player); // get a reference to the player
 	void move(Player &player);
-	PetRock(sf::RenderWindow& renderWindow);
+	PetRock(sf::RenderWindow& renderWindow, sf::Texture& petRockTex);
 	~PetRock();
 };
 
