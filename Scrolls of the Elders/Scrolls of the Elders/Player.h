@@ -16,6 +16,8 @@
 
 #define PI 3.14159265
 
+using namespace std;
+
 class Player: public Character
 {
 public:
@@ -43,9 +45,9 @@ public:
 
 	sf::Vector2f playerPos;
 	
-	void attackSFML(std::vector<PetRock> &petRockList); //Actuator and Animation for Attack (Sword)
+	void attackSFML(vector<PetRock> &petRockList); //Actuator and Animation for Attack (Sword)
 	void attack(Character* target); //Attack Function (Sword)
 	void equipMelee(MeleeWeapon meleeWeapon); //Equips the weapon
-	void update(std::vector<PetRock> &petRockList);
+	void update(vector<PetRock> &petRockList);
 };
 
