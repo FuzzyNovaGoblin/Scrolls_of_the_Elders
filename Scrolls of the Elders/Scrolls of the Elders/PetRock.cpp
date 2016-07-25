@@ -41,16 +41,16 @@ void PetRock::move(Player &player) {
 
 		sf::Vector2f movement(0, 0);
 
-			if (petRockPos.x > player.playerPos.x+50 ) {
+			if (petRockPos.x > player.playerPos.x ) {
 				movement.x -= .1;
 			}
-			if (petRockPos.x < player.playerPos.x-50) {
+			if (petRockPos.x < player.playerPos.x) {
 				movement.x += .1;
 			}
-			if (petRockPos.y > player.playerPos.y+20) {
+			if (petRockPos.y > player.playerPos.y) {
 				movement.y -= 0.1;
 			}
-			if (petRockPos.y < player.playerPos.y+40) {
+			if (petRockPos.y < player.playerPos.y) {
 				movement.y += 0.1;
 			}
 			
@@ -63,13 +63,8 @@ void PetRock::move(Player &player) {
 
 void PetRock::attack(Player &player) {
 
-	if (petRockPos.x >  player.playerPos.x-10 && petRockPos.x == player.playerSprite.getOrigin().y) {
-		sf::Vector2f movement(0, 0);
-		movement.x -= 10;
+	if (petRockPos.x >  player.playerSprite.getOrigin().x-10 && petRockPos.x == player.playerSprite.getOrigin().y) {
 		player.currentHealth -= 1;
-		movement.x += 10;
-		petRockSprite.move(movement);
-
 	}
 }
 
