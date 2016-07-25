@@ -93,26 +93,28 @@ void Player::update() {
 
 	playerSprite.setPosition(playerPos.x, playerPos.y);
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
-		movement.y -= 0.5;
-		playerSprite.setTexture(playerForwardTex);
-		animationSpeed = 0.2;
-	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
 		movement.y += 0.5;
 		playerSprite.setTexture(playerForwardTex);
 		animationSpeed = 0.2;
 	}
+
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
 		movement.x -= 0.5;
-		playerSprite.setTexture(playerForwardTex);
+		playerSprite.setTexture(playerLeftTex);
 		animationSpeed = 0.2;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
 		movement.x += 0.5;
-		playerSprite.setTexture(playerForwardTex);
+		playerSprite.setTexture(playerRightTex);
 		animationSpeed = 0.2;
 	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
+		movement.y -= 0.5;
+		playerSprite.setTexture(playerBackTex);
+		animationSpeed = 0.2;
+	}
+	
 
 	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::W) && !sf::Keyboard::isKeyPressed(sf::Keyboard::D) && !sf::Keyboard::isKeyPressed(sf::Keyboard::A) && !sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
 		playerSprite.setTexture(playerIdleTex);
