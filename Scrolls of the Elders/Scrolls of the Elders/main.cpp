@@ -33,7 +33,7 @@ int main() {
 		petRockList.push_back(newPetRock);
 	}
 
-	Player player(9,9,9,9,9,9,9,9,9,window);
+	Player player(1,9,9,9,9,9,9,9,9,window);
 	sf::Sprite backGround;
 	sf::Texture backGroundTex;
 	backGroundTex.loadFromFile("resources/character/back.png");

@@ -36,34 +36,43 @@ void PetRock::move(Player &player) {
 	int distanceX = petRockPos.x - player.playerPos.x;
 	int distanceY = petRockPos.y - player.playerPos.y;
 	if (sqrt(distanceX * distanceX + distanceY * distanceY) < 800) {
-		if (petRockPos.x > player.playerPos.x) {
-			petRockPos.x -= .1;
-		}
-		if (petRockPos.x < player.playerPos.x) {
-			petRockPos.x += .1;
-		}
-		if (petRockPos.y > player.playerPos.y) {
-			petRockPos.y -= .1;
-		}
-		if (petRockPos.y < player.playerPos.y) {
-			petRockPos.y += .1;
-		}
+		
+		//float deltaDistance = speed *DeltaTime; // the amout of pixels to move per second in one axis
+
+		sf::Vector2f movement(0, 0);
+
+			if (petRockPos.x > player.playerPos.x ) {
+				movement.x -= .1;
+			}
+			if (petRockPos.x < player.playerPos.x) {
+				movement.x += .1;
+			}
+			if (petRockPos.y > player.playerPos.y) {
+				movement.y -= 0.1;
+			}
+			if (petRockPos.y < player.playerPos.y) {
+				movement.y += 0.1;
+			}
+			
+			petRockSprite.move(movement);
+
+			petRockPos = petRockSprite.getPosition();
+		
 	}
 }
 
 void PetRock::attack(Player &player) {
-	if (petRockPos.x == player.playerPos.x) {
-		player.currentHealth -= 1;
-	}
-	if (petRockPos.y == player.playerPos.y) {
+
+	if (petRockPos.x >  player.playerSprite.getOrigin().x-10 && petRockPos.x == player.playerSprite.getOrigin().y) {
 		player.currentHealth -= 1;
 	}
 }
 
 void PetRock::updatePetRock(Player &player) {
-	move(player);
 	attack(player);
-	petRockSprite.setPosition(petRockPos.x, petRockPos.y);
+	move(player);	
+
+	
 
 	if (clock.getElapsedTime().asSeconds() > 0.5) {
 		if (petRockSkinInt == 0) {
