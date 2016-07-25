@@ -1,6 +1,5 @@
 #include "Player.h"
 
-
 /*
 Player::Player()
 {
@@ -53,7 +52,7 @@ Player::~Player()
 {
 }
 
-void Player::attackSFML(std::vector<PetRock> &petRockList) {
+void Player::attackSFML(vector<PetRock> petRockList) {
 	sf::Vector2i localPosition = sf::Mouse::getPosition(renderWindow);
 	sf::Vector2f worldPosition = renderWindow.mapPixelToCoords(localPosition);
 	double angle;

@@ -64,11 +64,10 @@ int main() {
 	
 		window.clear();
 		window.draw(backGround);
-		player.update(petRockList);
 		for (int i = 0; i < petRockList.size(); i++) {
 			petRockList.at(i).updatePetRock(player);
 		}
-	
+		player.update(petRockList);
 		window.display();
 	}
 }
