@@ -65,6 +65,9 @@ void Player::attack(Character& target) {
 		//This is my code, no touch...
 		
 		target.currentHealth -= currentDamage;
+		if (target.currentHealth <= 0) {
+			score += 1;
+		}
 	}
 	else {
 		//Yo Grant, here is where you can tell it to do a normal display
@@ -72,6 +75,9 @@ void Player::attack(Character& target) {
 		//This is my code, no touch...
 
 		target.currentHealth -= currentDamage;
+		if (target.currentHealth <= 0) {
+			score += 1;
+		}
 	}
 }
 
@@ -153,6 +159,5 @@ void Player::Update()
 		}
 	}
 	else {
-
 	}
 }

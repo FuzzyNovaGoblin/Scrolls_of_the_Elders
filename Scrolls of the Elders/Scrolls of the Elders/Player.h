@@ -35,6 +35,8 @@ public:
 	bool alive;
 	sf::Clock clock;
 	int score = 0;
+	int diplayScore = 0;
+
 
 
 
