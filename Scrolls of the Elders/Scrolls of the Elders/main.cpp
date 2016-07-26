@@ -28,11 +28,19 @@ int main() {
 //	window.setFramerateLimit(10);
 	//std::vector<Character*> petRockList;
 	std::vector<std::unique_ptr<Character>> petRockList;
+	MeleeWeapon sword ("sword", "steel", 5, 9, 10, "Worn-Steel-Sword.png");
 
-	Player player(1,9,9,9,9,9,9,9,9,window, petRockList);
+	
+
+	Player player(50,9,9,9,9,9,9,9,9,window, petRockList);
+
+
+	player.equipMelee(sword);
+
+
 
 	for (int i = 0; i < 10; i++) { // make 10 enemies 
-		std::unique_ptr<Character> newPetRock(new PetRock(window, petRockTex, player));
+		std::unique_ptr<Character> newPetRock(new PetRock(1, window, petRockTex, player));
 		petRockList.push_back(std::move(newPetRock));
 	}
 
@@ -64,10 +72,11 @@ int main() {
 
 		window.clear();
 		window.draw(backGround);
+		player.Update();
 		for (int i = 0; i < petRockList.size(); i++) {
 			petRockList.at(i)->Update();
 		}
-		player.Update();
+	
 		window.display();
 	}
 }

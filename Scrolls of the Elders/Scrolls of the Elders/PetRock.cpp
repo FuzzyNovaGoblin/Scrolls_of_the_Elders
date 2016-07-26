@@ -2,14 +2,15 @@
 
 
 
-PetRock::PetRock(sf::RenderWindow& renderWindow, sf::Texture& petRockTex, Character& player) : renderWindow(renderWindow), petRockTex(petRockTex), player(player)
+PetRock::PetRock(int inputHealth, sf::RenderWindow& renderWindow, sf::Texture& petRockTex, Character& player) : renderWindow(renderWindow), petRockTex(petRockTex), player(player)
 {
 
 	petRockSkin[0] = sf::IntRect(0, 0, 40, 28);
 	petRockSkin[1] = sf::IntRect(0, 28, 40, 28);
 	petRockSkin[2] = sf::IntRect(0, 56, 40, 28);
 	
-	
+	currentHealth = inputHealth;
+
 	float tempX = rand() % 4000 + 1;
 	float tempY = rand() % 3000 + 1;
 
@@ -60,26 +61,31 @@ void PetRock::attack() {
 		sf::Vector2f movement(0, 0);
 		
 		player.currentHealth -= 1;
-
 	}
 }
 
 void PetRock::Update() {
-	attack();
-	move();	
+	if (alive) {
+		
+		if (currentHealth <= 0) {
+			alive = false;
+		}
+		attack();
+		move();
 
-	if (clock.getElapsedTime().asSeconds() > 0.5) {
-		if (petRockSkinInt == 0) {
-			petRockSkinInt = 1;
+		if (clock.getElapsedTime().asSeconds() > 0.5) {
+			if (petRockSkinInt == 0) {
+				petRockSkinInt = 1;
+			}
+			else {
+				petRockSkinInt = 0;
+			}
+			clock.restart();
 		}
-		else {
-			petRockSkinInt = 0;
-		}
-		clock.restart();
+
+		sprite.setTextureRect(sf::IntRect(petRockSkin[petRockSkinInt]));
+
+		renderWindow.draw(sprite);
 	}
-
-	sprite.setTextureRect(sf::IntRect(petRockSkin[petRockSkinInt]));
-
-	renderWindow.draw(sprite);
 }
 

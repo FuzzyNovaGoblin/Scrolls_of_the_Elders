@@ -15,8 +15,8 @@ class PetRock : public Character
 {
 public:
 	
-	PetRock(sf::RenderWindow& renderWindow, sf::Texture& petRockTex, Character& player);
-
+	PetRock(int inputHealth,  sf::RenderWindow& renderWindow, sf::Texture& petRockTex, Character& player);
+	bool alive = true;
 	sf::RenderWindow& renderWindow;
 	Character& player;
 	sf::Texture petRockTex;

@@ -34,6 +34,7 @@ public:
 	int playerSkinInt = 0;
 	bool alive;
 	sf::Clock clock;
+	int score = 0;
 
 
 

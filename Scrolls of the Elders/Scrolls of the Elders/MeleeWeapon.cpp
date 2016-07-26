@@ -20,6 +20,7 @@ MeleeWeapon::MeleeWeapon(string inputName, string inputDescription, int inputWei
 	damage = inputDamage;
 	MeleeWeaponTexture.loadFromFile("resources/items/" + inputFilename);
 	MeleeWeaponSprite.setTexture(MeleeWeaponTexture);
+	MeleeWeaponSprite.setOrigin(18, 130);
 }
 
 

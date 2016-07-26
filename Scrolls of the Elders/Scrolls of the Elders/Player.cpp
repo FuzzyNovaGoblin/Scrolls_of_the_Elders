@@ -44,16 +44,16 @@ void Player::attackSFML() {
 		angle = 360 - angle;
 	}
 
-	rightHandWeapon.MeleeWeaponSprite.setPosition(position.x, position.y);
-	rightHandWeapon.MeleeWeaponSprite.setRotation(angle);
+	rightHandWeapon.MeleeWeaponSprite.setPosition(position.x-15, position.y+7);
+	rightHandWeapon.MeleeWeaponSprite.setRotation(-angle+90);
 
 	renderWindow.draw(rightHandWeapon.MeleeWeaponSprite);
 	for (int i = 0; i < petRockList.size(); i++) {
-		Character* ptr = petRockList.at(1).get();
+		Character* ptr = petRockList.at(i).get();
 		if (rightHandWeapon.MeleeWeaponSprite.getGlobalBounds().intersects((*ptr).sprite.getGlobalBounds())) {
 			attack(*petRockList[i]);
 		}
-	}
+		}
 }
 
 void Player::attack(Character& target) {
@@ -65,7 +65,6 @@ void Player::attack(Character& target) {
 		//This is my code, no touch...
 		
 		target.currentHealth -= currentDamage;
-
 	}
 	else {
 		//Yo Grant, here is where you can tell it to do a normal display
@@ -73,7 +72,6 @@ void Player::attack(Character& target) {
 		//This is my code, no touch...
 
 		target.currentHealth -= currentDamage;
-
 	}
 }
 
@@ -87,9 +85,7 @@ void Player::Update()
 	if (alive) {
 		//Do all other checks here:
 		position = sprite.getPosition();
-		if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-			attackSFML();
-		}
+	
 		//Movement checks here
 
 		//float testAnimSpeed = 0.5f;
@@ -151,6 +147,10 @@ void Player::Update()
 		sprite.move(movement);
 		sprite.setTextureRect(sf::IntRect(playerSkin[playerSkinInt]));
 		renderWindow.draw(sprite);
+
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+			attackSFML();
+		}
 	}
 	else {
 
