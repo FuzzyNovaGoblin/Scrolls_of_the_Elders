@@ -35,7 +35,7 @@ void PetRock::move() {
 
 		sf::Vector2f movement(0, 0);
 
-		float deltaSpeed = DeltaTime * 600;
+		float deltaSpeed = DeltaTime * 500;
 
 			if (petRockPos.x > player.position.x+50 ) {
 				movement.x -= deltaSpeed;
