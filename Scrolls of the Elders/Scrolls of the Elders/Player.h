@@ -50,5 +50,7 @@ public:
 	void attack(Character& target); //Attack Function (Sword)
 	void equipMelee(MeleeWeapon meleeWeapon); //Equips the weapon
 	void Update();
+
+	sf::Clock attackTimer;
 };
 
