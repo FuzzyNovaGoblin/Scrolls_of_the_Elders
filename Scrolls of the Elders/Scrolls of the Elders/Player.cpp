@@ -9,16 +9,6 @@ Player::Player(int inputHealth, int inputMana, int inputGold, int inputStrength,
 
 	score = 0;
 	alive = true;
-	maxHealth = inputHealth;
-	mana = inputMana;
-	gold = inputGold;
-	strength = inputStrength;
-	intelligence = inputIntelligence;
-	dexterity = inputDexterity;
-	defense = inputDefense;
-	constitution = inputConstitution;
-	endurance = inputEndurance;
-	currentHealth = maxHealth;
 	score = 0;
 	//Doing Health Text
 	healthFont.loadFromFile("resources/font/Amatic-Bold.ttf");
