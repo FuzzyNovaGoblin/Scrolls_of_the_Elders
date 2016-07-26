@@ -1,6 +1,6 @@
 #include "Character.h"
 
-Character::Character()
+Character::Character(float& DeltaTime) : DeltaTime(DeltaTime)
 {
 	name = "Default Name";
 	description = "If you see this, there is a bug, please submit a bug report.";
@@ -15,8 +15,9 @@ Character::Character()
 	endurance = 1;
 }
 
-Character::Character(string inputName, string inputDescription, int inputHealth, int inputMana, int inputGold, int inputStrength, int inputIntelligence, int inputDexterity, int inputDefense, int inputConstitution, int inputEndurance)
+Character::Character(string inputName, string inputDescription, int inputHealth, int inputMana, int inputGold, int inputStrength, int inputIntelligence, int inputDexterity, int inputDefense, int inputConstitution, int inputEndurance, float& DeltaTime) : DeltaTime(DeltaTime)
 {
+	alive = true;
 	name = inputName;
 	description = inputDescription;
 	maxHealth = inputHealth;

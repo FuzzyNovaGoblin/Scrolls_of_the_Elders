@@ -2,7 +2,7 @@
 
 
 
-PetRock::PetRock(int inputHealth, sf::RenderWindow& renderWindow, sf::Texture& petRockTex, Character& player) : renderWindow(renderWindow), petRockTex(petRockTex), player(player)
+PetRock::PetRock(int inputHealth, sf::RenderWindow& renderWindow, sf::Texture& petRockTex, Character& player, float& DeltaTime) : Character(DeltaTime), renderWindow(renderWindow), petRockTex(petRockTex), player(player)
 {
 
 	petRockSkin[0] = sf::IntRect(0, 0, 40, 28);

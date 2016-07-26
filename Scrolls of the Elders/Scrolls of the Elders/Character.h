@@ -13,9 +13,9 @@ using namespace std;
 class Character
 {
 public:
-	Character();
+	Character(float& DeltaTime);
 
-	Character(string inputName, string inputDescription, int inputHealth, int inputMana, int inputGold, int inputStrength, int inputIntelligence, int inputDexterity, int inputDefense, int inputConstitution, int inputEndurance);
+	Character(string inputName, string inputDescription, int inputHealth, int inputMana, int inputGold, int inputStrength, int inputIntelligence, int inputDexterity, int inputDefense, int inputConstitution, int inputEndurance, float &DeltaTime);
 
 	//Text Based Data
 
@@ -25,8 +25,8 @@ public:
 	//Stats
 
 	sf::Vector2f position;
-
-
+	bool alive;
+	
 	int maxHealth; //Starting Health for Player is 100, Max Health
 	int currentHealth; //Current Health
 	int mana; //Starting Mana for Player is 100, Max Mana
@@ -39,6 +39,7 @@ public:
 	int constitution; //Magical Resist
 	int endurance; //Stamina + How much you can carry
 	int level; //Stats scale with level, MENU TO CHOOSE?
+	float &DeltaTime;
 
 	//Sprite
 
