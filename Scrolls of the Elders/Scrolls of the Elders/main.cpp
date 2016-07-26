@@ -18,6 +18,7 @@
 
 
 int main() {
+
 	sf::Clock deltaTimeClock;
 	float DeltaTime = 0;
 
@@ -25,7 +26,7 @@ int main() {
 	sf::Texture petRockTex;
 	petRockTex.loadFromFile("resources/character/petRock.png");
 	sf::Clock spawnTime;
-
+	bool pause = false;
 	sf::Texture reaperBossTex;
 	reaperBossTex.loadFromFile("resources/character/Reaper Boss-Idle.png");
 
@@ -41,6 +42,15 @@ int main() {
 	player.equipMelee(sword);
 
 
+
+	sf::Font asmanFont;
+	sf::Text pauseText;
+	asmanFont.loadFromFile("resources/font/ASMAN.ttf");
+	pauseText.setFont(asmanFont);
+	pauseText.setString("Paused");
+	pauseText.setCharacterSize(200);
+	pauseText.setColor(sf::Color::Red);
+	pauseText.setPosition(player.position.x - 350, player.position.y - 20);
 
 	for (int i = 0; i < 10+player.score; i++) { // make 10 enemies 
 		std::unique_ptr<Character> newPetRock(new PetRock(1, window, petRockTex, player, DeltaTime));
@@ -71,7 +81,12 @@ int main() {
 		}
 		
 
-
+		if (!pause, sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
+			pause = true;
+		}
+		if (pause, sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
+			pause = false;
+		}
 		// get all the input first every frame
 		sf::Event event;
 		while (window.pollEvent(event))
@@ -79,6 +94,7 @@ int main() {
 			if (event.type == sf::Event::Closed) {
 				window.close();
 			}
+			
 		} // input loop ended
 
 
@@ -87,12 +103,17 @@ int main() {
 		view.setCenter(sf::Vector2f(player.sprite.getPosition().x, player.sprite.getPosition().y));
 	
 		window.clear();
-		window.draw(backGround);
-		player.Update();
-		for (int i = 0; i < petRockList.size(); i++) {
-			petRockList.at(i)->Update();
+		if (!pause) {
+			window.draw(backGround);
+			player.Update();
+			for (int i = 0; i < petRockList.size(); i++) {
+				petRockList.at(i)->Update();
+			}
+			window.draw(player.scoreText);
 		}
-		window.draw(player.scoreText);
+		else {
+			window.draw(pauseText);
+		}
 		window.display();
 	}
 }
