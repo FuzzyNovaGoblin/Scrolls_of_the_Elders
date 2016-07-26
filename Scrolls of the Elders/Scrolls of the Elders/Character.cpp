@@ -5,6 +5,7 @@ Character::Character(float& DeltaTime) : DeltaTime(DeltaTime)
 	name = "Default Name";
 	description = "If you see this, there is a bug, please submit a bug report.";
 	maxHealth = 100;
+	currentHealth = maxHealth;
 	mana = 100;
 	gold = 0;
 	strength = 1;
@@ -21,6 +22,7 @@ Character::Character(string inputName, string inputDescription, int inputHealth,
 	name = inputName;
 	description = inputDescription;
 	maxHealth = inputHealth;
+	currentHealth = maxHealth;
 	mana = inputMana;
 	gold = inputGold;
 	strength = inputStrength;

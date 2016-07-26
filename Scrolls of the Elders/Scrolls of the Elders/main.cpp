@@ -18,6 +18,7 @@
 
 
 int main() {
+	sf::Clock deltaTimeClock;
 	float DeltaTime = 0;
 
 	// load some resources like textures which will be used for the duration of the game
@@ -58,6 +59,8 @@ int main() {
 
 	while (window.isOpen()) {
 
+		sf::Time timeFromClock = deltaTimeClock.restart();
+		DeltaTime = timeFromClock.asSeconds();
 
 		if (spawnTime.getElapsedTime().asSeconds() > 10) {
 			for (int i = 0; i < 10 + player.score; i++) { // make 10 enemies 

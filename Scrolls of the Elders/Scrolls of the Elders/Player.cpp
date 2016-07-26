@@ -3,12 +3,10 @@
 
 Player::Player(int inputHealth, int inputMana, int inputGold, int inputStrength, int inputIntelligence, int inputDexterity, int inputDefense, int inputConstitution, int inputEndurance, sf::RenderWindow& renderWindow, std::vector<std::unique_ptr<Character>>& petRockList, float& DeltaTime) : 
 	
-	Character("DefaultName" , "DefaultDescription", inputHealth,inputMana, inputGold, inputStrength, inputIntelligence, inputDexterity, inputDefense, inputConstitution,  inputEndurance,  DeltaTime), renderWindow(renderWindow), petRockList(petRockList)
+	Character("DefaultName" , "DefaultDescription", inputHealth, inputMana, inputGold, inputStrength, inputIntelligence, inputDexterity, inputDefense, inputConstitution, inputEndurance,  DeltaTime), renderWindow(renderWindow), petRockList(petRockList)
 {
 	asmanFont.loadFromFile("resources/font/ASMAN.ttf");
 
-	score = 0;
-	alive = true;
 	score = 0;
 	//Doing Health Text
 	healthFont.loadFromFile("resources/font/Amatic-Bold.ttf");
@@ -108,24 +106,26 @@ void Player::Update()
 
 		sprite.setPosition(position.x, position.y);
 
+		float deltaSpeed = dexterity * 35 * DeltaTime;
+
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
-			movement.y += 0.5;
+			movement.y += deltaSpeed;
 			sprite.setTexture(playerForwardTex);
 			animationSpeed = 0.2;
 		}
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
-			movement.x -= 0.5;
+			movement.x -= deltaSpeed;
 			sprite.setTexture(playerLeftTex);
 			animationSpeed = 0.2;
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
-			movement.x += 0.5;
+			movement.x += deltaSpeed;
 			sprite.setTexture(playerRightTex);
 			animationSpeed = 0.2;
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
-			movement.y -= 0.5;
+			movement.y -= deltaSpeed;
 			sprite.setTexture(playerBackTex);
 			animationSpeed = 0.2;
 		}
