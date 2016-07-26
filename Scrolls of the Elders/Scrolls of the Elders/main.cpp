@@ -72,8 +72,14 @@ int main() {
 		sf::Time timeFromClock = deltaTimeClock.restart();
 		DeltaTime = timeFromClock.asSeconds();
 
-		if (spawnTime.getElapsedTime().asSeconds() > 10) {
+		if (spawnTime.getElapsedTime().asSeconds() > 10 && player.score<100) {
 			for (int i = 0; i < 10 + player.score; i++) { // make 10 enemies 
+				std::unique_ptr<Character> newPetRock(new PetRock(1, window, petRockTex, player, DeltaTime));
+				petRockList.push_back(std::move(newPetRock));
+			}
+			spawnTime.restart();
+		}else if (spawnTime.getElapsedTime().asSeconds() > 10 && player.score>=100) {
+			for (int i = 0; i < 100; i++) { // make 10 enemies 
 				std::unique_ptr<Character> newPetRock(new PetRock(1, window, petRockTex, player, DeltaTime));
 				petRockList.push_back(std::move(newPetRock));
 			}
