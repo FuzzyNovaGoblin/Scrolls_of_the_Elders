@@ -40,6 +40,7 @@ public:
 	int diplayScore = 0;
 	sf::Text healthText;
 	sf::Font healthFont;
+	string scoreString;
 
 
 	Player(int inputHealth, int inputMana, int inputGold, int inputStrength, int inputIntelligence, int inputDexterity, int inputDefense, int inputConstitution, int inputEndurance, sf::RenderWindow& renderWindow, std::vector<std::unique_ptr<Character>>& petRockList);
