@@ -1,10 +1,13 @@
 #include "Player.h"
 
 
-Player::Player(int inputHealth, int inputMana, int inputGold, int inputStrength, int inputIntelligence, int inputDexterity, int inputDefense, int inputConstitution, int inputEndurance, sf::RenderWindow& renderWindow, std::vector<std::unique_ptr<Character>>& petRockList) :renderWindow(renderWindow), petRockList(petRockList)
+Player::Player(int inputHealth, int inputMana, int inputGold, int inputStrength, int inputIntelligence, int inputDexterity, int inputDefense, int inputConstitution, int inputEndurance, sf::RenderWindow& renderWindow, std::vector<std::unique_ptr<Character>>& petRockList, float& DeltaTime) : 
+	
+	Character("DefaultName" , "DefaultDescription", inputHealth,inputMana, inputGold, inputStrength, inputIntelligence, inputDexterity, inputDefense, inputConstitution,  inputEndurance,  DeltaTime), renderWindow(renderWindow), petRockList(petRockList)
 {
 	asmanFont.loadFromFile("resources/font/ASMAN.ttf");
 
+	score = 0;
 	alive = true;
 	maxHealth = inputHealth;
 	mana = inputMana;

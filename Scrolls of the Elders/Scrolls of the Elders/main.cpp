@@ -18,6 +18,8 @@
 
 
 int main() {
+	float DeltaTime = 0;
+
 	// load some resources like textures which will be used for the duration of the game
 	sf::Texture petRockTex;
 	petRockTex.loadFromFile("resources/character/petRock.png");
@@ -33,14 +35,14 @@ int main() {
 	std::vector<std::unique_ptr<Character>> petRockList;
 	MeleeWeapon sword ("axe", "gold", 5, 9, 10, "Golden-BattleAxe.png");
 
-	Player player(50,10,10,10,10,10,10,10,10, window, petRockList);
+	Player player(50,10,10,10,10,10,10,10,10, window, petRockList, DeltaTime);
 
 	player.equipMelee(sword);
 
 
 
-	for (int i = 0; i < 10; i++) { // make 10 enemies 
-		std::unique_ptr<Character> newPetRock(new PetRock(1, window, petRockTex, player));
+	for (int i = 0; i < 10+player.score; i++) { // make 10 enemies 
+		std::unique_ptr<Character> newPetRock(new PetRock(1, window, petRockTex, player, DeltaTime));
 		petRockList.push_back(std::move(newPetRock));
 	}
 
@@ -59,7 +61,7 @@ int main() {
 
 		if (spawnTime.getElapsedTime().asSeconds() > 10) {
 			for (int i = 0; i < 10 + player.score; i++) { // make 10 enemies 
-				std::unique_ptr<Character> newPetRock(new PetRock(1, window, petRockTex, player));
+				std::unique_ptr<Character> newPetRock(new PetRock(1, window, petRockTex, player, DeltaTime));
 				petRockList.push_back(std::move(newPetRock));
 			}
 			spawnTime.restart();
