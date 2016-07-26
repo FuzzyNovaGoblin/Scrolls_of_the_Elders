@@ -15,9 +15,7 @@ class Character
 public:
 	Character();
 
-	Character(string inputName, string inputDescription, int inputHealth, int inputMana, int inputGold, int inputStrength, int inputIntelligence, int inputDexterity, int inputDefense, int inputConstitution, int inputEndurance, sf::Texture inputTexture, sf::Sprite inputSprite);
-
-	~Character();
+	Character(string inputName, string inputDescription, int inputHealth, int inputMana, int inputGold, int inputStrength, int inputIntelligence, int inputDexterity, int inputDefense, int inputConstitution, int inputEndurance);
 
 	//Text Based Data
 
@@ -25,6 +23,9 @@ public:
 	string description; //A description, you know, for when you hover your mouse over them
 	
 	//Stats
+
+	sf::Vector2f position;
+
 
 	int maxHealth; //Starting Health for Player is 100, Max Health
 	int currentHealth; //Current Health
@@ -41,8 +42,9 @@ public:
 
 	//Sprite
 
-	sf::Texture characterTexture;
+	sf::Sprite sprite;
 
-	sf::Sprite characterSprite;
+	// functions
+	virtual void Update();
 };
 

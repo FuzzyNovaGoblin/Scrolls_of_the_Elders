@@ -6,9 +6,9 @@
 #include <SFML\Graphics.hpp>
 #include <SFML\Graphics\Rect.hpp>
 #include <SFML\System\Clock.hpp>
+#include <memory>
 
-#include "Character.h"
-#include "Enemy.h"
+
 #include "Player.h"
 #include "Item.h"
 #include "MeleeWeapon.h"
@@ -26,19 +26,29 @@ int main() {
 	sf::RenderWindow window(sf::VideoMode(1780, 980), "Scrolls of the Elders ");
 	sf::View view;
 //	window.setFramerateLimit(10);
-	std::vector<PetRock> petRockList;
+	//std::vector<Character*> petRockList;
+	std::vector<std::unique_ptr<Character>> petRockList;
+	MeleeWeapon sword ("sword", "steel", 5, 9, 10, "Worn-Steel-Sword.png");
+
+	
+
+	Player player(50,9,9,9,9,9,9,9,9,window, petRockList);
+
+
+	player.equipMelee(sword);
+
+
 
 	for (int i = 0; i < 10; i++) { // make 10 enemies 
-		PetRock newPetRock(window, petRockTex);
-		petRockList.push_back(newPetRock);
+		std::unique_ptr<Character> newPetRock(new PetRock(1, window, petRockTex, player));
+		petRockList.push_back(std::move(newPetRock));
 	}
 
-	Player player(1,9,9,9,9,9,9,9,9,window);
 	sf::Sprite backGround;
 	sf::Texture backGroundTex;
 	backGroundTex.loadFromFile("resources/character/back.png");
 	backGround.setTexture(backGroundTex);
-	view.setCenter(sf::Vector2f(player.playerSprite.getPosition().x, player.playerSprite.getPosition().y));
+	view.setCenter(sf::Vector2f(player.sprite.getPosition().x, player.sprite.getPosition().y));
 	view.setSize(1780, 980);
 
 	while (window.isOpen()) {
@@ -57,16 +67,14 @@ int main() {
 
 		window.setView(view);
 
-		view.setCenter(sf::Vector2f(player.playerSprite.getPosition().x, player.playerSprite.getPosition().y));
+		view.setCenter(sf::Vector2f(player.sprite.getPosition().x, player.sprite.getPosition().y));
 	
 
-
-	
 		window.clear();
 		window.draw(backGround);
-		player.update(petRockList);
+		player.Update();
 		for (int i = 0; i < petRockList.size(); i++) {
-			petRockList.at(i).updatePetRock(player);
+			petRockList.at(i)->Update();
 		}
 	
 		window.display();
