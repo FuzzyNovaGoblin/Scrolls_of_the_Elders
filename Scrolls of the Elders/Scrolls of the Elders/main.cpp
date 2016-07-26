@@ -46,8 +46,11 @@ int main() {
 
 	sf::Sprite backGround;
 	sf::Texture backGroundTex;
-	backGroundTex.loadFromFile("resources/character/back.png");
+	backGroundTex.loadFromFile("resources/environment/BrickBackground.jpg");
 	backGround.setTexture(backGroundTex);
+
+	backGround.setScale(50, 50);
+
 	view.setCenter(sf::Vector2f(player.sprite.getPosition().x, player.sprite.getPosition().y));
 	view.setSize(1780, 980);
 
