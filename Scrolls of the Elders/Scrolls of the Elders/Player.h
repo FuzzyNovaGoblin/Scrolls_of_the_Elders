@@ -47,7 +47,7 @@ public:
 	MeleeWeapon rightHandWeapon;
 	std::vector<std::unique_ptr<Character>>& petRockList;
 	void attackSFML(); //Actuator and Animation for Attack (Sword)
-	void attack(Character& target); //Attack Function (Sword)
+	void attack(Character& target, int index); //Attack Function (Sword)
 	void equipMelee(MeleeWeapon meleeWeapon); //Equips the weapon
 	void Update();
 

@@ -53,7 +53,7 @@ void Player::attackSFML() {
 		for (int i = 0; i < petRockList.size(); i++) {
 			Character* ptr = petRockList.at(i).get();
 			if (rightHandWeapon.MeleeWeaponSprite.getGlobalBounds().intersects((*ptr).sprite.getGlobalBounds())) {
-				attack(*petRockList[i]);
+				attack(*petRockList[i], i);
 			}
 		}
 	}
@@ -65,7 +65,7 @@ void Player::attackSFML() {
 	}
 }
 
-void Player::attack(Character& target) {
+void Player::attack(Character& target, int indexOfTarget) {
 	if (target.alive) {
 
 		int currentDamage = (strength / 2) + (rand() % strength);
@@ -78,6 +78,9 @@ void Player::attack(Character& target) {
 			target.currentHealth -= currentDamage;
 			if (target.currentHealth <= 0) {
 				score += 1;
+
+				// 
+				petRockList.erase(petRockList.begin() + indexOfTarget);
 			}
 		}
 		else {
