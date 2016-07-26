@@ -103,7 +103,7 @@ void Player::Update()
 	if (alive) {
 		//Do all other checks here:
 		position = sprite.getPosition();
-	
+		score = 0;
 		//Movement checks here
 
 		//float testAnimSpeed = 0.5f;

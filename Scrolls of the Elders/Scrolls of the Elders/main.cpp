@@ -21,7 +21,7 @@ int main() {
 	// load some resources like textures which will be used for the duration of the game
 	sf::Texture petRockTex;
 	petRockTex.loadFromFile("resources/character/petRock.png");
-
+	sf::Clock spawnTime;
 
 	sf::RenderWindow window(sf::VideoMode(1780, 980), "Scrolls of the Elders ");
 	sf::View view;
@@ -53,6 +53,15 @@ int main() {
 
 	while (window.isOpen()) {
 
+
+		if (spawnTime.getElapsedTime().asSeconds() > 10) {
+			for (int i = 0; i < 10 + player.score; i++) { // make 10 enemies 
+				std::unique_ptr<Character> newPetRock(new PetRock(1, window, petRockTex, player));
+				petRockList.push_back(std::move(newPetRock));
+			}
+			spawnTime.restart();
+		}
+		
 
 
 		// get all the input first every frame
