@@ -185,15 +185,15 @@ void Player::Update()
 			attackSFML();
 		}
 		//End of Mouse Sensor
+		
 	}
 	else {
-		//scoreString = ("Score: " + score);
-		//std::cout<< score << "   ";
+		
 		scoreText.setFont(asmanFont);
 		scoreText.setString("Score " + std::to_string(score));
 		scoreText.setCharacterSize(200);
 		scoreText.setColor(sf::Color::Red);
-		scoreText.setPosition(position.x-250, position.y-10);
+		scoreText.setPosition(position.x-350, position.y-20);
 		
 	}
 }
