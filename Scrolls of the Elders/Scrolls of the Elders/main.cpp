@@ -92,7 +92,7 @@ int main() {
 		for (int i = 0; i < petRockList.size(); i++) {
 			petRockList.at(i)->Update();
 		}
-	
+		window.draw(player.scoreText);
 		window.display();
 	}
 }

@@ -180,13 +180,13 @@ void Player::Update()
 		//End of Mouse Sensor
 	}
 	else {
-		scoreString = ("Score: "+ score);
-		std::cout<< score << "   ";
+		//scoreString = ("Score: " + score);
+		//std::cout<< score << "   ";
 		scoreText.setFont(asmanFont);
-		scoreText.setString(scoreString);
-		scoreText.setCharacterSize(24);
+		scoreText.setString("Score " + std::to_string(score));
+		scoreText.setCharacterSize(200);
 		scoreText.setColor(sf::Color::Red);
-		scoreText.setPosition(position.x-100, position.y);
-		renderWindow.draw(scoreText);
+		scoreText.setPosition(position.x-250, position.y-10);
+		
 	}
 }
