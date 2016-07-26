@@ -62,7 +62,7 @@ void PetRock::attack() {
 
 		if (attackTime.getElapsedTime().asSeconds() > 1) {
 	
-			player.currentHealth -= 1;
+			player.currentHealth -= 5;
 			attackTime.restart();
 
 		}
@@ -93,5 +93,6 @@ void PetRock::Update() {
 
 		renderWindow.draw(sprite);
 	}
+
 }
 

@@ -3,6 +3,9 @@
 
 Player::Player(int inputHealth, int inputMana, int inputGold, int inputStrength, int inputIntelligence, int inputDexterity, int inputDefense, int inputConstitution, int inputEndurance, sf::RenderWindow& renderWindow, std::vector<std::unique_ptr<Character>>& petRockList) :renderWindow(renderWindow), petRockList(petRockList)
 {
+	asmanFont.loadFromFile("resources\font\ASMAN.ttf");
+
+	score = 0;
 	alive = true;
 	maxHealth = inputHealth;
 	mana = inputMana;
@@ -159,5 +162,10 @@ void Player::Update()
 		}
 	}
 	else {
+		scoreString = score;
+		scoreText.setFont(asmanFont);
+		scoreText.setString(scoreString);
+		scoreText.setCharacterSize(24);
+		scoreText.setColor(sf::Color::Red);
 	}
 }
