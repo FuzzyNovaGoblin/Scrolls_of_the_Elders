@@ -22,13 +22,15 @@ int main() {
 	sf::Texture petRockTex;
 	petRockTex.loadFromFile("resources/character/petRock.png");
 
+	sf::Texture reaperBossTex;
+	reaperBossTex.loadFromFile("resources/character/Reaper Boss-Idle.png");
 
 	sf::RenderWindow window(sf::VideoMode(1780, 980), "Scrolls of the Elders ");
 	sf::View view;
 //	window.setFramerateLimit(10);
 	//std::vector<Character*> petRockList;
 	std::vector<std::unique_ptr<Character>> petRockList;
-	MeleeWeapon sword ("sword", "steel", 5, 9, 10, "Worn-Steel-Sword.png");
+	MeleeWeapon sword ("axe", "gold", 5, 9, 10, "Golden-BattleAxe.png");
 
 	Player player(50,10,10,10,10,10,10,10,10, window, petRockList);
 
