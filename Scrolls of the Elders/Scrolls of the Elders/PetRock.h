@@ -21,8 +21,13 @@ public:
 	Character& player;
 	sf::Texture petRockTex;
 	sf::IntRect petRockSkin[3];
-
+	bool attackMove = false;
+	bool attackMoveXP = false;
+	bool attackMoveYP = false;
+	bool attackMoveXM = false;
+	bool attackMoveYM = false;
 	sf::Clock clock;
+	sf::Clock attackTime;
 	sf::Vector2f petRockPos;
 	float timer;
 	int petRockSkinInt = 0;

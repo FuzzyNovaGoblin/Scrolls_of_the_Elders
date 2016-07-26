@@ -57,10 +57,16 @@ void PetRock::move() {
 
 void PetRock::attack() {
 
-	if (petRockPos.x > player.position.x-50 && petRockPos.x < player.position.x+50 && petRockPos.y > player.position.y && petRockPos.y < player.position.y+41) {
+	if (petRockPos.x > player.position.x - 50 && petRockPos.x < player.position.x + 50 && petRockPos.y > player.position.y && petRockPos.y < player.position.y + 41) {
 		sf::Vector2f movement(0, 0);
-		
-		player.currentHealth -= 1;
+
+		if (attackTime.getElapsedTime().asSeconds() > 1) {
+	
+			player.currentHealth -= 1;
+			attackTime.restart();
+
+		}
+
 	}
 }
 
