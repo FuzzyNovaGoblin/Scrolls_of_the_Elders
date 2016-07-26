@@ -1,23 +1,24 @@
 #pragma once
-#include "Enemy.h"
+#include "Character.h"
 #include <iostream>
 #include <string>
 #include <vector>
-
-using namespace std;
-
 #include <SFML\Graphics.hpp>
 #include <SFML\Graphics\Rect.hpp>
 #include <SFML\System\Clock.hpp>
 
 
-class PetRock :
-	public Enemy
+using namespace std;
+
+
+class PetRock : public Character
 {
 public:
 	
+	PetRock(sf::RenderWindow& renderWindow, sf::Texture& petRockTex, Character& player);
+
 	sf::RenderWindow& renderWindow;
-	sf::Sprite petRockSprite;
+	Character& player;
 	sf::Texture petRockTex;
 	sf::IntRect petRockSkin[3];
 
@@ -25,9 +26,8 @@ public:
 	sf::Vector2f petRockPos;
 	float timer;
 	int petRockSkinInt = 0;
-	void updatePetRock(Player &player); // get a reference to the player
-	void move(Player &player);
-	void attack(Player &player);
-	PetRock(sf::RenderWindow& renderWindow, sf::Texture& petRockTex);
-	~PetRock();
+	void Update(); // get a reference to the player
+	void move();
+	void attack();
+	
 };

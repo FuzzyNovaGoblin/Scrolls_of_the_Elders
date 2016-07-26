@@ -1,24 +1,7 @@
 #include "Player.h"
 
-/*
-Player::Player()
-{
-	name = "Default Name";
-	description = "If you see this, there is a bug, please submit a bug report.";
-	health = 100;
-	mana = 100;
-	gold = 0;
-	strength = 1;
-	intelligence = 1;
-	dexterity = 1;
-	defense = 1;
-	constitution = 1;
-	endurance = 1;
-}
-*/
 
-
-Player::Player(int inputHealth, int inputMana, int inputGold, int inputStrength, int inputIntelligence, int inputDexterity, int inputDefense, int inputConstitution, int inputEndurance, sf::RenderWindow& renderWindow) : renderWindow(renderWindow)
+Player::Player(int inputHealth, int inputMana, int inputGold, int inputStrength, int inputIntelligence, int inputDexterity, int inputDefense, int inputConstitution, int inputEndurance, sf::RenderWindow& renderWindow, std::vector<std::unique_ptr<Character>>& petRockList) : renderWindow(renderWindow), petRockList(petRockList)
 {
 	alive = true;
 	maxHealth = inputHealth;
@@ -44,19 +27,16 @@ Player::Player(int inputHealth, int inputMana, int inputGold, int inputStrength,
 
 
 	
-	playerSprite.setOrigin(50, 65);
+	sprite.setOrigin(50, 65);
 	//End of texture stuff
 }
 
-Player::~Player()
-{
-}
 
-void Player::attackSFML(vector<PetRock> petRockList) {
+void Player::attackSFML() {
 	sf::Vector2i localPosition = sf::Mouse::getPosition(renderWindow);
 	sf::Vector2f worldPosition = renderWindow.mapPixelToCoords(localPosition);
 	double angle;
-	angle = atan2(worldPosition.y - playerPos.y, worldPosition.x - playerPos.x) * 180 / PI;
+	angle = atan2(worldPosition.y - position.y, worldPosition.x - position.x) * 180 / PI;
 	if (angle < 0) {
 		angle = angle * -1;
 	}
@@ -64,17 +44,19 @@ void Player::attackSFML(vector<PetRock> petRockList) {
 		angle = 360 - angle;
 	}
 
-	rightHandWeapon.MeleeWeaponSprite.setPosition(playerPos.x, playerPos.y);
+	rightHandWeapon.MeleeWeaponSprite.setPosition(position.x, position.y);
 	rightHandWeapon.MeleeWeaponSprite.setRotation(angle);
 
 	renderWindow.draw(rightHandWeapon.MeleeWeaponSprite);
-	for (int i = 0; i < petRockList.size; i++)
-		if (rightHandWeapon.MeleeWeaponSprite.getGlobalBounds().intersects(petRockList[i].petRockSprite.getGlobalBounds())) {
-			attack((Character*) &petRockList[i]);
+	for (int i = 0; i < petRockList.size(); i++) {
+		Character* ptr = petRockList.at(1).get();
+		if (rightHandWeapon.MeleeWeaponSprite.getGlobalBounds().intersects((*ptr).sprite.getGlobalBounds())) {
+			attack(*petRockList[i]);
 		}
+	}
 }
 
-void Player::attack(Character* target) {
+void Player::attack(Character& target) {
 	int currentDamage = (strength / 2) + (rand() % strength);
 	currentDamage += rightHandWeapon.damage;
 	if (currentDamage > strength) {
@@ -82,7 +64,7 @@ void Player::attack(Character* target) {
 
 		//This is my code, no touch...
 		
-		target->currentHealth -= currentDamage;
+		target.currentHealth -= currentDamage;
 
 	}
 	else {
@@ -90,7 +72,7 @@ void Player::attack(Character* target) {
 
 		//This is my code, no touch...
 
-		target->currentHealth -= currentDamage;
+		target.currentHealth -= currentDamage;
 
 	}
 }
@@ -99,14 +81,14 @@ void Player::equipMelee(MeleeWeapon meleeWeapon) {
 	rightHandWeapon = meleeWeapon;
 }
 
-void Player::update(std::vector<PetRock> &petRockList)
+void Player::Update()
 {
 	
 	if (alive) {
 		//Do all other checks here:
-		playerPos = characterSprite.getPosition();
+		position = sprite.getPosition();
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-			attackSFML(petRockList);
+			attackSFML();
 		}
 		//Movement checks here
 
@@ -114,33 +96,33 @@ void Player::update(std::vector<PetRock> &petRockList)
 
 		sf::Vector2f movement(0, 0);
 
-		playerSprite.setPosition(playerPos.x, playerPos.y);
+		sprite.setPosition(position.x, position.y);
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
 			movement.y += 0.5;
-			playerSprite.setTexture(playerForwardTex);
+			sprite.setTexture(playerForwardTex);
 			animationSpeed = 0.2;
 		}
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
 			movement.x -= 0.5;
-			playerSprite.setTexture(playerLeftTex);
+			sprite.setTexture(playerLeftTex);
 			animationSpeed = 0.2;
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
 			movement.x += 0.5;
-			playerSprite.setTexture(playerRightTex);
+			sprite.setTexture(playerRightTex);
 			animationSpeed = 0.2;
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
 			movement.y -= 0.5;
-			playerSprite.setTexture(playerBackTex);
+			sprite.setTexture(playerBackTex);
 			animationSpeed = 0.2;
 		}
 
 
 		if (!sf::Keyboard::isKeyPressed(sf::Keyboard::W) && !sf::Keyboard::isKeyPressed(sf::Keyboard::D) && !sf::Keyboard::isKeyPressed(sf::Keyboard::A) && !sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
-			playerSprite.setTexture(playerIdleTex);
+			sprite.setTexture(playerIdleTex);
 			animationSpeed = 0.5;
 		}
 
@@ -166,9 +148,9 @@ void Player::update(std::vector<PetRock> &petRockList)
 			alive = false;
 		}
 
-		characterSprite.move(movement);
-		playerSprite.setTextureRect(sf::IntRect(playerSkin[playerSkinInt]));
-		renderWindow.draw(playerSprite);
+		sprite.move(movement);
+		sprite.setTextureRect(sf::IntRect(playerSkin[playerSkinInt]));
+		renderWindow.draw(sprite);
 	}
 	else {
 

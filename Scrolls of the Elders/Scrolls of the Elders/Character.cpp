@@ -1,7 +1,5 @@
 #include "Character.h"
 
-
-
 Character::Character()
 {
 	name = "Default Name";
@@ -17,7 +15,7 @@ Character::Character()
 	endurance = 1;
 }
 
-Character::Character(string inputName, string inputDescription, int inputHealth, int inputMana, int inputGold, int inputStrength, int inputIntelligence, int inputDexterity, int inputDefense, int inputConstitution, int inputEndurance, sf::Texture inputTexture, sf::Sprite inputSprite)
+Character::Character(string inputName, string inputDescription, int inputHealth, int inputMana, int inputGold, int inputStrength, int inputIntelligence, int inputDexterity, int inputDefense, int inputConstitution, int inputEndurance)
 {
 	name = inputName;
 	description = inputDescription;
@@ -30,16 +28,10 @@ Character::Character(string inputName, string inputDescription, int inputHealth,
 	defense = inputDefense;
 	constitution = inputConstitution;
 	endurance = inputEndurance;
-
-	//Do texture stuff
-
-	//End of texture stuff
-
-	characterSprite = inputSprite;
 }
 
 
-Character::~Character()
-{
+void Character::Update() {
+	cout << "This is the Character's Update" << endl;
 }
 

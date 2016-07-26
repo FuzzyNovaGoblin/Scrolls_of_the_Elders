@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include <math.h>
+#include <memory>
 
 #include <SFML\Graphics.hpp>
 #include <SFML\Graphics\Rect.hpp>
@@ -12,7 +13,7 @@
 #include "Item.h"
 #include "MeleeWeapon.h"
 #include "Input.h"
-#include "PetRock.h"
+
 
 #define PI 3.14159265
 
@@ -22,7 +23,6 @@ class Player: public Character
 {
 public:
 	sf::RenderWindow& renderWindow;
-	sf::Sprite playerSprite;
 	sf::Texture playerIdleTex;
 	sf::Texture playerForwardTex;
 	sf::Texture playerRightTex;
@@ -34,20 +34,16 @@ public:
 	int playerSkinInt = 0;
 	bool alive;
 	sf::Clock clock;
-	Player();
 
 
-	Player(int inputHealth, int inputMana, int inputGold, int inputStrength, int inputIntelligence, int inputDexterity, int inputDefense, int inputConstitution, int inputEndurance, sf::RenderWindow& renderWindow);
 
-	~Player();
+	Player(int inputHealth, int inputMana, int inputGold, int inputStrength, int inputIntelligence, int inputDexterity, int inputDefense, int inputConstitution, int inputEndurance, sf::RenderWindow& renderWindow, std::vector<std::unique_ptr<Character>>& petRockList);
 
 	MeleeWeapon rightHandWeapon;
-
-	sf::Vector2f playerPos;
-	
-	void attackSFML(vector<PetRock> &petRockList); //Actuator and Animation for Attack (Sword)
-	void attack(Character* target); //Attack Function (Sword)
+	std::vector<std::unique_ptr<Character>>& petRockList;
+	void attackSFML(); //Actuator and Animation for Attack (Sword)
+	void attack(Character& target); //Attack Function (Sword)
 	void equipMelee(MeleeWeapon meleeWeapon); //Equips the weapon
-	void update(vector<PetRock> &petRockList);
+	void Update();
 };
 
