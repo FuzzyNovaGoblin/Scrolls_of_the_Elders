@@ -20,6 +20,7 @@ public:
 	sf::IntRect reaperBossSkin[4];
 
 	sf::Clock clock;
+	sf::Clock attackTime;
 	sf::Vector2f reaperBossPos;
 	float timer;
 	int reaperBossSkinInt = 0;

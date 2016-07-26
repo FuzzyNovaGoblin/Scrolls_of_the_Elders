@@ -55,14 +55,46 @@ void ReaperBoss::move()
 
 void ReaperBoss::attack()
 {
+	if (reaperBossPos.x > player.position.x - 50 && reaperBossPos.x < player.position.x + 50 && reaperBossPos.y > player.position.y && reaperBossPos.y < player.position.y + 41) 
+	{
+			sf::Vector2f movement(0, 0);
 
+			if (attackTime.getElapsedTime().asSeconds() > 1) {
+
+				player.currentHealth -= 5;
+				attackTime.restart();
+			}
+	}
 }
 
 void ReaperBoss::Update()
 {
+	if (currentHealth <= 0) 
+	{
+		alive = false;
+	}
+	attack();
+	move();
 
+	if (clock.getElapsedTime().asSeconds() > 0.5) 
+	{
+		if (reaperBossSkinInt == 0) 
+		{
+			reaperBossSkinInt = 1;
+		}
+		else 
+		{
+			reaperBossSkinInt = 0;
+		}
+		clock.restart();
+	}
+
+	sprite.setTextureRect(sf::IntRect(reaperBossSkin[reaperBossSkinInt]));
+
+	renderWindow.draw(sprite);
 }
 
 ReaperBoss::~ReaperBoss()
 {
+
 }
