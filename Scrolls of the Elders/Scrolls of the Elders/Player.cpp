@@ -26,8 +26,6 @@ Player::Player(int inputHealth, int inputMana, int inputGold, int inputStrength,
 	playerSkin[1] = sf::IntRect(128, 0, 128, 128);
 	playerSkin[2] = sf::IntRect(0, 128, 128, 128);
 	playerSkin[3] = sf::IntRect(128, 128, 128, 128);
-
-
 	
 	sprite.setOrigin(50, 65);
 	//End of texture stuff
@@ -46,16 +44,25 @@ void Player::attackSFML() {
 		angle = 360 - angle;
 	}
 
-	rightHandWeapon.MeleeWeaponSprite.setPosition(position.x-15, position.y+7);
-	rightHandWeapon.MeleeWeaponSprite.setRotation(-angle+90);
+	if (attackTimer.getElapsedTime().asSeconds() < 1) {
 
-	renderWindow.draw(rightHandWeapon.MeleeWeaponSprite);
-	for (int i = 0; i < petRockList.size(); i++) {
-		Character* ptr = petRockList.at(i).get();
-		if (rightHandWeapon.MeleeWeaponSprite.getGlobalBounds().intersects((*ptr).sprite.getGlobalBounds())) {
-			attack(*petRockList[i]);
+		rightHandWeapon.MeleeWeaponSprite.setPosition(position.x - 15, position.y + 7);
+		rightHandWeapon.MeleeWeaponSprite.setRotation(-angle + 90);
+
+		renderWindow.draw(rightHandWeapon.MeleeWeaponSprite);
+		for (int i = 0; i < petRockList.size(); i++) {
+			Character* ptr = petRockList.at(i).get();
+			if (rightHandWeapon.MeleeWeaponSprite.getGlobalBounds().intersects((*ptr).sprite.getGlobalBounds())) {
+				attack(*petRockList[i]);
+			}
 		}
-		}
+	}
+	else if (attackTimer.getElapsedTime().asSeconds() < 2) {
+
+	}
+	else if (attackTimer.getElapsedTime().asSeconds() >= 2) {
+		attackTimer.restart();
+	}
 }
 
 void Player::attack(Character& target) {
