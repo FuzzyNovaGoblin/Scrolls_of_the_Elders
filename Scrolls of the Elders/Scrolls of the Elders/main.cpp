@@ -27,8 +27,8 @@ int main() {
 	petRockTex.loadFromFile("resources/character/petRock.png");
 	sf::Clock spawnTime;
 	bool pause = false;
-	sf::Texture reaperBossTex;
-	reaperBossTex.loadFromFile("resources/character/Reaper Boss-Idle.png");
+	sf::Texture reaperBossIdleTex;
+	reaperBossIdleTex.loadFromFile("resources/character/Reaper Boss-Idle.png");
 
 	sf::RenderWindow window(sf::VideoMode(1780, 980), "Scrolls of the Elders ");
 	sf::View view;

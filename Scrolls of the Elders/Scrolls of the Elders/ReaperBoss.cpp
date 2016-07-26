@@ -2,9 +2,12 @@
 
 
 
-ReaperBoss::ReaperBoss(int inputHealth, sf::RenderWindow& renderwindow, sf::Texture &reaperBossTex, Character& player): Character(DeltaTime), renderWindow(renderWindow), reaperBossTex(reaperBossTex), player(player)
+ReaperBoss::ReaperBoss(int inputHealth, sf::RenderWindow& renderwindow, Character& player) : Character(DeltaTime), renderWindow(renderWindow), player(player)
 {
-
+	reaperBossIdleTex.loadFromFile("resources/character/Reaper Boss-Idle");
+	reaperBossSlashTex.loadFromFile("resources/character/Reaper Boss-Attack");
+	reaperBossSummonTex.loadFromFile("resources/character/Reaper Boss-Magic");
+	reaperBossTeleportTex.loadFromFile("resources/character/Reaper Boss-Teleport");
 	reaperBossSkin[0] = sf::IntRect(0, 0, 192, 192);
 	reaperBossSkin[1] = sf::IntRect(192, 0, 384, 192);
 	reaperBossSkin[2] = sf::IntRect(0, 192, 192, 384);
@@ -20,7 +23,7 @@ ReaperBoss::ReaperBoss(int inputHealth, sf::RenderWindow& renderwindow, sf::Text
 
 	sprite.setPosition(reaperBossPos.x, reaperBossPos.y);
 
-	sprite.setTexture(reaperBossTex);
+	sprite.setTexture(reaperBossIdleTex);
 
 	timer = clock.getElapsedTime().asSeconds();
 
