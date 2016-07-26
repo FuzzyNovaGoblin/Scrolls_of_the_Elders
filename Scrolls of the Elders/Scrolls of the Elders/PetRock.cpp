@@ -35,17 +35,19 @@ void PetRock::move() {
 
 		sf::Vector2f movement(0, 0);
 
+		float deltaSpeed = DeltaTime * 600;
+
 			if (petRockPos.x > player.position.x+50 ) {
-				movement.x -= 1;
+				movement.x -= deltaSpeed;
 			}
 			if (petRockPos.x < player.position.x-50) {
-				movement.x += 1;
+				movement.x += deltaSpeed;
 			}
 			if (petRockPos.y > player.position.y+20) {
-				movement.y -= 1;
+				movement.y -= deltaSpeed;
 			}
 			if (petRockPos.y < player.position.y+40) {
-				movement.y += 1;
+				movement.y += deltaSpeed;
 			}
 			
 			sprite.move(movement);
