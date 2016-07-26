@@ -32,8 +32,6 @@ int main() {
 
 	Player player(50,10,10,10,10,10,10,10,10, window, petRockList);
 
-	Player player(50,9,9,9,9,9,9,9,9,window, petRockList);
-
 	player.equipMelee(sword);
 
 

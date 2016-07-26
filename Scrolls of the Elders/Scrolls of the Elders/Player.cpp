@@ -14,6 +14,15 @@ Player::Player(int inputHealth, int inputMana, int inputGold, int inputStrength,
 	constitution = inputConstitution;
 	endurance = inputEndurance;
 	currentHealth = maxHealth;
+
+	//Doing Health Text
+	healthFont.loadFromFile("resources/font/Amatic-Bold.ttf");
+	healthText.setFont(healthFont);
+	healthText.setCharacterSize(72);
+	healthText.setColor(sf::Color(196, 33, 33));
+
+	healthText.setString("Health: " + std::to_string(currentHealth) + "/" + std::to_string(maxHealth));
+
 	//Do texture stuff
 	playerIdleTex.loadFromFile("resources/character/player-Idle.png");
 	playerForwardTex.loadFromFile("resources/character/Player-Walking.png");
@@ -96,6 +105,7 @@ void Player::Update()
 
 		//float testAnimSpeed = 0.5f;
 
+		//Movement
 		sf::Vector2f movement(0, 0);
 
 		sprite.setPosition(position.x, position.y);
@@ -145,18 +155,31 @@ void Player::Update()
 			}
 			clock.restart();
 		}
+		//End of Movement
 		
+		//Is alive check
 		if (currentHealth <= 0) {
 			alive = false;
 		}
+		//End of is Alive Check
 
+		//Doing all texture stuff
 		sprite.move(movement);
 		sprite.setTextureRect(sf::IntRect(playerSkin[playerSkinInt]));
 		renderWindow.draw(sprite);
+		// End of all texture stuff
 
+		//Doing Health Text
+		healthText.setString("Health: " + std::to_string(currentHealth) + "/" + std::to_string(maxHealth));
+		healthText.setPosition(position.x-890, position.y-490);
+		renderWindow.draw(healthText);
+		//End of Health Text
+
+		//Mouse Sensor
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
 			attackSFML();
 		}
+		//End of Mouse Sensor
 	}
 	else {
 	}
