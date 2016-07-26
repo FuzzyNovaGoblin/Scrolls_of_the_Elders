@@ -156,6 +156,7 @@
     <ClCompile Include="MeleeWeapon.cpp" />
     <ClCompile Include="PetRock.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="ReaperBoss.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Character.h" />
@@ -165,6 +166,7 @@
     <ClInclude Include="MeleeWeapon.h" />
     <ClInclude Include="PetRock.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="ReaperBoss.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

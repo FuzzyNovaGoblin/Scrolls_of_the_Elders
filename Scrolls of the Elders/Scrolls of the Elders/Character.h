@@ -26,7 +26,7 @@ public:
 
 	sf::Vector2f position;
 	bool alive;
-	
+
 	int maxHealth; //Starting Health for Player is 100, Max Health
 	int currentHealth; //Current Health
 	int mana; //Starting Mana for Player is 100, Max Mana
@@ -41,6 +41,7 @@ public:
 	int level; //Stats scale with level, MENU TO CHOOSE?
 	float &DeltaTime;
 
+	int score;
 	//Sprite
 
 	sf::Sprite sprite;
