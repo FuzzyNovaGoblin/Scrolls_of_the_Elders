@@ -30,9 +30,7 @@ int main() {
 	std::vector<std::unique_ptr<Character>> petRockList;
 	MeleeWeapon sword ("sword", "steel", 5, 9, 10, "Worn-Steel-Sword.png");
 
-	
-
-	Player player(50,9,9,9,9,9,9,9,9,window, petRockList);
+	Player player(50,10,10,10,10,10,10,10,10, window, petRockList);
 
 
 	player.equipMelee(sword);
@@ -71,7 +69,6 @@ int main() {
 		window.setView(view);
 
 		view.setCenter(sf::Vector2f(player.sprite.getPosition().x, player.sprite.getPosition().y));
-	
 
 		window.clear();
 		window.draw(backGround);

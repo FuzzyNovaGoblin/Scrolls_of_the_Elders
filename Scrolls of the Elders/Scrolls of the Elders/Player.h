@@ -38,8 +38,6 @@ public:
 	int diplayScore = 0;
 
 
-
-
 	Player(int inputHealth, int inputMana, int inputGold, int inputStrength, int inputIntelligence, int inputDexterity, int inputDefense, int inputConstitution, int inputEndurance, sf::RenderWindow& renderWindow, std::vector<std::unique_ptr<Character>>& petRockList);
 
 	MeleeWeapon rightHandWeapon;

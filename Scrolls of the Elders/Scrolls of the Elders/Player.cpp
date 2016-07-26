@@ -1,7 +1,7 @@
 #include "Player.h"
 
 
-Player::Player(int inputHealth, int inputMana, int inputGold, int inputStrength, int inputIntelligence, int inputDexterity, int inputDefense, int inputConstitution, int inputEndurance, sf::RenderWindow& renderWindow, std::vector<std::unique_ptr<Character>>& petRockList) : renderWindow(renderWindow), petRockList(petRockList)
+Player::Player(int inputHealth, int inputMana, int inputGold, int inputStrength, int inputIntelligence, int inputDexterity, int inputDefense, int inputConstitution, int inputEndurance, sf::RenderWindow& renderWindow, std::vector<std::unique_ptr<Character>>& petRockList) :renderWindow(renderWindow), petRockList(petRockList)
 {
 	alive = true;
 	maxHealth = inputHealth;
