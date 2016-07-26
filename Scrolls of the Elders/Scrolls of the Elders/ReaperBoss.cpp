@@ -2,7 +2,7 @@
 
 
 
-ReaperBoss::ReaperBoss(int inputHealth, sf::RenderWindow& renderwindow, sf::Texture &reaperBossTex, Character& player): renderWindow(renderWindow), reaperBossTex(reaperBossTex), player(player)
+ReaperBoss::ReaperBoss(int inputHealth, sf::RenderWindow& renderwindow, sf::Texture &reaperBossTex, Character& player): Character(DeltaTime), renderWindow(renderWindow), reaperBossTex(reaperBossTex), player(player)
 {
 
 	reaperBossSkin[0] = sf::IntRect(0, 0, 192, 192);

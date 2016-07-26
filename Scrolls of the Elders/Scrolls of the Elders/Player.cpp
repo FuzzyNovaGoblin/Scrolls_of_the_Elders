@@ -71,28 +71,29 @@ void Player::attackSFML() {
 }
 
 void Player::attack(Character& target) {
-	if (target.isAlive)
-	
-	int currentDamage = (strength / 2) + (rand() % strength);
-	currentDamage += rightHandWeapon.damage;
-	if (currentDamage > strength) {
-		//Yo Grant, here is where you can tell it to do critical display
+	if (target.alive) {
 
-		//This is my code, no touch...
-		
-		target.currentHealth -= currentDamage;
-		if (target.currentHealth <= 0) {
-			score += 1;
+		int currentDamage = (strength / 2) + (rand() % strength);
+		currentDamage += rightHandWeapon.damage;
+		if (currentDamage > strength) {
+			//Yo Grant, here is where you can tell it to do critical display
+
+			//This is my code, no touch...
+
+			target.currentHealth -= currentDamage;
+			if (target.currentHealth <= 0) {
+				score += 1;
+			}
 		}
-	}
-	else {
-		//Yo Grant, here is where you can tell it to do a normal display
+		else {
+			//Yo Grant, here is where you can tell it to do a normal display
 
-		//This is my code, no touch...
+			//This is my code, no touch...
 
-		target.currentHealth -= currentDamage;
-		if (target.currentHealth <= 0) {
-			score += 1;
+			target.currentHealth -= currentDamage;
+			if (target.currentHealth <= 0) {
+				score += 1;
+			}
 		}
 	}
 }
