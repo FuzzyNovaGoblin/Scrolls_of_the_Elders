@@ -21,6 +21,7 @@ int main() {
 	// load some resources like textures which will be used for the duration of the game
 	sf::Texture petRockTex;
 	petRockTex.loadFromFile("resources/character/petRock.png");
+	sf::Clock spawnTime;
 
 	sf::Texture reaperBossTex;
 	reaperBossTex.loadFromFile("resources/character/Reaper Boss-Idle.png");
@@ -34,12 +35,11 @@ int main() {
 
 	Player player(50,10,10,10,10,10,10,10,10, window, petRockList);
 
-
 	player.equipMelee(sword);
 
 
 
-	for (int i = 0; i < 10; i++) { // make 10 enemies 
+	for (int i = 0; i < 10+player.score; i++) { // make 10 enemies 
 		std::unique_ptr<Character> newPetRock(new PetRock(1, window, petRockTex, player));
 		petRockList.push_back(std::move(newPetRock));
 	}
@@ -56,6 +56,15 @@ int main() {
 
 	while (window.isOpen()) {
 
+
+		if (spawnTime.getElapsedTime().asSeconds() > 10) {
+			for (int i = 0; i < 10 + player.score; i++) { // make 10 enemies 
+				std::unique_ptr<Character> newPetRock(new PetRock(1, window, petRockTex, player));
+				petRockList.push_back(std::move(newPetRock));
+			}
+			spawnTime.restart();
+		}
+		
 
 
 		// get all the input first every frame

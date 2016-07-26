@@ -22,6 +22,8 @@ using namespace std;
 class Player: public Character
 {
 public:
+	sf::Font asmanFont;
+	sf::Text scoreText;
 	sf::RenderWindow& renderWindow;
 	sf::Texture playerIdleTex;
 	sf::Texture playerForwardTex;
@@ -36,6 +38,9 @@ public:
 	sf::Clock clock;
 	int score = 0;
 	int diplayScore = 0;
+	sf::Text healthText;
+	sf::Font healthFont;
+	string scoreString;
 
 
 	Player(int inputHealth, int inputMana, int inputGold, int inputStrength, int inputIntelligence, int inputDexterity, int inputDefense, int inputConstitution, int inputEndurance, sf::RenderWindow& renderWindow, std::vector<std::unique_ptr<Character>>& petRockList);
