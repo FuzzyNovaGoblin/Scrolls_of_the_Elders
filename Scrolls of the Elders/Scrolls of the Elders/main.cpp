@@ -36,7 +36,7 @@ int main() {
 
 
 
-	for (int i = 0; i < 10+player.score; i++) { // make 10 enemies 
+	for (int i = 0; i < 10; i++) { // make 10 enemies 
 		std::unique_ptr<Character> newPetRock(new PetRock(1, window, petRockTex, player));
 		petRockList.push_back(std::move(newPetRock));
 	}

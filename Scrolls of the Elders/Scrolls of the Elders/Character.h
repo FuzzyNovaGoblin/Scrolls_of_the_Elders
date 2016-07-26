@@ -39,7 +39,7 @@ public:
 	int constitution; //Magical Resist
 	int endurance; //Stamina + How much you can carry
 	int level; //Stats scale with level, MENU TO CHOOSE?
-
+	int score;
 	//Sprite
 
 	sf::Sprite sprite;

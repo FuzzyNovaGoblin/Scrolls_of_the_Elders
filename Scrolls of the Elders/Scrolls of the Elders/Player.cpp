@@ -5,7 +5,6 @@ Player::Player(int inputHealth, int inputMana, int inputGold, int inputStrength,
 {
 	asmanFont.loadFromFile("resources/font/ASMAN.ttf");
 
-	score = 0;
 	alive = true;
 	maxHealth = inputHealth;
 	mana = inputMana;
@@ -17,7 +16,7 @@ Player::Player(int inputHealth, int inputMana, int inputGold, int inputStrength,
 	constitution = inputConstitution;
 	endurance = inputEndurance;
 	currentHealth = maxHealth;
-
+	score = 0;
 	//Doing Health Text
 	healthFont.loadFromFile("resources/font/Amatic-Bold.ttf");
 	healthText.setFont(healthFont);
@@ -103,7 +102,7 @@ void Player::Update()
 	if (alive) {
 		//Do all other checks here:
 		position = sprite.getPosition();
-		score = 0;
+	
 		//Movement checks here
 
 		//float testAnimSpeed = 0.5f;
@@ -185,11 +184,13 @@ void Player::Update()
 		//End of Mouse Sensor
 	}
 	else {
-		scoreString = score;
+		scoreString = ("Score: "+ score);
+		std::cout<< score << "   ";
 		scoreText.setFont(asmanFont);
 		scoreText.setString(scoreString);
 		scoreText.setCharacterSize(24);
 		scoreText.setColor(sf::Color::Red);
+		scoreText.setPosition(position.x-100, position.y);
 		renderWindow.draw(scoreText);
 	}
 }
