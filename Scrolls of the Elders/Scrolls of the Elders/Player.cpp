@@ -1,23 +1,15 @@
 #include "Player.h"
 
 
-Player::Player(int inputHealth, int inputMana, int inputGold, int inputStrength, int inputIntelligence, int inputDexterity, int inputDefense, int inputConstitution, int inputEndurance, sf::RenderWindow& renderWindow, std::vector<std::unique_ptr<Character>>& petRockList) :renderWindow(renderWindow), petRockList(petRockList)
+Player::Player(int inputHealth, int inputMana, int inputGold, int inputStrength, int inputIntelligence, int inputDexterity, int inputDefense, int inputConstitution, int inputEndurance, sf::RenderWindow& renderWindow, std::vector<std::unique_ptr<Character>>& petRockList, float& DeltaTime) : 
+	
+	Character("DefaultName" , "DefaultDescription", inputHealth,inputMana, inputGold, inputStrength, inputIntelligence, inputDexterity, inputDefense, inputConstitution,  inputEndurance,  DeltaTime), renderWindow(renderWindow), petRockList(petRockList)
 {
 	asmanFont.loadFromFile("resources/font/ASMAN.ttf");
 
 	score = 0;
 	alive = true;
-	maxHealth = inputHealth;
-	mana = inputMana;
-	gold = inputGold;
-	strength = inputStrength;
-	intelligence = inputIntelligence;
-	dexterity = inputDexterity;
-	defense = inputDefense;
-	constitution = inputConstitution;
-	endurance = inputEndurance;
-	currentHealth = maxHealth;
-
+	score = 0;
 	//Doing Health Text
 	healthFont.loadFromFile("resources/font/Amatic-Bold.ttf");
 	healthText.setFont(healthFont);
@@ -69,26 +61,29 @@ void Player::attackSFML() {
 }
 
 void Player::attack(Character& target) {
-	int currentDamage = (strength / 2) + (rand() % strength);
-	currentDamage += rightHandWeapon.damage;
-	if (currentDamage > strength) {
-		//Yo Grant, here is where you can tell it to do critical display
+	if (target.alive) {
 
-		//This is my code, no touch...
-		
-		target.currentHealth -= currentDamage;
-		if (target.currentHealth <= 0) {
-			score += 1;
+		int currentDamage = (strength / 2) + (rand() % strength);
+		currentDamage += rightHandWeapon.damage;
+		if (currentDamage > strength) {
+			//Yo Grant, here is where you can tell it to do critical display
+
+			//This is my code, no touch...
+
+			target.currentHealth -= currentDamage;
+			if (target.currentHealth <= 0) {
+				score += 1;
+			}
 		}
-	}
-	else {
-		//Yo Grant, here is where you can tell it to do a normal display
+		else {
+			//Yo Grant, here is where you can tell it to do a normal display
 
-		//This is my code, no touch...
+			//This is my code, no touch...
 
-		target.currentHealth -= currentDamage;
-		if (target.currentHealth <= 0) {
-			score += 1;
+			target.currentHealth -= currentDamage;
+			if (target.currentHealth <= 0) {
+				score += 1;
+			}
 		}
 	}
 }
@@ -103,7 +98,7 @@ void Player::Update()
 	if (alive) {
 		//Do all other checks here:
 		position = sprite.getPosition();
-		score = 0;
+	
 		//Movement checks here
 
 		//float testAnimSpeed = 0.5f;
@@ -185,11 +180,13 @@ void Player::Update()
 		//End of Mouse Sensor
 	}
 	else {
-		scoreString = score;
+		scoreString = ("Score: "+ score);
+		std::cout<< score << "   ";
 		scoreText.setFont(asmanFont);
 		scoreText.setString(scoreString);
 		scoreText.setCharacterSize(24);
 		scoreText.setColor(sf::Color::Red);
+		scoreText.setPosition(position.x-100, position.y);
 		renderWindow.draw(scoreText);
 	}
 }

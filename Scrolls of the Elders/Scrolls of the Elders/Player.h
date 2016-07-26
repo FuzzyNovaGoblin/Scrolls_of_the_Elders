@@ -22,6 +22,7 @@ using namespace std;
 class Player: public Character
 {
 public:
+	//int score;
 	sf::Font asmanFont;
 	sf::Text scoreText;
 	sf::RenderWindow& renderWindow;
@@ -36,14 +37,12 @@ public:
 	int playerSkinInt = 0;
 	bool alive;
 	sf::Clock clock;
-	int score = 0;
-	int diplayScore = 0;
 	sf::Text healthText;
 	sf::Font healthFont;
 	string scoreString;
 
 
-	Player(int inputHealth, int inputMana, int inputGold, int inputStrength, int inputIntelligence, int inputDexterity, int inputDefense, int inputConstitution, int inputEndurance, sf::RenderWindow& renderWindow, std::vector<std::unique_ptr<Character>>& petRockList);
+	Player(int inputHealth, int inputMana, int inputGold, int inputStrength, int inputIntelligence, int inputDexterity, int inputDefense, int inputConstitution, int inputEndurance, sf::RenderWindow& renderWindow, std::vector<std::unique_ptr<Character>>& petRockList, float& DeltaTime);
 
 	MeleeWeapon rightHandWeapon;
 	std::vector<std::unique_ptr<Character>>& petRockList;

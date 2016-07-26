@@ -2,7 +2,7 @@
 
 
 
-PetRock::PetRock(int inputHealth, sf::RenderWindow& renderWindow, sf::Texture& petRockTex, Character& player) : renderWindow(renderWindow), petRockTex(petRockTex), player(player)
+PetRock::PetRock(int inputHealth, sf::RenderWindow& renderWindow, sf::Texture& petRockTex, Character& player, float& DeltaTime) : Character(DeltaTime), renderWindow(renderWindow), petRockTex(petRockTex), player(player)
 {
 
 	petRockSkin[0] = sf::IntRect(0, 0, 40, 28);
@@ -29,7 +29,7 @@ PetRock::PetRock(int inputHealth, sf::RenderWindow& renderWindow, sf::Texture& p
 void PetRock::move() {
 	int distanceX = petRockPos.x - player.position.x;
 	int distanceY = petRockPos.y - player.position.y;
-	if (sqrt(distanceX * distanceX + distanceY * distanceY) < 2000) {
+	if (sqrt(distanceX * distanceX + distanceY * distanceY) < 4000) {
 		
 		//float deltaDistance = speed *DeltaTime; // the amout of pixels to move per second in one axis
 
@@ -57,7 +57,7 @@ void PetRock::move() {
 
 void PetRock::attack() {
 
-	if (petRockPos.x > player.position.x - 50 && petRockPos.x < player.position.x + 50 && petRockPos.y > player.position.y && petRockPos.y < player.position.y + 41) {
+	if (petRockPos.x > player.position.x - 51 && petRockPos.x < player.position.x + 51 && petRockPos.y > player.position.y && petRockPos.y < player.position.y + 42) {
 		sf::Vector2f movement(0, 0);
 
 		if (attackTime.getElapsedTime().asSeconds() > 1) {
@@ -93,6 +93,7 @@ void PetRock::Update() {
 
 		renderWindow.draw(sprite);
 	}
+
 
 }
 
