@@ -61,6 +61,8 @@ void Player::attackSFML() {
 }
 
 void Player::attack(Character& target) {
+	if (target.isAlive)
+	
 	int currentDamage = (strength / 2) + (rand() % strength);
 	currentDamage += rightHandWeapon.damage;
 	if (currentDamage > strength) {

@@ -22,7 +22,7 @@ using namespace std;
 class Player: public Character
 {
 public:
-	int score;
+	//int score;
 	sf::Font asmanFont;
 	sf::Text scoreText;
 	sf::RenderWindow& renderWindow;
