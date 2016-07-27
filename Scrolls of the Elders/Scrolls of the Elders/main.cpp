@@ -44,8 +44,8 @@ int main() {
 
 	Player player(50,10,10,10,10,10,10,10,10, window, petRockList, DeltaTime);
 	//ReaperBoss reaperBoss(500, window, player);
-	std::unique_ptr<Character> reaperBoss(new ReaperBoss(500, window, player));
-	petRockList.push_back(reaperBoss);
+	
+	
 
 	player.equipMelee(sword);
 
@@ -60,10 +60,13 @@ int main() {
 	pauseText.setColor(sf::Color::Red);
 	pauseText.setPosition(player.position.x - 350, player.position.y - 20);
 
-	for (int i = 0; i < 10+player.score; i++) { // make 10 enemies 
+	for (int i = 0; i < 10; i++) { // make 10 enemies 
 		std::unique_ptr<Character> newPetRock(new PetRock(1, window, petRockTex, player, DeltaTime));
 		petRockList.push_back(std::move(newPetRock));
 	}
+
+	std::unique_ptr<Character> reaperBoss(new ReaperBoss(500, window, player));
+	petRockList.push_back(std::move(reaperBoss));
 
 	sf::Sprite backGround;
 	sf::Texture backGroundTex;

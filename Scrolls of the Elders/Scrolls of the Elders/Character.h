@@ -40,7 +40,7 @@ public:
 	int endurance; //Stamina + How much you can carry
 	int level; //Stats scale with level, MENU TO CHOOSE?
 	float &DeltaTime;
-
+	sf::FloatRect hitBox;
 	int score;
 	//Sprite
 
