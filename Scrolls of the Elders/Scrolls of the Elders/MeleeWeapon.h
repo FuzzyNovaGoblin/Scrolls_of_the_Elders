@@ -24,4 +24,3 @@ public:
 	sf::Texture MeleeWeaponTexture;
 	sf::Sprite MeleeWeaponSprite;
 };
-
