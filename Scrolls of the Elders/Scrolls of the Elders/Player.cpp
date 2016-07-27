@@ -44,8 +44,6 @@ void Player::attackSFML() {
 		angle = 360 - angle;
 	}
 
-	if (attackTimer.getElapsedTime().asSeconds() < 1) {
-
 		rightHandWeapon.MeleeWeaponSprite.setPosition(position.x - 15, position.y + 7);
 		rightHandWeapon.MeleeWeaponSprite.setRotation(-angle + 90);
 
@@ -55,13 +53,6 @@ void Player::attackSFML() {
 			if (rightHandWeapon.MeleeWeaponSprite.getGlobalBounds().intersects((*ptr).sprite.getGlobalBounds())) {
 				attack(*petRockList[i], i);
 			}
-		}
-	}
-	else if (attackTimer.getElapsedTime().asSeconds() < 2) {
-
-	}
-	else if (attackTimer.getElapsedTime().asSeconds() >= 2) {
-		attackTimer.restart();
 	}
 }
 
