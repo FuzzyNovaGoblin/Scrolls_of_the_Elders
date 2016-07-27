@@ -127,9 +127,11 @@ int main() {
 
 		if (!pause) {  //This is the pause function
 
-			//window.draw(backGround);
+			window.draw(backGround);
 			
 			player.Update();
+
+			reaperBoss.Update();
 
 			for (int i = 0; i < petRockList.size(); i++) {
 				petRockList.at(i)->Update();
