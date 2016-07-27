@@ -64,9 +64,11 @@ int main() {
 		std::unique_ptr<Character> newPetRock(new PetRock(1, window, petRockTex, player, DeltaTime));
 		petRockList.push_back(std::move(newPetRock));
 	}
+	ReaperBoss reaperBoss(500, window, player);
+	/*std::unique_ptr<Character> reaperBoss(new ReaperBoss(500, window, player));
+	petRockList.push_back(std::move(reaperBoss));*/
 
-	std::unique_ptr<Character> reaperBoss(new ReaperBoss(500, window, player));
-	petRockList.push_back(std::move(reaperBoss));
+
 
 	sf::Sprite backGround;
 	sf::Texture backGroundTex;
@@ -126,11 +128,9 @@ int main() {
 
 
 		if (!pause) {  //This is the pause function
-
 			window.draw(backGround);
-			
-			player.Update();
 
+			player.Update();
 			reaperBoss.Update();
 
 			for (int i = 0; i < petRockList.size(); i++) {
