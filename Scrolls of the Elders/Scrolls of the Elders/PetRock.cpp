@@ -65,8 +65,10 @@ void PetRock::attack() {
 
 		if (attackTime.getElapsedTime().asSeconds() > 1) {
 	
-			player.currentHealth -= 5;
-			attackTime.restart();
+			int currentDamage = (strength / 2) + (rand() % strength);
+			if (currentDamage > strength) {
+				player.currentHealth -= currentDamage;
+			}
 
 		}
 

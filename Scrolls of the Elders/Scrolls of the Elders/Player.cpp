@@ -69,7 +69,7 @@ void Player::attackSFML(float angle) {
 			if (rightHandWeapon.MeleeWeaponSprite.getGlobalBounds().intersects((*ptr).sprite.getGlobalBounds())) {
 				attack(*petRockList[i], i);
 			}
-	}
+		}
 	}
 	else if (stage >= swingArc) {
 		rightHandWeapon.MeleeWeaponSprite.setRotation(angle + (stage - 1));
