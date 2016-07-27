@@ -2,7 +2,7 @@
 
 
 
-ReaperBoss::ReaperBoss(int inputHealth, sf::RenderWindow& renderwindow, Character& player) : Character(DeltaTime), renderWindow(renderWindow), player(player)
+ReaperBoss::ReaperBoss(int inputHealth, sf::RenderWindow& renderWindow, Character& player) : Character(DeltaTime), renderWindow(renderWindow), player(player)
 {
 	reaperBossIdleTex.loadFromFile("resources/character/Reaper Boss-Idle.png");
 	reaperBossSlashTex.loadFromFile("resources/character/Reaper Boss-Attack.png");
