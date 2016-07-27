@@ -12,6 +12,7 @@ ReaperBoss::ReaperBoss(int inputHealth, sf::RenderWindow& renderWindow, Characte
 	reaperBossSkin[1] = sf::IntRect(192, 0, 384, 192);
 	reaperBossSkin[2] = sf::IntRect(0, 192, 192, 384);
 	reaperBossSkin[3] = sf::IntRect(192, 192, 384, 384);
+	reaperBossSkin[4] = sf::IntRect(0, 384, 192, 576);
 
 	currentHealth = inputHealth;
 
@@ -58,7 +59,20 @@ void ReaperBoss::move()
 
 void ReaperBoss::attack()
 {
-	if (reaperBossPos.x > player.position.x - 50 && reaperBossPos.x < player.position.x + 50 && reaperBossPos.y > player.position.y && reaperBossPos.y < player.position.y + 41) 
+	if (reaperBossPos.x > player.position.x - 50 && reaperBossPos.x < player.position.x + 50 && reaperBossPos.y > player.position.y - 41 && reaperBossPos.y < player.position.y + 41)
+		sprite.setTexture(reaperBossSlashTex);
+		if (clock.getElapsedTime().asSeconds() > 0.5)
+		{
+			if (reaperBossSkinInt < 4)
+			{
+				reaperBossSkinInt += 1;
+			}
+			else
+			{
+				reaperBossSkinInt = 0;
+			}
+			clock.restart();
+		}
 	{
 			sf::Vector2f movement(0, 0);
 
@@ -81,9 +95,9 @@ void ReaperBoss::Update()
 
 	if (clock.getElapsedTime().asSeconds() > 0.5) 
 	{
-		if (reaperBossSkinInt == 0) 
+		if (reaperBossSkinInt < 3) 
 		{
-			reaperBossSkinInt = 1;
+			reaperBossSkinInt += 1;
 		}
 		else 
 		{
