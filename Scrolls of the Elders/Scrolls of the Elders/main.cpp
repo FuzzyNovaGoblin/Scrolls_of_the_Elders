@@ -23,6 +23,8 @@ int main() {
 	sf::RenderWindow window(sf::VideoMode(1780, 980), "Scrolls of the Elders ");
 	sf::View view;
 
+	sf::Image layout;
+	layout.loadFromFile("resources/environment/map.png");
 
 	sf::Texture red;
 	sf::Texture green;

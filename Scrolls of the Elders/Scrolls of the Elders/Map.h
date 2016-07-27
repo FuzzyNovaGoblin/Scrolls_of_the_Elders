@@ -8,7 +8,7 @@ class Map
 {
 public:
 	// constructors
-	Map(sf::RenderWindow& renderWindow, int tileSize, sf::Texture& brick, sf::Texture& grass, sf::Texture& dirt, sf::Texture& water);
+	Map(sf::RenderWindow& renderWindow, int tileSize, sf::Texture& brick, sf::Texture& grass, sf::Texture& dirt, sf::Texture& water, sf::Image &layout);
 	
 	// variables
 	std::vector<Tile> tiles;
