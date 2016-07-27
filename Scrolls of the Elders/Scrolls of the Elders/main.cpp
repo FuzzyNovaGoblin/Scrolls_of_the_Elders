@@ -78,7 +78,7 @@ int main() {
 		petRockList.push_back(std::move(newPetRock));
 	}
 	//ReaperBoss reaperBoss(500, window, player);
-	std::unique_ptr<Character> reaperBoss(new ReaperBoss(500, window, player));
+	std::unique_ptr<Character> reaperBoss(new ReaperBoss(500, window, player, DeltaTime));
 	petRockList.push_back(std::move(reaperBoss));
 
 

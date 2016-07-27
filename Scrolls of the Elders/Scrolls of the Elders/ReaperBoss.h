@@ -12,7 +12,7 @@ using namespace std;
 class ReaperBoss : public Character
 {
 public:
-	ReaperBoss(int inputHealth, sf::RenderWindow& renderwindow, Character& player);
+	ReaperBoss(int inputHealth, sf::RenderWindow& renderwindow, Character& player, float &DeltaTime);
 	sf::RenderWindow& renderWindow;
 	Character& player;
 	sf::Texture reaperBossIdleTex;
