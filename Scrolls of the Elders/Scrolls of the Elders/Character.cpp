@@ -8,7 +8,7 @@ Character::Character(float& DeltaTime) : DeltaTime(DeltaTime)
 	currentHealth = maxHealth;
 	mana = 100;
 	gold = 0;
-	strength = 4;
+	strength = 2;
 	intelligence = 1;
 	dexterity = 1;
 	defense = 1;
