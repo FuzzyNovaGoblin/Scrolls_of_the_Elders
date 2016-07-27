@@ -113,10 +113,16 @@ int main() {
 		view.setCenter(sf::Vector2f(player.sprite.getPosition().x, player.sprite.getPosition().y));
 	
 		window.clear();
-		if (!pause) {
+
+
+		if (!pause) {  //This is the pause function
+
 			window.draw(backGround);
+
 			player.Update();
-			reaperBoss.Update();
+
+			//reaperBoss.Update();
+
 			for (int i = 0; i < petRockList.size(); i++) {
 				petRockList.at(i)->Update();
 			}
@@ -125,6 +131,8 @@ int main() {
 		else {
 			window.draw(pauseText);
 		}
+
+
 		window.display();
 	}
 }
