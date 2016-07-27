@@ -23,6 +23,8 @@ int main() {
 	sf::RenderWindow window(sf::VideoMode(1780, 980), "Scrolls of the Elders ");
 	sf::View view;
 
+	sf::Image layout;
+	layout.loadFromFile("resources/environment/map.png");
 
 	sf::Texture red;
 	sf::Texture green;
@@ -34,7 +36,7 @@ int main() {
 	blue.loadFromFile("resources/environment/sand.png");
 	blank.loadFromFile("resources/environment/water.png");
 
-	Map map(window, 150, red, green, blue, blank);
+	Map map(window, 150, red, green, blue, blank, layout);
 
 
 

@@ -17,12 +17,10 @@ bool ColorsEqual(sf::Color a, sf::Color b) {
 	else return false;
 }
 
-Map::Map(sf::RenderWindow& renderWindow, int tileSize, sf::Texture& brick, sf::Texture& grass, sf::Texture& dirt, sf::Texture& water) : renderWindow(renderWindow) , brick(brick), grass(grass), dirt(dirt), water(water)
+Map::Map(sf::RenderWindow& renderWindow, int tileSize, sf::Texture& brick, sf::Texture& grass, sf::Texture& dirt, sf::Texture& water, sf::Image &layout) : renderWindow(renderWindow) , brick(brick), grass(grass), dirt(dirt), water(water)
 {
 	
-	
-	sf::Image layout; // the image which we will use to generate our background map from
-	layout.loadFromFile("resources/environment/map.png");
+	 // the image which we will use to generate our background map from
 
 	int width = layout.getSize().x;
 	int height = layout.getSize().y;
