@@ -30,6 +30,6 @@ public:
 	void move();
 	void attack();
 	void DoShortAttack();
-	~ReaperBoss();
+	
 };
 
