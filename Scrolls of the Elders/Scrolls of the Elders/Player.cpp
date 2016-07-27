@@ -38,10 +38,12 @@ Player::Player(int inputHealth, int inputMana, int inputGold, int inputStrength,
 
 
 void Player::attackSFML(float angle) {
-	if (stage < 50) {
+	if (stage < 80) {
 		rightHandWeapon.MeleeWeaponSprite.setPosition(position.x - 15, position.y + 7);
 		rightHandWeapon.MeleeWeaponSprite.setRotation(angle + (stage - 1));
-		stage += 1;
+		float deltaAngleChange;
+		deltaAngleChange = DeltaTime * 250;
+		stage += deltaAngleChange;
 		renderWindow.draw(rightHandWeapon.MeleeWeaponSprite);
 		for (int i = 0; i < petRockList.size(); i++) {
 			Character* ptr = petRockList.at(i).get();
@@ -50,7 +52,7 @@ void Player::attackSFML(float angle) {
 			}
 	}
 	}
-	else if (stage = 50) {
+	else if (stage >= 80) {
 	rightHandWeapon.MeleeWeaponSprite.setPosition(position.x - 15, position.y + 7);
 		rightHandWeapon.MeleeWeaponSprite.setRotation(angle + (stage - 1));
 		stage = 1;
@@ -185,13 +187,11 @@ void Player::Update()
 		//End of Health Text
 
 		//Mouse Sensor
-		if (!sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-			attacked = false;
-		}
-		else if (attackState && attacked) {
-
+		if (attackState && attacked) {
 			attackSFML(startingAngle);
-
+		}
+		else if (!sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+			attacked = false;
 		}
 		else if (!attackState && !attacked) {
 			if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
