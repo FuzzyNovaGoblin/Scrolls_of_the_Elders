@@ -21,6 +21,7 @@ public:
 	sf::Texture reaperBossTeleportTex;
 	sf::IntRect reaperBossSkin[5];
 
+	bool attacking;
 	sf::Clock clock;
 	sf::Clock attackTime;
 	sf::Vector2f reaperBossPos;
