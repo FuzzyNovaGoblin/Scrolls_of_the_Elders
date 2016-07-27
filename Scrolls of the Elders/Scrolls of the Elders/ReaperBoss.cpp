@@ -61,8 +61,13 @@ void ReaperBoss::move()
 
 void ReaperBoss::attack()
 {
-	if (reaperBossPos.x > player.position.x - 50 && reaperBossPos.x < player.position.x + 50 && reaperBossPos.y > player.position.y - 41 && reaperBossPos.y < player.position.y + 41){
-		//sprite.setTexture(reaperBossSlashTex);
+
+		if (reaperBossPos.x > player.position.x - 50 && reaperBossPos.x < player.position.x + 50 && reaperBossPos.y > player.position.y - 41 && reaperBossPos.y < player.position.y + 41) 
+		{
+
+			sprite.setTexture(reaperBossSlashTex);
+			attacking = true;
+			
 		if (clock.getElapsedTime().asSeconds() > 0.5)
 		{
 			if (reaperBossSkinInt < 4)
@@ -84,36 +89,47 @@ void ReaperBoss::attack()
 				attackTime.restart();
 			}
 	}
+	
+		else
+		{
+			attacking = false;
+			
+		}
 }
 
 void ReaperBoss::Update()
 {
-	if (alive) {
-		if (currentHealth <= 0)
-		{
-			alive = false;
-		}
-		attack();
-		move();
-
-		if (clock.getElapsedTime().asSeconds() > 0.5)
-		{
-			if (reaperBossSkinInt < 3)
-			{
-				reaperBossSkinInt += 1;
-			}
-			else
-			{
-				reaperBossSkinInt = 0;
-			}
-			clock.restart();
-		}
-
-		sprite.setTextureRect(sf::IntRect(reaperBossSkin[reaperBossSkinInt]));
-
-		renderWindow.draw(sprite);
+	if (alive)
+	{
+	if (currentHealth <= 0) 
+	{
+		alive = false;
 	}
-	else {
+	attack();
+	move();
 
+			if (!attacking)
+			{
+				sprite.setTexture(reaperBossIdleTex);
+			}
+
+	if (clock.getElapsedTime().asSeconds() > 0.5) 
+	{
+		if (reaperBossSkinInt < 3) 
+		{
+			reaperBossSkinInt += 1;
+		}
+		else 
+		{
+			reaperBossSkinInt = 0;
+		}
+		clock.restart();
 	}
+
+	sprite.setTextureRect(sf::IntRect(reaperBossSkin[reaperBossSkinInt]));
+
+	renderWindow.draw(sprite);
 }
+}
+
+

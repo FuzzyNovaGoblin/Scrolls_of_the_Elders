@@ -68,7 +68,6 @@ void Player::attackSFML(float angle) {
 
 			if (rightHandWeapon.MeleeWeaponSprite.getGlobalBounds().intersects((*ptr).sprite.getGlobalBounds())) {
 				attack(*petRockList[i], i);
-				petRockList.at(i)->hit = true;
 			}
 		}
 	}

@@ -50,10 +50,10 @@ int main() {
 	reaperBossIdleTex.loadFromFile("resources/character/Reaper Boss-Idle.png");
 	
 	
-//	window.setFramerateLimit(10);
+	//window.setFramerateLimit(10);
 	//std::vector<Character*> petRockList;
 	std::vector<std::unique_ptr<Character>> petRockList;
-	MeleeWeapon sword ("axe", "gold", 5, 9, 500, "Golden-BattleAxe.png");
+	MeleeWeapon sword ("axe", "gold", 5, 9, 10, "Golden-BattleAxe.png");
 
 	Player player(50,10,10,10,10,10,10,10,10, window, petRockList, DeltaTime);
 	//ReaperBoss reaperBoss(500, window, player);
