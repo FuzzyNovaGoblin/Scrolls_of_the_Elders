@@ -14,15 +14,29 @@
 #include "MeleeWeapon.h"
 #include "PetRock.h"
 #include "ReaperBoss.h"
+#include "Map.h"
 
 #define PI 3.14159265
 
 
 int main() {
+	sf::RenderWindow window(sf::VideoMode(1780, 980), "Scrolls of the Elders ");
+	sf::View view;
 
 
+	sf::Texture red;
+	sf::Texture green;
+	sf::Texture blue;
+	sf::Texture blank;
 
-	//Map map(window, 50, );
+	red.loadFromFile("resources/environment/brick.png");
+	green.loadFromFile("resources/environment/brick.png");
+	blue.loadFromFile("resources/environment/brick.png");
+	blank.loadFromFile("resources/environment/brick.png");
+
+	Map map(window, 50, red, green, blue, blank);
+
+
 
 	sf::Clock deltaTimeClock;
 	float DeltaTime = 0;
@@ -35,8 +49,7 @@ int main() {
 	sf::Texture reaperBossIdleTex;
 	reaperBossIdleTex.loadFromFile("resources/character/Reaper Boss-Idle.png");
 	
-	sf::RenderWindow window(sf::VideoMode(1780, 980), "Scrolls of the Elders ");
-	sf::View view;
+	
 //	window.setFramerateLimit(10);
 	//std::vector<Character*> petRockList;
 	std::vector<std::unique_ptr<Character>> petRockList;
@@ -64,9 +77,9 @@ int main() {
 		std::unique_ptr<Character> newPetRock(new PetRock(1, window, petRockTex, player, DeltaTime));
 		petRockList.push_back(std::move(newPetRock));
 	}
-	ReaperBoss reaperBoss(500, window, player);
-	/*std::unique_ptr<Character> reaperBoss(new ReaperBoss(500, window, player));
-	petRockList.push_back(std::move(reaperBoss));*/
+	//ReaperBoss reaperBoss(500, window, player);
+	std::unique_ptr<Character> reaperBoss(new ReaperBoss(500, window, player));
+	petRockList.push_back(std::move(reaperBoss));
 
 
 
@@ -128,10 +141,12 @@ int main() {
 
 
 		if (!pause) {  //This is the pause function
+			
 			window.draw(backGround);
 			
 			player.Update();
-			reaperBoss.Update();
+
+			//reaperBoss.Update();
 
 
 			for (int i = 0; i < petRockList.size(); i++) {

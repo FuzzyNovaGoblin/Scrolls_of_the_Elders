@@ -74,7 +74,7 @@ void ReaperBoss::attack()
 			clock.restart();
 		}
 	
-			//sf::Vector2f movement(0, 0);
+			sf::Vector2f movement(0, 0);
 
 			if (attackTime.getElapsedTime().asSeconds() > 1) {
 
