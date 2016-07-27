@@ -74,10 +74,10 @@
     <ClInclude Include="ReaperBoss.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Map.h">
+    <ClInclude Include="..\..\..\Map.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Tile.h">
+    <ClInclude Include="..\..\..\Tile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
