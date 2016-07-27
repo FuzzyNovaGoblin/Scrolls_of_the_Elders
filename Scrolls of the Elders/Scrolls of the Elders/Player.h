@@ -42,6 +42,9 @@ public:
 	string scoreString;
 	float currentAttackAngle;
 	float startingAngle;
+	float swingArc; //Arc of the swing
+	float swingTime; //Tine in seconds for how long it should take to swing through the full arc
+	float degreesPerSecond;
 	float stage;
 	bool attackState;
 	bool attacked;

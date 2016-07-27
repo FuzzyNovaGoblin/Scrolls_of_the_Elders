@@ -11,6 +11,12 @@ Player::Player(int inputHealth, int inputMana, int inputGold, int inputStrength,
 
 	attackState = false;
 
+	//Set the attack settings
+	swingArc = 80;
+	swingTime = 0.1;
+	degreesPerSecond = swingArc / swingTime;
+	//End of attack settings
+
 	//Doing Health Text
 	healthFont.loadFromFile("resources/font/Amatic-Bold.ttf");
 	healthText.setFont(healthFont);
@@ -43,11 +49,11 @@ Player::Player(int inputHealth, int inputMana, int inputGold, int inputStrength,
 
 
 void Player::attackSFML(float angle) {
-	if (stage < 80) {
-		rightHandWeapon.MeleeWeaponSprite.setPosition(position.x - 15, position.y + 7);
+	rightHandWeapon.MeleeWeaponSprite.setPosition(position.x - 15, position.y + 7);
+	if (stage < swingArc) {
 		rightHandWeapon.MeleeWeaponSprite.setRotation(angle + (stage - 1));
 		float deltaAngleChange;
-		deltaAngleChange = DeltaTime * 250;
+		deltaAngleChange = DeltaTime * degreesPerSecond;
 		stage += deltaAngleChange;
 		renderWindow.draw(rightHandWeapon.MeleeWeaponSprite);
 		for (int i = 0; i < petRockList.size(); i++) {
@@ -65,8 +71,7 @@ void Player::attackSFML(float angle) {
 			}
 	}
 	}
-	else if (stage >= 80) {
-	rightHandWeapon.MeleeWeaponSprite.setPosition(position.x - 15, position.y + 7);
+	else if (stage >= swingArc) {
 		rightHandWeapon.MeleeWeaponSprite.setRotation(angle + (stage - 1));
 		stage = 1;
 	renderWindow.draw(rightHandWeapon.MeleeWeaponSprite);
@@ -224,7 +229,7 @@ void Player::Update()
 
 				attackState = true;
 
-				startingAngle = currentAttackAngle - 25;
+				startingAngle = currentAttackAngle - swingArc / 2;
 
 				attackSFML(startingAngle);
 				attacked = true;
