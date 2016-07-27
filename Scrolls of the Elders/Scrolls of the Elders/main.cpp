@@ -30,11 +30,11 @@ int main() {
 	sf::Texture blank;
 
 	red.loadFromFile("resources/environment/brick.png");
-	green.loadFromFile("resources/environment/brick.png");
-	blue.loadFromFile("resources/environment/brick.png");
-	blank.loadFromFile("resources/environment/brick.png");
+	green.loadFromFile("resources/environment/grass.png");
+	blue.loadFromFile("resources/environment/sand.png");
+	blank.loadFromFile("resources/environment/water.png");
 
-	Map map(window, 50, red, green, blue, blank);
+	Map map(window, 150, red, green, blue, blank);
 
 
 
@@ -83,12 +83,14 @@ int main() {
 
 
 
-	sf::Sprite backGround;
-	sf::Texture backGroundTex;
-	backGroundTex.loadFromFile("resources/environment/BrickBackground.jpg");
-	backGround.setTexture(backGroundTex);
+	//sf::Sprite backGround;
+	//sf::Texture backGroundTex;
+	//backGroundTex.loadFromFile("resources/environment/BrickBackground.jpg");
+	//backGround.setTexture(backGroundTex);
 
-	backGround.setScale(5, 5);
+	//backGround.setScale(5, 5);
+
+
 
 	view.setCenter(sf::Vector2f(player.sprite.getPosition().x, player.sprite.getPosition().y));
 	view.setSize(1780, 980);
@@ -142,11 +144,10 @@ int main() {
 
 		if (!pause) {  //This is the pause function
 			
-			window.draw(backGround);
-			
-			player.Update();
+			//window.draw(backGround);
+			map.Update();
 
-			//reaperBoss.Update();
+			player.Update();
 
 			for (int i = 0; i < petRockList.size(); i++) {
 				petRockList.at(i)->Update();

@@ -16,8 +16,8 @@ ReaperBoss::ReaperBoss(int inputHealth, sf::RenderWindow& renderWindow, Characte
 
 	currentHealth = inputHealth;
 
-	float tempX = rand() % 4000 + 1;
-	float tempY = rand() % 3000 + 1;
+	float tempX = rand() % 500 + 1;
+	float tempY = rand() % 500 + 1;
 
 	reaperBossPos.x = tempX;
 	reaperBossPos.y = tempY;

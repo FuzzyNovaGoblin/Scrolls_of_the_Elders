@@ -22,7 +22,7 @@ Map::Map(sf::RenderWindow& renderWindow, int tileSize, sf::Texture& brick, sf::T
 	
 	
 	sf::Image layout; // the image which we will use to generate our background map from
-	layout.loadFromFile("Textures/map.png");
+	layout.loadFromFile("resources/environment/map.png");
 
 	int width = layout.getSize().x;
 	int height = layout.getSize().y;
