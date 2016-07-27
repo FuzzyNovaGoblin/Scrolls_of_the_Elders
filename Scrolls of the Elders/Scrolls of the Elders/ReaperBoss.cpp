@@ -38,24 +38,28 @@ void ReaperBoss::move()
 	{
 		sf::Vector2f movement(0, 0);
 
+		float deltaSpeed = DeltaTime * 300;
+
 		if (reaperBossPos.x > player.position.x + 50) {
-			movement.x -= .1;
+			movement.x -= deltaSpeed;
 		}
 		if (reaperBossPos.x < player.position.x - 50) {
-			movement.x += .1;
+			movement.x += deltaSpeed;
 		}
 		if (reaperBossPos.y > player.position.y + 20) {
-			movement.y -= 0.1;
+			movement.y -= deltaSpeed;
 		}
 		if (reaperBossPos.y < player.position.y + 40) {
-			movement.y += 0.1;
+			movement.y += deltaSpeed;
 		}
+			sprite.move(movement);
 
-		sprite.move(movement);
-
-		reaperBossPos = sprite.getPosition();
+			reaperBossPos = sprite.getPosition();
+		
 	}
 }
+
+
 
 void ReaperBoss::attack()
 {
