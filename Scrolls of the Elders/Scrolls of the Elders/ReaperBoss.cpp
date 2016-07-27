@@ -9,10 +9,10 @@ ReaperBoss::ReaperBoss(int inputHealth, sf::RenderWindow& renderWindow, Characte
 	reaperBossSummonTex.loadFromFile("resources/character/Reaper Boss-Magic.png");
 	reaperBossTeleportTex.loadFromFile("resources/character/Reaper Boss-Teleport.png");
 	reaperBossSkin[0] = sf::IntRect(0, 0, 192, 192);
-	reaperBossSkin[1] = sf::IntRect(192, 0, 384, 192);
-	reaperBossSkin[2] = sf::IntRect(0, 192, 192, 384);
-	reaperBossSkin[3] = sf::IntRect(192, 192, 384, 384);
-	reaperBossSkin[4] = sf::IntRect(0, 384, 192, 576);
+	reaperBossSkin[1] = sf::IntRect(192, 0, 192, 192);
+	reaperBossSkin[2] = sf::IntRect(0, 192, 192, 192);
+	reaperBossSkin[3] = sf::IntRect(192, 192, 192, 192);
+	reaperBossSkin[4] = sf::IntRect(0, 384, 192, 192);
 
 	currentHealth = inputHealth;
 
