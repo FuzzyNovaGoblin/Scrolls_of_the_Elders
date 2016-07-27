@@ -59,7 +59,7 @@ void ReaperBoss::move()
 
 void ReaperBoss::attack()
 {
-	if (reaperBossPos.x > player.position.x - 50 && reaperBossPos.x < player.position.x + 50 && reaperBossPos.y > player.position.y - 41 && reaperBossPos.y < player.position.y + 41)
+	if (reaperBossPos.x > player.position.x - 50 && reaperBossPos.x < player.position.x + 50 && reaperBossPos.y > player.position.y - 41 && reaperBossPos.y < player.position.y + 41){
 		sprite.setTexture(reaperBossSlashTex);
 		if (clock.getElapsedTime().asSeconds() > 0.5)
 		{
@@ -73,8 +73,8 @@ void ReaperBoss::attack()
 			}
 			clock.restart();
 		}
-	{
-			sf::Vector2f movement(0, 0);
+	
+			//sf::Vector2f movement(0, 0);
 
 			if (attackTime.getElapsedTime().asSeconds() > 1) {
 
@@ -111,7 +111,4 @@ void ReaperBoss::Update()
 	renderWindow.draw(sprite);
 }
 
-ReaperBoss::~ReaperBoss()
-{
 
-}
