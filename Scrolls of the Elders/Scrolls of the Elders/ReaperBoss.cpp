@@ -60,7 +60,7 @@ void ReaperBoss::move()
 void ReaperBoss::attack()
 {
 	if (reaperBossPos.x > player.position.x - 50 && reaperBossPos.x < player.position.x + 50 && reaperBossPos.y > player.position.y - 41 && reaperBossPos.y < player.position.y + 41){
-		//sprite.setTexture(reaperBossSlashTex);
+		sprite.setTexture(reaperBossSlashTex);
 		if (clock.getElapsedTime().asSeconds() > 0.5)
 		{
 			if (reaperBossSkinInt < 4)
