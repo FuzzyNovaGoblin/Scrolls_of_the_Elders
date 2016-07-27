@@ -40,13 +40,16 @@ public:
 	sf::Text healthText;
 	sf::Font healthFont;
 	string scoreString;
-
+	float currentAttackAngle;
+	float startingAngle;
+	int stage;
+	bool attackState;
 
 	Player(int inputHealth, int inputMana, int inputGold, int inputStrength, int inputIntelligence, int inputDexterity, int inputDefense, int inputConstitution, int inputEndurance, sf::RenderWindow& renderWindow, std::vector<std::unique_ptr<Character>>& petRockList, float& DeltaTime);
 
 	MeleeWeapon rightHandWeapon;
 	std::vector<std::unique_ptr<Character>>& petRockList;
-	void attackSFML(); //Actuator and Animation for Attack (Sword)
+	void attackSFML(float angle); //Actuator and Animation for Attack (Sword)
 	void attack(Character& target, int index); //Attack Function (Sword)
 	void equipMelee(MeleeWeapon meleeWeapon); //Equips the weapon
 	void Update();
