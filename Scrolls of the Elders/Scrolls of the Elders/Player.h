@@ -42,7 +42,7 @@ public:
 	string scoreString;
 	float currentAttackAngle;
 	float startingAngle;
-	int stage;
+	float stage;
 	bool attackState;
 	bool attacked;
 
