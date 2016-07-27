@@ -13,6 +13,8 @@ PetRock::PetRock(int inputHealth, sf::RenderWindow& renderWindow, sf::Texture& p
 
 	strength = 4;
 
+	hit = false;
+
 	float tempX = rand() % 4000 + 1;
 	float tempY = rand() % 3000 + 1;
 

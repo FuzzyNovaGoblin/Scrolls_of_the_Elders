@@ -74,46 +74,63 @@ void Player::attackSFML(float angle) {
 	else if (stage >= swingArc) {
 		rightHandWeapon.MeleeWeaponSprite.setRotation(angle + (stage - 1));
 		stage = 1;
-	renderWindow.draw(rightHandWeapon.MeleeWeaponSprite);
-	for (int i = 0; i < petRockList.size(); i++) {
-		Character* ptr = petRockList.at(i).get();
-		if (rightHandWeapon.MeleeWeaponSprite.getGlobalBounds().intersects((*ptr).sprite.getGlobalBounds())) {
+		renderWindow.draw(rightHandWeapon.MeleeWeaponSprite);
+		for (int i = 0; i < petRockList.size(); i++) {
+			Character* ptr = petRockList.at(i).get();
+			if (rightHandWeapon.MeleeWeaponSprite.getGlobalBounds().intersects((*ptr).sprite.getGlobalBounds())) {
 				attack(*petRockList[i], i);
-		}
+			}
 		}
 		attackTimer.restart();
 		attackState = false;
+		for (int i = 0; i < petRockList.size(); i++) {
+			petRockList.at(i)->hit = false;
+		}
 	}
 }
 
 void Player::attack(Character& target, int indexOfTarget) {
 	if (target.alive) {
+		if (!target.hit) {
+			int currentDamage = (strength / 2) + (rand() % strength + 1);
+			currentDamage += rightHandWeapon.damage;
+			if (currentDamage > strength) {
+				//Yo Grant, here is where you can tell it to do critical display
 
-		int currentDamage = (strength / 2) + (rand() % strength + 1);
-		currentDamage += rightHandWeapon.damage;
-		if (currentDamage > strength) {
-			//Yo Grant, here is where you can tell it to do critical display
+				//This is my code, no touch...
 
-			//This is my code, no touch...
+				target.currentHealth -= currentDamage;
 
-			target.currentHealth -= currentDamage;
-			if (target.currentHealth <= 0) {
-				score += 1;
+				target.hit = true;
 
-				// 
-				petRockList.erase(petRockList.begin() + indexOfTarget);
+				if (target.currentHealth <= 0) {
+					score += 1;
+
+					petRockList.erase(petRockList.begin() + indexOfTarget);
+				}
+			}
+			else {
+				//Yo Grant, here is where you can tell it to do a normal display
+
+				//This is my code, no touch...
+
+				target.currentHealth -= currentDamage;
+
+				target.hit = true;
+
+				if (target.currentHealth <= 0) {
+					score += 1;
+
+					petRockList.erase(petRockList.begin() + indexOfTarget);
+				}
 			}
 		}
 		else {
-			//Yo Grant, here is where you can tell it to do a normal display
 
-			//This is my code, no touch...
-
-			target.currentHealth -= currentDamage;
-			if (target.currentHealth <= 0) {
-				score += 1;
-			}
 		}
+	}
+	else {
+
 	}
 }
 

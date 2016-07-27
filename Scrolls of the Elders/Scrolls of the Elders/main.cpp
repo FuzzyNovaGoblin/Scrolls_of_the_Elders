@@ -50,7 +50,7 @@ int main() {
 	reaperBossIdleTex.loadFromFile("resources/character/Reaper Boss-Idle.png");
 	
 	
-//	window.setFramerateLimit(10);
+	//window.setFramerateLimit(10);
 	//std::vector<Character*> petRockList;
 	std::vector<std::unique_ptr<Character>> petRockList;
 	MeleeWeapon sword ("axe", "gold", 5, 9, 10, "Golden-BattleAxe.png");
@@ -146,7 +146,7 @@ int main() {
 			
 			//window.draw(backGround);
 			map.Update();
-			
+
 			player.Update();
 
 			for (int i = 0; i < petRockList.size(); i++) {
