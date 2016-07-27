@@ -14,15 +14,29 @@
 #include "MeleeWeapon.h"
 #include "PetRock.h"
 #include "ReaperBoss.h"
+#include "Map.h"
 
 #define PI 3.14159265
 
 
 int main() {
+	sf::RenderWindow window(sf::VideoMode(1780, 980), "Scrolls of the Elders ");
+	sf::View view;
 
 
+	sf::Texture red;
+	sf::Texture green;
+	sf::Texture blue;
+	sf::Texture blank;
 
-	//Map map(window, 50, );
+	red.loadFromFile("resources/environment/brick.png");
+	green.loadFromFile("resources/environment/grass.png");
+	blue.loadFromFile("resources/environment/sand.png");
+	blank.loadFromFile("resources/environment/water.png");
+
+	Map map(window, 150, red, green, blue, blank);
+
+
 
 	sf::Clock deltaTimeClock;
 	float DeltaTime = 0;
@@ -35,8 +49,7 @@ int main() {
 	sf::Texture reaperBossIdleTex;
 	reaperBossIdleTex.loadFromFile("resources/character/Reaper Boss-Idle.png");
 	
-	sf::RenderWindow window(sf::VideoMode(1780, 980), "Scrolls of the Elders ");
-	sf::View view;
+	
 //	window.setFramerateLimit(10);
 	//std::vector<Character*> petRockList;
 	std::vector<std::unique_ptr<Character>> petRockList;
@@ -64,18 +77,20 @@ int main() {
 		std::unique_ptr<Character> newPetRock(new PetRock(1, window, petRockTex, player, DeltaTime));
 		petRockList.push_back(std::move(newPetRock));
 	}
-	ReaperBoss reaperBoss(500, window, player);
-	/*std::unique_ptr<Character> reaperBoss(new ReaperBoss(500, window, player));
-	petRockList.push_back(std::move(reaperBoss));*/
+	//ReaperBoss reaperBoss(500, window, player);
+	std::unique_ptr<Character> reaperBoss(new ReaperBoss(500, window, player));
+	petRockList.push_back(std::move(reaperBoss));
 
 
 
-	sf::Sprite backGround;
-	sf::Texture backGroundTex;
-	backGroundTex.loadFromFile("resources/environment/BrickBackground.jpg");
-	backGround.setTexture(backGroundTex);
+	//sf::Sprite backGround;
+	//sf::Texture backGroundTex;
+	//backGroundTex.loadFromFile("resources/environment/BrickBackground.jpg");
+	//backGround.setTexture(backGroundTex);
 
-	backGround.setScale(5, 5);
+	//backGround.setScale(5, 5);
+
+
 
 	view.setCenter(sf::Vector2f(player.sprite.getPosition().x, player.sprite.getPosition().y));
 	view.setSize(1780, 980);
@@ -128,10 +143,11 @@ int main() {
 
 
 		if (!pause) {  //This is the pause function
-			window.draw(backGround);
-
+			
+			//window.draw(backGround);
+			map.Update();
+			
 			player.Update();
-			reaperBoss.Update();
 
 			for (int i = 0; i < petRockList.size(); i++) {
 				petRockList.at(i)->Update();
