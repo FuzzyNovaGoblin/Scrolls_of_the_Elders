@@ -31,6 +31,8 @@ Player::Player(int inputHealth, int inputMana, int inputGold, int inputStrength,
 	playerSkin[3] = sf::IntRect(128, 128, 128, 128);
 	
 	sprite.setOrigin(50, 65);
+
+	attacked = false;
 	//End of texture stuff
 }
 
@@ -105,7 +107,7 @@ void Player::Update()
 	if (alive) {
 		//Do all other checks here:
 		position = sprite.getPosition();
-	
+
 		//Movement checks here
 
 		//float testAnimSpeed = 0.5f;
@@ -163,7 +165,7 @@ void Player::Update()
 			clock.restart();
 		}
 		//End of Movement
-		
+
 		//Is alive check
 		if (currentHealth <= 0) {
 			alive = false;
@@ -178,45 +180,49 @@ void Player::Update()
 
 		//Doing Health Text
 		healthText.setString("Health: " + std::to_string(currentHealth) + "/" + std::to_string(maxHealth));
-		healthText.setPosition(position.x-890, position.y-490);
+		healthText.setPosition(position.x - 890, position.y - 490);
 		renderWindow.draw(healthText);
 		//End of Health Text
 
 		//Mouse Sensor
-		if (attackState) {
+		if (!sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+			attacked = false;
+		}
+		else if (attackState && attacked) {
+
 			attackSFML(startingAngle);
+
 		}
-		else if (!attackState) {
-			if (attackTimer.getElapsedTime().asSeconds() < 2.5) {
-		if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-					sf::Vector2i localPosition = sf::Mouse::getPosition(renderWindow);
-					sf::Vector2f worldPosition = renderWindow.mapPixelToCoords(localPosition);
-					currentAttackAngle = atan2(worldPosition.y - position.y, worldPosition.x - position.x) * 180 / PI;
-					if (currentAttackAngle < 0) {
-						currentAttackAngle = currentAttackAngle * -1;
-					}
-					else if (currentAttackAngle > 0) {
-						currentAttackAngle = 360 - currentAttackAngle;
-					}
-
-					currentAttackAngle = -currentAttackAngle + 90;
-
-					stage = 1;
-
-					attackState = true;
-
-					startingAngle = currentAttackAngle - 25;
-
-					attackSFML(startingAngle);
+		else if (!attackState && !attacked) {
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+				sf::Vector2i localPosition = sf::Mouse::getPosition(renderWindow);
+				sf::Vector2f worldPosition = renderWindow.mapPixelToCoords(localPosition);
+				currentAttackAngle = atan2(worldPosition.y - position.y, worldPosition.x - position.x) * 180 / PI;
+				if (currentAttackAngle < 0) {
+					currentAttackAngle = currentAttackAngle * -1;
 				}
-			}
-			else {
+				else if (currentAttackAngle > 0) {
+					currentAttackAngle = 360 - currentAttackAngle;
+				}
 
+				currentAttackAngle = -currentAttackAngle + 90;
+
+				stage = 1;
+
+				attackState = true;
+
+				startingAngle = currentAttackAngle - 25;
+
+				attackSFML(startingAngle);
+				attacked = true;
 			}
 		}
+		else {
+
+		}
+	}
 		//End of Mouse Sensor
 		
-	}
 	else {
 		
 		scoreText.setFont(asmanFont);
