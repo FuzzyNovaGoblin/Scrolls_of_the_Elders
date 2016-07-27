@@ -4,10 +4,10 @@
 
 ReaperBoss::ReaperBoss(int inputHealth, sf::RenderWindow& renderwindow, Character& player) : Character(DeltaTime), renderWindow(renderWindow), player(player)
 {
-	reaperBossIdleTex.loadFromFile("resources/character/Reaper Boss-Idle");
-	reaperBossSlashTex.loadFromFile("resources/character/Reaper Boss-Attack");
-	reaperBossSummonTex.loadFromFile("resources/character/Reaper Boss-Magic");
-	reaperBossTeleportTex.loadFromFile("resources/character/Reaper Boss-Teleport");
+	reaperBossIdleTex.loadFromFile("resources/character/Reaper Boss-Idle.png");
+	reaperBossSlashTex.loadFromFile("resources/character/Reaper Boss-Attack.png");
+	reaperBossSummonTex.loadFromFile("resources/character/Reaper Boss-Magic.png");
+	reaperBossTeleportTex.loadFromFile("resources/character/Reaper Boss-Teleport.png");
 	reaperBossSkin[0] = sf::IntRect(0, 0, 192, 192);
 	reaperBossSkin[1] = sf::IntRect(192, 0, 384, 192);
 	reaperBossSkin[2] = sf::IntRect(0, 192, 192, 384);

@@ -13,6 +13,7 @@
 #include "Item.h"
 #include "MeleeWeapon.h"
 #include "PetRock.h"
+#include "ReaperBoss.h"
 
 #define PI 3.14159265
 
@@ -29,7 +30,7 @@ int main() {
 	bool pause = false;
 	sf::Texture reaperBossIdleTex;
 	reaperBossIdleTex.loadFromFile("resources/character/Reaper Boss-Idle.png");
-
+	
 	sf::RenderWindow window(sf::VideoMode(1780, 980), "Scrolls of the Elders ");
 	sf::View view;
 //	window.setFramerateLimit(10);
@@ -38,7 +39,7 @@ int main() {
 	MeleeWeapon sword ("axe", "gold", 5, 9, 10, "Golden-BattleAxe.png");
 
 	Player player(50,10,10,10,10,10,10,10,10, window, petRockList, DeltaTime);
-
+	ReaperBoss reaperBoss(500, window, player);
 	player.equipMelee(sword);
 
 
@@ -112,6 +113,7 @@ int main() {
 		if (!pause) {
 			window.draw(backGround);
 			player.Update();
+			reaperBoss.Update();
 			for (int i = 0; i < petRockList.size(); i++) {
 				petRockList.at(i)->Update();
 			}
