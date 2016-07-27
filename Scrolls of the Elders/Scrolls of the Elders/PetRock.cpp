@@ -54,7 +54,7 @@ void PetRock::move() {
 			if (petRockPos.y < player.position.y+40) {
 				movement.y += deltaSpeed;
 			}
-			
+
 			sprite.move(movement);
 
 			if (DoesCollide()) // if we collide with something
