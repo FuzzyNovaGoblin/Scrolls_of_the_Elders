@@ -133,7 +133,6 @@ int main() {
 			player.Update();
 			reaperBoss.Update();
 
-
 			for (int i = 0; i < petRockList.size(); i++) {
 				petRockList.at(i)->Update();
 			}
