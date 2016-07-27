@@ -15,7 +15,7 @@ class PetRock : public Character
 {
 public:
 	
-	PetRock(int inputHealth, sf::RenderWindow& renderWindow, sf::Texture& petRockTex, Character& player, float& DeltaTime);
+	PetRock(int inputHealth, sf::RenderWindow& renderWindow, sf::Texture& petRockTex, Character& player, float& DeltaTime, Map &map);
 
 
 	sf::RenderWindow& renderWindow;

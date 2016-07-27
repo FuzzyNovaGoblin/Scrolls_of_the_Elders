@@ -1,9 +1,9 @@
 #include "Player.h"
 
 
-Player::Player(int inputHealth, int inputMana, int inputGold, int inputStrength, int inputIntelligence, int inputDexterity, int inputDefense, int inputConstitution, int inputEndurance, sf::RenderWindow& renderWindow, std::vector<std::unique_ptr<Character>>& petRockList, float& DeltaTime) : 
+Player::Player(int inputHealth, int inputMana, int inputGold, int inputStrength, int inputIntelligence, int inputDexterity, int inputDefense, int inputConstitution, int inputEndurance, sf::RenderWindow& renderWindow, std::vector<std::unique_ptr<Character>>& petRockList, float& DeltaTime, Map &map) : 
 	
-	Character("DefaultName" , "DefaultDescription", inputHealth, inputMana, inputGold, inputStrength, inputIntelligence, inputDexterity, inputDefense, inputConstitution, inputEndurance,  DeltaTime), renderWindow(renderWindow), petRockList(petRockList)
+	Character("DefaultName" , "DefaultDescription", inputHealth, inputMana, inputGold, inputStrength, inputIntelligence, inputDexterity, inputDefense, inputConstitution, inputEndurance,  DeltaTime, map), renderWindow(renderWindow), petRockList(petRockList)
 {
 	asmanFont.loadFromFile("resources/font/ASMAN.ttf");
 
@@ -38,10 +38,7 @@ Player::Player(int inputHealth, int inputMana, int inputGold, int inputStrength,
 	
 	sprite.setOrigin(50, 65);
 
-
-
-
-
+	sprite.setPosition(300, 300);
 
 	attacked = false;
 	//End of texture stuff
@@ -212,6 +209,13 @@ void Player::Update()
 		//Doing all texture stuff
 		sprite.move(movement);
 		sprite.setTextureRect(sf::IntRect(playerSkin[playerSkinInt]));
+
+		if (DoesCollide()) // if we collide with something
+		{
+			// undo the movement we just applied
+			sprite.move(movement.x * -1, movement.y * -1);
+		}
+
 		renderWindow.draw(sprite);
 		// End of all texture stuff
 
