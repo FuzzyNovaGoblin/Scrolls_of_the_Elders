@@ -11,6 +11,8 @@ Player::Player(int inputHealth, int inputMana, int inputGold, int inputStrength,
 
 	attackState = false;
 
+	sprite.setPosition(450, 450);
+
 	//Set the attack settings
 	swingArc = 80;
 	swingTime = 0.1;

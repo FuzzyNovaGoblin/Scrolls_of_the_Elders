@@ -29,12 +29,12 @@ int main() {
 	sf::Texture blue;
 	sf::Texture blank;
 
-	red.loadFromFile("resources/environment/demonrock.jpg");
+	red.loadFromFile("resources/environment/darkgrassyrock.jpg");
 	green.loadFromFile("resources/environment/darkrock.jpg");
 	blue.loadFromFile("resources/environment/sand.png");
-	blank.loadFromFile("resources/environment/water.png");
+	blank.loadFromFile("resources/environment/darkestrock.jpg");
 
-	Map map(window, 1080, red, green, blue, blank);
+	Map map(window, 300, red, green, blue, blank);
 
 
 
