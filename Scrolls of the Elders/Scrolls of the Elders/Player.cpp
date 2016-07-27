@@ -8,6 +8,9 @@ Player::Player(int inputHealth, int inputMana, int inputGold, int inputStrength,
 	asmanFont.loadFromFile("resources/font/ASMAN.ttf");
 
 	score = 0;
+
+	attackState = false;
+
 	//Doing Health Text
 	healthFont.loadFromFile("resources/font/Amatic-Bold.ttf");
 	healthText.setFont(healthFont);
@@ -32,27 +35,32 @@ Player::Player(int inputHealth, int inputMana, int inputGold, int inputStrength,
 }
 
 
-void Player::attackSFML() {
-	sf::Vector2i localPosition = sf::Mouse::getPosition(renderWindow);
-	sf::Vector2f worldPosition = renderWindow.mapPixelToCoords(localPosition);
-	double angle;
-	angle = atan2(worldPosition.y - position.y, worldPosition.x - position.x) * 180 / PI;
-	if (angle < 0) {
-		angle = angle * -1;
-	}
-	else if (angle > 0) {
-		angle = 360 - angle;
-	}
-
-	rightHandWeapon.MeleeWeaponSprite.setPosition(position.x - 15, position.y + 7);
-	rightHandWeapon.MeleeWeaponSprite.setRotation(-angle + 90);
-
-	renderWindow.draw(rightHandWeapon.MeleeWeaponSprite);
-	for (int i = 0; i < petRockList.size(); i++) {
-		Character* ptr = petRockList.at(i).get();
-		if (rightHandWeapon.MeleeWeaponSprite.getGlobalBounds().intersects((*ptr).sprite.getGlobalBounds())) {
-			attack(*petRockList[i]);
+void Player::attackSFML(float angle) {
+	if (stage < 50) {
+		rightHandWeapon.MeleeWeaponSprite.setPosition(position.x - 15, position.y + 7);
+		rightHandWeapon.MeleeWeaponSprite.setRotation(angle + (stage - 1));
+		stage += 1;
+		renderWindow.draw(rightHandWeapon.MeleeWeaponSprite);
+		for (int i = 0; i < petRockList.size(); i++) {
+			Character* ptr = petRockList.at(i).get();
+			if (rightHandWeapon.MeleeWeaponSprite.getGlobalBounds().intersects((*ptr).sprite.getGlobalBounds())) {
+				attack(*petRockList[i]);
+			}
 		}
+	}
+	else if (stage = 50) {
+		rightHandWeapon.MeleeWeaponSprite.setPosition(position.x - 15, position.y + 7);
+		rightHandWeapon.MeleeWeaponSprite.setRotation(angle + (stage - 1));
+		stage = 1;
+		renderWindow.draw(rightHandWeapon.MeleeWeaponSprite);
+		for (int i = 0; i < petRockList.size(); i++) {
+			Character* ptr = petRockList.at(i).get();
+			if (rightHandWeapon.MeleeWeaponSprite.getGlobalBounds().intersects((*ptr).sprite.getGlobalBounds())) {
+				attack(*petRockList[i]);
+			}
+		}
+		attackTimer.restart();
+		attackState = false;
 	}
 }
 
@@ -172,8 +180,36 @@ void Player::Update()
 		//End of Health Text
 
 		//Mouse Sensor
-		if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-			attackSFML();
+		if (attackState) {
+			attackSFML(startingAngle);
+		}
+		else if (!attackState) {
+			if (attackTimer.getElapsedTime().asSeconds() < 2.5) {
+				if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+					sf::Vector2i localPosition = sf::Mouse::getPosition(renderWindow);
+					sf::Vector2f worldPosition = renderWindow.mapPixelToCoords(localPosition);
+					currentAttackAngle = atan2(worldPosition.y - position.y, worldPosition.x - position.x) * 180 / PI;
+					if (currentAttackAngle < 0) {
+						currentAttackAngle = currentAttackAngle * -1;
+					}
+					else if (currentAttackAngle > 0) {
+						currentAttackAngle = 360 - currentAttackAngle;
+					}
+
+					currentAttackAngle = -currentAttackAngle + 90;
+
+					stage = 1;
+
+					attackState = true;
+
+					startingAngle = currentAttackAngle - 25;
+
+					attackSFML(startingAngle);
+				}
+			}
+			else {
+
+			}
 		}
 		//End of Mouse Sensor
 		
