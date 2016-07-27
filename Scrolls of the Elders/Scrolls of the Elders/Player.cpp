@@ -32,6 +32,11 @@ Player::Player(int inputHealth, int inputMana, int inputGold, int inputStrength,
 	
 	sprite.setOrigin(50, 65);
 
+
+
+
+
+
 	attacked = false;
 	//End of texture stuff
 }
@@ -47,6 +52,14 @@ void Player::attackSFML(float angle) {
 		renderWindow.draw(rightHandWeapon.MeleeWeaponSprite);
 		for (int i = 0; i < petRockList.size(); i++) {
 			Character* ptr = petRockList.at(i).get();
+
+
+			//----------------This is how we can change the hitBox------------------------
+			//sf::FloatRect enemyHitbox = (*ptr).sprite.getGlobalBounds(); // (x pos + xscale / 4, y pos , x scale / 2, y scale)
+			//enemyHitbox = sf::FloatRect(enemyHitbox.left + enemyHitbox.width / 4, enemyHitbox.top, enemyHitbox.width / 2, enemyHitbox.height);
+			//----------------------------------------------------------------------------
+
+
 			if (rightHandWeapon.MeleeWeaponSprite.getGlobalBounds().intersects((*ptr).sprite.getGlobalBounds())) {
 				attack(*petRockList[i], i);
 			}
