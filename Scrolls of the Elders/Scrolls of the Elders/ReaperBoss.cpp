@@ -16,6 +16,8 @@ ReaperBoss::ReaperBoss(int inputHealth, sf::RenderWindow& renderWindow, Characte
 
 	currentHealth = inputHealth;
 
+	hit = false;
+
 	float tempX = rand() % 500 + 1;
 	float tempY = rand() % 500 + 1;
 
@@ -86,29 +88,32 @@ void ReaperBoss::attack()
 
 void ReaperBoss::Update()
 {
-	if (currentHealth <= 0) 
-	{
-		alive = false;
-	}
-	attack();
-	move();
-
-	if (clock.getElapsedTime().asSeconds() > 0.5) 
-	{
-		if (reaperBossSkinInt < 3) 
+	if (alive) {
+		if (currentHealth <= 0)
 		{
-			reaperBossSkinInt += 1;
+			alive = false;
 		}
-		else 
+		attack();
+		move();
+
+		if (clock.getElapsedTime().asSeconds() > 0.5)
 		{
-			reaperBossSkinInt = 0;
+			if (reaperBossSkinInt < 3)
+			{
+				reaperBossSkinInt += 1;
+			}
+			else
+			{
+				reaperBossSkinInt = 0;
+			}
+			clock.restart();
 		}
-		clock.restart();
+
+		sprite.setTextureRect(sf::IntRect(reaperBossSkin[reaperBossSkinInt]));
+
+		renderWindow.draw(sprite);
 	}
+	else {
 
-	sprite.setTextureRect(sf::IntRect(reaperBossSkin[reaperBossSkinInt]));
-
-	renderWindow.draw(sprite);
+	}
 }
-
-

@@ -41,6 +41,7 @@ public:
 	int level; //Stats scale with level, MENU TO CHOOSE?
 	float &DeltaTime;
 	sf::FloatRect hitBox;
+	bool hit;
 	int score;
 	//Sprite
 
