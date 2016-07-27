@@ -2,7 +2,7 @@
 
 
 
-ReaperBoss::ReaperBoss(int inputHealth, sf::RenderWindow& renderWindow, Character& player) : Character(DeltaTime), renderWindow(renderWindow), player(player)
+ReaperBoss::ReaperBoss(int inputHealth, sf::RenderWindow& renderWindow, Character& player, float &DeltaTime) : Character(DeltaTime), renderWindow(renderWindow), player(player)
 {
 	reaperBossIdleTex.loadFromFile("resources/character/Reaper Boss-Idle.png");
 	reaperBossSlashTex.loadFromFile("resources/character/Reaper Boss-Attack.png");
@@ -14,7 +14,13 @@ ReaperBoss::ReaperBoss(int inputHealth, sf::RenderWindow& renderWindow, Characte
 	reaperBossSkin[3] = sf::IntRect(192, 192, 192, 192);
 	reaperBossSkin[4] = sf::IntRect(0, 384, 192, 192);
 
+	sprite.setOrigin(96, 96);
+
 	currentHealth = inputHealth;
+
+	strength = 10;
+
+	hit = false;
 
 	float tempX = rand() % 500 + 1;
 	float tempY = rand() % 500 + 1;
@@ -38,17 +44,19 @@ void ReaperBoss::move()
 	{
 		sf::Vector2f movement(0, 0);
 
+		float deltaSpeed = 300 * DeltaTime;
+
 		if (reaperBossPos.x > player.position.x + 50) {
-			movement.x -= .1;
+			movement.x -= deltaSpeed;
 		}
 		if (reaperBossPos.x < player.position.x - 50) {
-			movement.x += .1;
+			movement.x += deltaSpeed;
 		}
 		if (reaperBossPos.y > player.position.y + 20) {
-			movement.y -= 0.1;
+			movement.y -= deltaSpeed;
 		}
 		if (reaperBossPos.y < player.position.y + 40) {
-			movement.y += 0.1;
+			movement.y += deltaSpeed;
 		}
 
 		sprite.move(movement);
@@ -66,27 +74,29 @@ void ReaperBoss::attack()
 			sprite.setTexture(reaperBossSlashTex);
 			attacking = true;
 			
-			if (clock.getElapsedTime().asSeconds() > 0.5)
+		if (clock.getElapsedTime().asSeconds() > 0.15)
+		{
+			if (reaperBossSkinInt < 4)
 			{
-				if (reaperBossSkinInt < 4)
-				{
-					reaperBossSkinInt += 1;
-				}
-				else
-				{
-					reaperBossSkinInt = 0;
-				}
-				clock.restart();
+				reaperBossSkinInt += 1;
 			}
-
+			else
+			{
+				reaperBossSkinInt = 0;
+			}
+			clock.restart();
+		}
+	
 			sf::Vector2f movement(0, 0);
 
 			if (attackTime.getElapsedTime().asSeconds() > 1) {
 
-				player.currentHealth -= 5;
+				int damage = (strength / 2) + (rand() % strength + 1);
+				player.currentHealth -= damage;
+
 				attackTime.restart();
 			}
-		}
+	}
 	
 		else
 		{
@@ -97,6 +107,8 @@ void ReaperBoss::attack()
 
 void ReaperBoss::Update()
 {
+	if (alive)
+	{
 	if (currentHealth <= 0) 
 	{
 		alive = false;
@@ -104,10 +116,10 @@ void ReaperBoss::Update()
 	attack();
 	move();
 
-	if (!attacking)
-	{
-		sprite.setTexture(reaperBossIdleTex);
-	}
+			if (!attacking)
+			{
+				sprite.setTexture(reaperBossIdleTex);
+			}
 
 	if (clock.getElapsedTime().asSeconds() > 0.5) 
 	{
@@ -125,6 +137,7 @@ void ReaperBoss::Update()
 	sprite.setTextureRect(sf::IntRect(reaperBossSkin[reaperBossSkinInt]));
 
 	renderWindow.draw(sprite);
+}
 }
 
 
