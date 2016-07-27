@@ -22,6 +22,7 @@ PetRock::PetRock(int inputHealth, sf::RenderWindow& renderWindow, sf::Texture& p
 	sprite.setTexture(petRockTex);
 	
 	timer = clock.getElapsedTime().asSeconds();
+	sprite.setOrigin(20, 14);
 
 }
 

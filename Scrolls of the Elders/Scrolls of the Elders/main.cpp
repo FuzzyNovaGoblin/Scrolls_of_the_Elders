@@ -20,6 +20,9 @@
 
 int main() {
 
+
+
+
 	sf::Clock deltaTimeClock;
 	float DeltaTime = 0;
 
@@ -117,8 +120,8 @@ int main() {
 
 		if (!pause) {  //This is the pause function
 
-			window.draw(backGround);
-
+			//window.draw(backGround);
+			
 			player.Update();
 
 			reaperBoss.Update();
