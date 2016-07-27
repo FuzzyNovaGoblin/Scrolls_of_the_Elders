@@ -11,6 +11,8 @@ PetRock::PetRock(int inputHealth, sf::RenderWindow& renderWindow, sf::Texture& p
 	
 	currentHealth = inputHealth;
 
+	strength = 4;
+
 	float tempX = rand() % 4000 + 1;
 	float tempY = rand() % 3000 + 1;
 
@@ -65,7 +67,9 @@ void PetRock::attack() {
 
 		if (attackTime.getElapsedTime().asSeconds() > 1) {
 	
-			player.currentHealth -= 5;
+			int damage = (strength / 2) + (rand() % strength + 1);
+			player.currentHealth -= damage;
+
 			attackTime.restart();
 
 		}
