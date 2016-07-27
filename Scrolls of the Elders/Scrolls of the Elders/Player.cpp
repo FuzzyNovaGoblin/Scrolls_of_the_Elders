@@ -44,27 +44,27 @@ void Player::attackSFML(float angle) {
 		for (int i = 0; i < petRockList.size(); i++) {
 			Character* ptr = petRockList.at(i).get();
 			if (rightHandWeapon.MeleeWeaponSprite.getGlobalBounds().intersects((*ptr).sprite.getGlobalBounds())) {
-				attack(*petRockList[i]);
+				attack(*petRockList[i], i);
 			}
-		}
+	}
 	}
 	else if (stage = 50) {
-		rightHandWeapon.MeleeWeaponSprite.setPosition(position.x - 15, position.y + 7);
+	rightHandWeapon.MeleeWeaponSprite.setPosition(position.x - 15, position.y + 7);
 		rightHandWeapon.MeleeWeaponSprite.setRotation(angle + (stage - 1));
 		stage = 1;
-		renderWindow.draw(rightHandWeapon.MeleeWeaponSprite);
-		for (int i = 0; i < petRockList.size(); i++) {
-			Character* ptr = petRockList.at(i).get();
-			if (rightHandWeapon.MeleeWeaponSprite.getGlobalBounds().intersects((*ptr).sprite.getGlobalBounds())) {
-				attack(*petRockList[i]);
-			}
+	renderWindow.draw(rightHandWeapon.MeleeWeaponSprite);
+	for (int i = 0; i < petRockList.size(); i++) {
+		Character* ptr = petRockList.at(i).get();
+		if (rightHandWeapon.MeleeWeaponSprite.getGlobalBounds().intersects((*ptr).sprite.getGlobalBounds())) {
+				attack(*petRockList[i], i);
+		}
 		}
 		attackTimer.restart();
 		attackState = false;
 	}
 }
 
-void Player::attack(Character& target) {
+void Player::attack(Character& target, int indexOfTarget) {
 	if (target.alive) {
 
 		int currentDamage = (strength / 2) + (rand() % strength);
@@ -77,6 +77,9 @@ void Player::attack(Character& target) {
 			target.currentHealth -= currentDamage;
 			if (target.currentHealth <= 0) {
 				score += 1;
+
+				// 
+				petRockList.erase(petRockList.begin() + indexOfTarget);
 			}
 		}
 		else {
@@ -185,7 +188,7 @@ void Player::Update()
 		}
 		else if (!attackState) {
 			if (attackTimer.getElapsedTime().asSeconds() < 2.5) {
-				if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
 					sf::Vector2i localPosition = sf::Mouse::getPosition(renderWindow);
 					sf::Vector2f worldPosition = renderWindow.mapPixelToCoords(localPosition);
 					currentAttackAngle = atan2(worldPosition.y - position.y, worldPosition.x - position.x) * 180 / PI;

@@ -12,11 +12,13 @@ using namespace std;
 class ReaperBoss : public Character
 {
 public:
-	ReaperBoss(int inputHealth, sf::RenderWindow& renderwindow, sf::Texture &reaperBossTex, Character& player);
-	bool alive = true;
+	ReaperBoss(int inputHealth, sf::RenderWindow& renderwindow, Character& player);
 	sf::RenderWindow& renderWindow;
 	Character& player;
-	sf::Texture reaperBossTex;
+	sf::Texture reaperBossIdleTex;
+	sf::Texture reaperBossSlashTex;
+	sf::Texture reaperBossSummonTex;
+	sf::Texture reaperBossTeleportTex;
 	sf::IntRect reaperBossSkin[4];
 
 	sf::Clock clock;
@@ -27,6 +29,10 @@ public:
 	void Update(); // get a reference to the player
 	void move();
 	void attack();
+	void DoShortAttack() 
+	{
+		 
+	}
 	~ReaperBoss();
 };
 
