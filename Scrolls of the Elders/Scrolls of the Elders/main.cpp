@@ -22,6 +22,7 @@ int main() {
 
 
 
+	//Map map(window, 50, );
 
 	sf::Clock deltaTimeClock;
 	float DeltaTime = 0;
@@ -42,7 +43,10 @@ int main() {
 	MeleeWeapon sword ("axe", "gold", 5, 9, 10, "Golden-BattleAxe.png");
 
 	Player player(50,10,10,10,10,10,10,10,10, window, petRockList, DeltaTime);
-	ReaperBoss reaperBoss(500, window, player);
+	//ReaperBoss reaperBoss(500, window, player);
+	std::unique_ptr<Character> reaperBoss(new ReaperBoss(500, window, player));
+	petRockList.push_back(reaperBoss);
+
 	player.equipMelee(sword);
 
 
@@ -123,8 +127,6 @@ int main() {
 			//window.draw(backGround);
 			
 			player.Update();
-
-			reaperBoss.Update();
 
 			for (int i = 0; i < petRockList.size(); i++) {
 				petRockList.at(i)->Update();

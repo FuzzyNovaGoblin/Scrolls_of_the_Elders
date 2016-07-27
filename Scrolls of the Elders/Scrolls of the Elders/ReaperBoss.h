@@ -26,7 +26,7 @@ public:
 	sf::Vector2f reaperBossPos;
 	float timer;
 	int reaperBossSkinInt = 0;
-	void Update(); // get a reference to the player
+	void Update();
 	void move();
 	void attack();
 	void DoShortAttack();
