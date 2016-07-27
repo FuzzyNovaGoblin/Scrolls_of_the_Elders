@@ -44,8 +44,8 @@ Player::Player(int inputHealth, int inputMana, int inputGold, int inputStrength,
 
 
 void Player::attackSFML(float angle) {
+	rightHandWeapon.MeleeWeaponSprite.setPosition(position.x - 15, position.y + 7);
 	if (stage < swingArc) {
-		rightHandWeapon.MeleeWeaponSprite.setPosition(position.x - 15, position.y + 7);
 		rightHandWeapon.MeleeWeaponSprite.setRotation(angle + (stage - 1));
 		float deltaAngleChange;
 		deltaAngleChange = DeltaTime * degreesPerSecond;
@@ -59,7 +59,6 @@ void Player::attackSFML(float angle) {
 	}
 	}
 	else if (stage >= swingArc) {
-	rightHandWeapon.MeleeWeaponSprite.setPosition(position.x - 15, position.y + 7);
 		rightHandWeapon.MeleeWeaponSprite.setRotation(angle + (stage - 1));
 		stage = 1;
 	renderWindow.draw(rightHandWeapon.MeleeWeaponSprite);
@@ -217,7 +216,7 @@ void Player::Update()
 
 				attackState = true;
 
-				startingAngle = currentAttackAngle - 25;
+				startingAngle = currentAttackAngle - swingArc / 2;
 
 				attackSFML(startingAngle);
 				attacked = true;
