@@ -63,35 +63,38 @@ int main() {
 	backGroundTex.loadFromFile("resources/environment/BrickBackground.jpg");
 	backGround.setTexture(backGroundTex);
 
-	backGround.setScale(50, 50);
+	backGround.setScale(5, 5);
 
 	view.setCenter(sf::Vector2f(player.sprite.getPosition().x, player.sprite.getPosition().y));
 	view.setSize(1780, 980);
 
 	while (window.isOpen()) {
 
+
 		sf::Time timeFromClock = deltaTimeClock.restart();
 		DeltaTime = timeFromClock.asSeconds();
 
-		if (spawnTime.getElapsedTime().asSeconds() > 10 && player.score<100) {
+		if (spawnTime.getElapsedTime().asSeconds() > 10 && petRockList.size() < 500 && player.score<100) {
 			for (int i = 0; i < 10 + player.score; i++) { // make 10 enemies 
 				std::unique_ptr<Character> newPetRock(new PetRock(1, window, petRockTex, player, DeltaTime));
 				petRockList.push_back(std::move(newPetRock));
 			}
 			spawnTime.restart();
-		}else if (spawnTime.getElapsedTime().asSeconds() > 10 && player.score>=100) {
+		}
+		else if (spawnTime.getElapsedTime().asSeconds() > 10 && petRockList.size() < 500 && player.score >= 100) {
 			for (int i = 0; i < 100; i++) { // make 10 enemies 
 				std::unique_ptr<Character> newPetRock(new PetRock(1, window, petRockTex, player, DeltaTime));
 				petRockList.push_back(std::move(newPetRock));
 			}
 			spawnTime.restart();
 		}
+
 		
 
-		if (!pause, sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
+		if (!pause && sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
 			pause = true;
 		}
-		if (pause, sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
+		if (pause && sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
 			pause = false;
 		}
 		// get all the input first every frame

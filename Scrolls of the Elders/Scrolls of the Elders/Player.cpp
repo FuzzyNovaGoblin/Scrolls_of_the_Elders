@@ -44,19 +44,19 @@ void Player::attackSFML() {
 		angle = 360 - angle;
 	}
 
-	rightHandWeapon.MeleeWeaponSprite.setPosition(position.x - 15, position.y + 7);
-	rightHandWeapon.MeleeWeaponSprite.setRotation(-angle + 90);
+		rightHandWeapon.MeleeWeaponSprite.setPosition(position.x - 15, position.y + 7);
+		rightHandWeapon.MeleeWeaponSprite.setRotation(-angle + 90);
 
-	renderWindow.draw(rightHandWeapon.MeleeWeaponSprite);
-	for (int i = 0; i < petRockList.size(); i++) {
-		Character* ptr = petRockList.at(i).get();
-		if (rightHandWeapon.MeleeWeaponSprite.getGlobalBounds().intersects((*ptr).sprite.getGlobalBounds())) {
-			attack(*petRockList[i]);
-		}
+		renderWindow.draw(rightHandWeapon.MeleeWeaponSprite);
+		for (int i = 0; i < petRockList.size(); i++) {
+			Character* ptr = petRockList.at(i).get();
+			if (rightHandWeapon.MeleeWeaponSprite.getGlobalBounds().intersects((*ptr).sprite.getGlobalBounds())) {
+				attack(*petRockList[i], i);
+			}
 	}
 }
 
-void Player::attack(Character& target) {
+void Player::attack(Character& target, int indexOfTarget) {
 	if (target.alive) {
 
 		int currentDamage = (strength / 2) + (rand() % strength);
@@ -69,6 +69,9 @@ void Player::attack(Character& target) {
 			target.currentHealth -= currentDamage;
 			if (target.currentHealth <= 0) {
 				score += 1;
+
+				// 
+				petRockList.erase(petRockList.begin() + indexOfTarget);
 			}
 		}
 		else {
