@@ -36,7 +36,7 @@ int main() {
 	blue.loadFromFile("resources/environment/sand.png");
 	blank.loadFromFile("resources/environment/darkestrock.jpg");
 
-	Map map(window, 300, red, green, blue, blank, layout);
+	Map currentMap(window, 150, red, green, blue, blank, layout);
 
 
 
