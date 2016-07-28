@@ -13,10 +13,10 @@ public:
 	// variables
 	std::vector<Tile> tiles;
 	sf::RenderWindow& renderWindow;
-	sf::Texture& brick;
-	sf::Texture& grass;
-	sf::Texture& dirt;
-	sf::Texture& water;
+	sf::Texture& floor;
+	sf::Texture& charSpawner;
+	sf::Texture& bossSpawner;
+	sf::Texture& wall;
 
 	// functions
 	void Update();

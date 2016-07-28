@@ -17,7 +17,7 @@ bool ColorsEqual(sf::Color a, sf::Color b) {
 	else return false;
 }
 
-Map::Map(sf::RenderWindow& renderWindow, int tileSize, sf::Texture& brick, sf::Texture& grass, sf::Texture& dirt, sf::Texture& water, sf::Image &layout) : renderWindow(renderWindow) , brick(brick), grass(grass), dirt(dirt), water(water)
+Map::Map(sf::RenderWindow& renderWindow, int tileSize, sf::Texture& brick, sf::Texture& grass, sf::Texture& dirt, sf::Texture& water, sf::Image &layout) : renderWindow(renderWindow) , floor(brick), charSpawner(grass), bossSpawner(dirt), wall(water)
 {
 	
 	 // the image which we will use to generate our background map from
@@ -33,23 +33,23 @@ Map::Map(sf::RenderWindow& renderWindow, int tileSize, sf::Texture& brick, sf::T
 			// figure out which background tile to create
 			if (ColorsEqual(pixel, sf::Color::Red)) {
 				// red is for brick
-				Tile tile(renderWindow, brick, xPos, yPos, tileSize, false, false);
+				Tile tile(renderWindow, floor, xPos, yPos, tileSize, false, false, false);
 				tiles.push_back(tile);
 			}
 			else if (ColorsEqual(pixel, sf::Color::Green)) {
 				// green is for grass
-				Tile tile(renderWindow, grass, xPos, yPos, tileSize, false, false);
+				Tile tile(renderWindow, charSpawner, xPos, yPos, tileSize, false, false, true);
 				tiles.push_back(tile);
 			}
 		
 			else if (ColorsEqual(pixel, sf::Color::Blue)) {
 				// blue is for dirt/ sand currently
-				Tile tile(renderWindow, dirt, xPos, yPos, tileSize, false, true);
+				Tile tile(renderWindow, bossSpawner, xPos, yPos, tileSize, false, true, false);
 				tiles.push_back(tile);
 			}
 			else {
 				// default (nothing) is water
-				Tile tile(renderWindow, water, xPos, yPos, tileSize, true, false);
+				Tile tile(renderWindow, wall, xPos, yPos, tileSize, true, false, false);
 				tiles.push_back(tile);
 			}
 		}

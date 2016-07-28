@@ -3,7 +3,7 @@
 class Tile
 {
 public:
-	Tile(sf::RenderWindow& renderWindow, sf::Texture& texture, int xPos, int yPos, int length, bool hasCollider, bool bossSpawner);
+	Tile(sf::RenderWindow& renderWindow, sf::Texture& texture, int xPos, int yPos, int length, bool hasCollider, bool bossSpawner, bool charSpawner);
 
 	// variables
 	sf::RenderWindow& renderWindow;
@@ -14,7 +14,7 @@ public:
 	int yPos;
 	bool hasCollider;
 	bool bossSpawner;
-
+	bool charSpawner;
 	// functions
 	void Update();
 
