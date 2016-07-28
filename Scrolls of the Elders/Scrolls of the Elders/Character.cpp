@@ -42,7 +42,11 @@ bool Character::DoesCollide() {
 	for (int i = 0; i < map.tiles.size(); i++) {
 		// if we collide with a prop
 	if (map.tiles.at(i).hasCollider) {
-		if (sprite.getGlobalBounds().intersects(map.tiles.at(i).graphic.getGlobalBounds())) {
+
+		sf::FloatRect tempRect = sprite.getGlobalBounds(); // (x pos + xscale / 4, y pos , x scale / 2, y scale)
+		tempRect = sf::FloatRect(tempRect.left + tempRect.width / 4, tempRect.top, tempRect.width / 2, tempRect.height);
+
+		if (tempRect.intersects(map.tiles.at(i).graphic.getGlobalBounds())) {
 				return true; // only support colliding with one prop at a time, so end function
 							 // after the first succesful collision
 			}
