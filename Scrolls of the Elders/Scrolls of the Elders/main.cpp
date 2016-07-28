@@ -29,14 +29,18 @@ int main() {
 	sf::Texture red;
 	sf::Texture green;
 	sf::Texture blue;
+	sf::Texture black;
 	sf::Texture blank;
+
 
 	red.loadFromFile("resources/environment/darkgrassyrock.jpg");
 	green.loadFromFile("resources/environment/darkrock.jpg");
-	blue.loadFromFile("resources/environment/sand.png");
+	blue.loadFromFile("resources/environment/purplecliffrock.jpg");
+	black.loadFromFile("resources/environment/darkgrassyrock.jpg");
 	blank.loadFromFile("resources/environment/darkestrock.jpg");
+	
 
-	Map currentMap(window, 150, red, green, blue, blank, layout);
+	Map currentMap(window, 150, red, green, blue, black, blank,  layout);
 
 
 
@@ -87,7 +91,7 @@ int main() {
 
 	//sf::Sprite backGround;
 	//sf::Texture backGroundTex;
-	//backGroundTex.loadFromFile("resources/environment/BrickBackground.jpg");
+	//backGroundTex.loadFromFile("resources/environment/floorBackground.jpg");
 	//backGround.setTexture(backGroundTex);
 
 	//backGround.setScale(5, 5);

@@ -42,6 +42,7 @@ public:
 	int endurance; //Stamina + How much you can carry
 	int level; //Stats scale with level, MENU TO CHOOSE?
 	float &DeltaTime;
+	float spawnPos[2];
 	Map &map;
 	sf::FloatRect hitBox;
 	bool hit;

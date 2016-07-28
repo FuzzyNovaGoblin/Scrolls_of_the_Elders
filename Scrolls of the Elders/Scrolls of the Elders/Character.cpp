@@ -41,6 +41,7 @@ void Character::Update() {
 bool Character::DoesCollide() {
 	for (int i = 0; i < map.tiles.size(); i++) {
 		// if we collide with a prop
+
 	if (map.tiles.at(i).hasCollider) {
 
 		sf::FloatRect tempRect = sprite.getGlobalBounds(); // (x pos + xscale / 4, y pos , x scale / 2, y scale)
