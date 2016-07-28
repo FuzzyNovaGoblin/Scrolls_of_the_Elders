@@ -20,7 +20,7 @@ public:
 	sf::Texture reaperBossSummonTex;
 	sf::Texture reaperBossTeleportTex;
 	sf::IntRect reaperBossSkin[5];
-
+	
 	bool attacking;
 	sf::Clock clock;
 	sf::Clock attackTime;
