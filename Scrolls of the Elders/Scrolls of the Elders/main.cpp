@@ -24,7 +24,7 @@ int main() {
 	sf::View view;
 
 	sf::Image layout;
-	layout.loadFromFile("resources/environment/map.2.png");
+	layout.loadFromFile("resources/environment/map.3.png");
 
 	sf::Texture red;
 	sf::Texture green;
