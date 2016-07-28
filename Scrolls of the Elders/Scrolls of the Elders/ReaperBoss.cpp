@@ -112,7 +112,7 @@ void ReaperBoss::move()
 	{
 		sf::Vector2f movement(0, 0);
 
-		float deltaSpeed = 300 * DeltaTime;
+		float deltaSpeed = 200 * DeltaTime;
 
 		if (reaperBossPos.x > player.position.x + 50) {
 			movement.x -= deltaSpeed;

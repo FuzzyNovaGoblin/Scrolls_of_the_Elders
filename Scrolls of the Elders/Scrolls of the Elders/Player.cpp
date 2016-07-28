@@ -267,7 +267,7 @@ void Player::Update()
 		//console output
 		//--------------------------------
 
-		cout << "X: " << position.x << " Y: " << position.y << "\n";
+		//cout << "X: " << position.x << " Y: " << position.y << "\n";
 
 		//--------------------------------
 
