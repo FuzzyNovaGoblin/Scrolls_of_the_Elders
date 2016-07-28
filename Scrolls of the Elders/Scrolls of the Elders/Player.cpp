@@ -275,5 +275,12 @@ void Player::Update()
 		scoreText.setColor(sf::Color::Red);
 		scoreText.setPosition(position.x-350, position.y-20);
 		//End of Death Text
+
+		//console output
+		//--------------------------------
+
+		cout << "X: " << position.x << " Y: " << position.y << "\n";
+
+		//--------------------------------
 	}
 }
