@@ -6,8 +6,8 @@
 #include <SFML\Graphics.hpp>
 #include <SFML\Graphics\Rect.hpp>
 #include <SFML\System\Clock.hpp>
+#include <SFML\Audio.hpp>
 #include <memory>
-
 
 #include "Player.h"
 #include "Item.h"
@@ -22,6 +22,9 @@
 void PlayGame(sf::RenderWindow& window) {
 	sf::View view;
 	sf::Image layout;
+	sf::Music theme;
+	theme.openFromFile("resources/audio/Child of Light - Boss Battle Theme.wav");
+	theme.play();
 	
 	int mapNum = rand() % 2 + 1;
 	
@@ -45,10 +48,7 @@ void PlayGame(sf::RenderWindow& window) {
 	black.loadFromFile("resources/environment/darkgrassyrock.jpg");
 	blank.loadFromFile("resources/environment/darkestrock.jpg");
 
-
 	Map currentMap(window, 150, red, green, blue, black, blank, layout);
-
-
 
 	sf::Clock deltaTimeClock;
 	float DeltaTime = 0;
