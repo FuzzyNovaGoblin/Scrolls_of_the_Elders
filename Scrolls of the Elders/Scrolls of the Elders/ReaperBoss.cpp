@@ -77,7 +77,7 @@ void ReaperBoss::DoLongAttack()
 
 		if (clock.getElapsedTime().asSeconds() > 0.15)
 		{
-			if (reaperBossSkinInt < 5)
+			if (reaperBossSkinInt < 4)
 			{
 				reaperBossSkinInt += 1;
 			}
@@ -152,7 +152,11 @@ void ReaperBoss::attack()
 			DoShortAttack();
 		}
 
-		//else if DoLongAttack();
+		//else if (GetDistance(position, player.position) < 800)
+		//{
+		//	DoLongAttack();
+		//}
+		
 }
 
 void ReaperBoss::Update()
