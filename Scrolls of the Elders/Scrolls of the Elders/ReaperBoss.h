@@ -8,6 +8,8 @@
 #include <SFML\Graphics\Rect.hpp>
 #include <SFML\System\Clock.hpp>
 
+#include "Map.h"
+
 using namespace std;
 
 class ReaperBoss : public Character

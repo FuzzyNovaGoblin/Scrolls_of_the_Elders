@@ -23,7 +23,10 @@ ReaperBoss::ReaperBoss(int inputHealth, sf::RenderWindow& renderWindow, Characte
 	reaperBossBeamRect[0] = sf::IntRect(0, 0, 128, 128);
 	reaperBossBeamRect[1] = sf::IntRect(128, 0, 128, 128);
 	reaperBossBeamRect[2] = sf::IntRect(0, 128, 128, 128);
-	
+
+
+
+
 	sprite.setOrigin(96, 96);
 
 	currentHealth = inputHealth;
@@ -32,13 +35,21 @@ ReaperBoss::ReaperBoss(int inputHealth, sf::RenderWindow& renderWindow, Characte
 
 	hit = false;
 
-	float tempX = 2267;
-	float tempY = 2605;
+	for (int i = 0; i < map.tiles.size(); i++) {
+		if (map.tiles.at(i).bossSpawner) {
+			spawnPos[0] = map.tiles.at(i).xPos;
+			spawnPos[1] = map.tiles.at(i).yPos;
 
-	position.x = tempX;
-	position.y = tempY;
+		}
+	}
 
-	sprite.setPosition(position.x, position.y);
+	/*float tempX = start[0];
+	float tempY = start[1];*/
+
+	/*position.x = tempX;
+	position.y = tempY;*/
+
+	sprite.setPosition(spawnPos[0], spawnPos[1]);
 
 	sprite.setTexture(reaperBossIdleTex);
 	
@@ -164,7 +175,7 @@ void ReaperBoss::reaperBossBeam() {
 		player.hit = false;
 		attackStage = 1;
 		reaperBossBeamUsed = false;
-	}
+}
 }
 
 void ReaperBoss::OrbAttack() {
@@ -181,57 +192,57 @@ void ReaperBoss::DoShortAttack()
 	sprite.setTexture(reaperBossSlashTex);
 	attacking = true;
 			
-	if (clock.getElapsedTime().asSeconds() > 0.2)
-	{
-		if (reaperBossSkinInt < 4)
+		if (clock.getElapsedTime().asSeconds() > 0.15)
 		{
-			reaperBossSkinInt += 1;
+			if (reaperBossSkinInt < 4)
+			{
+				reaperBossSkinInt += 1;
+			}
+			else
+			{
+				reaperBossSkinInt = 0;
+			}
+			clock.restart();
 		}
-		else
-		{
-			reaperBossSkinInt = 0;
-		}
-		clock.restart();
-	}
 	
-	sf::Vector2f movement(0, 0);
+			sf::Vector2f movement(0, 0);
 
-	if (attackTime.getElapsedTime().asSeconds() > 1) 
-	{
-		int damage = (strength / 2) + (rand() % strength + 1);
-		player.currentHealth -= damage;
+			if (attackTime.getElapsedTime().asSeconds() > 1) 
+			{
+				int damage = (strength / 2) + (rand() % strength + 1);
+				player.currentHealth -= damage;
 
-		attackTime.restart();
-	}
-}
+				attackTime.restart();
+			}
+		}
 
 void ReaperBoss::DoLongAttack()
 {
 	sprite.setTexture(reaperBossSummonTex);
 	attacking = true;
 
-	if (clock.getElapsedTime().asSeconds() > 0.15)
-	{
-		if (reaperBossSkinInt < 4)
+		if (clock.getElapsedTime().asSeconds() > 0.15)
 		{
-			reaperBossSkinInt += 1;
+			if (reaperBossSkinInt < 4)
+			{
+				reaperBossSkinInt += 1;
+			}
+			else
+			{
+				reaperBossSkinInt = 0;
+			}
+			clock.restart();
 		}
-		else
+
+		sf::Vector2f movement(0, 0);
+
+		if (attackTime.getElapsedTime().asSeconds() > 2)
 		{
-			reaperBossSkinInt = 0;
+			attackTime.restart();
 		}
-		clock.restart();
-	}
-
-	sf::Vector2f movement(0, 0);
-
-	if (attackTime.getElapsedTime().asSeconds() > 1)
-	{
-		attackTime.restart();
-	}
 
 	int attackType = (rand() % 4 + 1);
-
+		
 	if (reaperBossBeamUsed) {
 		reaperBossBeam();
 	}
@@ -306,7 +317,7 @@ void ReaperBoss::attack()
 {
 	/*	if (position.x > player.position.x - 50 && position.x < player.position.x + 50 && position.y > player.position.y - 41 && position.y < player.position.y + 41)*/
 	
-		if (GetDistance(position, player.position) < 100)
+		if (GetDistance(position, player.position) < 150)
 		
 		{
 			move();
