@@ -223,7 +223,7 @@ void ReaperBoss::DoShortAttack()
 
 	sf::Vector2f movement(0, 0);
 
-	if (attackTime.getElapsedTime().asSeconds() > 1.5) {
+	if (reaperBossSkinInt >= 3) {
 		int damage = (strength / 2) + (rand() % strength + 1);
 		player.currentHealth -= damage;
 	}

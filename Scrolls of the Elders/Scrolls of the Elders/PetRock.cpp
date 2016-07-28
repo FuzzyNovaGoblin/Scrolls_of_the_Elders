@@ -65,11 +65,11 @@ void PetRock::move() {
 			if (position.x > player.position.x+50 ) {
 				movement.x -= deltaSpeed;
 			}
+			if (position.x < player.position.x - 50) {
+				movement.x += deltaSpeed;
+			}
 			if (position.y < player.position.y + 40) {
 				movement.y += deltaSpeed;
-			}
-			if (position.x < player.position.x-50) {
-				movement.x += deltaSpeed;
 			}
 			if (position.y > player.position.y+20) {
 				movement.y -= deltaSpeed;
