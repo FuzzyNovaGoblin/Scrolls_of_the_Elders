@@ -106,7 +106,8 @@ void ReaperBoss::DoLongAttack()
 }
 
 void ReaperBoss::move()
-{if(GetDistance(position, player.position) < 800)
+	{
+	if(GetDistance(position, player.position) < 800)
 	{
 		sf::Vector2f movement(0, 0);
 
@@ -151,41 +152,41 @@ void ReaperBoss::attack()
 			DoShortAttack();
 		}
 
-		else DoLongAttack();
+		//else if DoLongAttack();
 }
 
 void ReaperBoss::Update()
 {
 	if (alive)
 	{
-		if (currentHealth <= 0)
-		{
-			alive = false;
-		}
-		attack();
-		move();
-
-		if (!attacking)
-		{
-			sprite.setTexture(reaperBossIdleTex);
-		}
-
-		if (clock.getElapsedTime().asSeconds() > 0.5)
-		{
-			if (reaperBossSkinInt < 3)
-			{
-				reaperBossSkinInt += 1;
-			}
-			else
-			{
-				reaperBossSkinInt = 0;
-			}
-			clock.restart();
-		}
-
-		sprite.setTextureRect(sf::IntRect(reaperBossSkin[reaperBossSkinInt]));
-
-		renderWindow.draw(sprite);
-
+	if (currentHealth <= 0) 
+	{
+		alive = false;
 	}
+	attack();
+	move();
+
+			if (!attacking)
+			{
+				sprite.setTexture(reaperBossIdleTex);
+			}
+
+	if (clock.getElapsedTime().asSeconds() > 0.5) 
+	{
+		if (reaperBossSkinInt < 3) 
+		{
+			reaperBossSkinInt += 1;
+		}
+		else 
+		{
+			reaperBossSkinInt = 0;
+		}
+		clock.restart();
+	}
+	}
+
+	sprite.setTextureRect(sf::IntRect(reaperBossSkin[reaperBossSkinInt]));
+
+	renderWindow.draw(sprite);
+	
 }
