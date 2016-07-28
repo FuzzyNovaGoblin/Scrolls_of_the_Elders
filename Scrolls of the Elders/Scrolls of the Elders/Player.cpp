@@ -92,7 +92,7 @@ void Player::attackSFML(float angle) {
 				attack(*petRockList[i], i);
 			}
 		}
-		attackTimer.restart();
+		//attackTimer.restart();
 		attackState = false;
 		for (int i = 0; i < petRockList.size(); i++) {
 			petRockList.at(i)->hit = false;

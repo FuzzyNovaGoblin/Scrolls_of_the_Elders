@@ -207,30 +207,27 @@ void ReaperBoss::DoShortAttack()
 {
 	sprite.setTexture(reaperBossSlashTex);
 	attacking = true;
-			
-		if (clock.getElapsedTime().asSeconds() > 0.15)
+
+	if (clock.getElapsedTime().asSeconds() > 0.15)
+	{
+		if (reaperBossSkinInt < 4)
 		{
-			if (reaperBossSkinInt < 4)
-			{
-				reaperBossSkinInt += 1;
-			}
-			else
-			{
-				reaperBossSkinInt = 0;
-			}
-			clock.restart();
+			reaperBossSkinInt += 1;
 		}
-	
-			sf::Vector2f movement(0, 0);
-
-			if (attackTime.getElapsedTime().asSeconds() > 1) 
-			{
-				int damage = (strength / 2) + (rand() % strength + 1);
-				player.currentHealth -= damage;
-
-				attackTime.restart();
-			}
+		else
+		{
+			reaperBossSkinInt = 0;
 		}
+		clock.restart();
+	}
+
+	sf::Vector2f movement(0, 0);
+
+	if (attackTime.getElapsedTime().asSeconds() > 1.5) {
+		int damage = (strength / 2) + (rand() % strength + 1);
+		player.currentHealth -= damage;
+	}
+}
 
 void ReaperBoss::DoLongAttack()
 {
