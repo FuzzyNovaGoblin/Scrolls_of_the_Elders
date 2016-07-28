@@ -18,10 +18,10 @@ PetRock::PetRock(int inputHealth, sf::RenderWindow& renderWindow, sf::Texture& p
 	float tempX = rand() % 2000 + 0;
 	float tempY = rand() % 2000 + 0;
 
-	petRockPos.x = tempX;
-	petRockPos.y = tempY; 
+	position.x = tempX;
+	position.y = tempY; 
 
-	sprite.setPosition(petRockPos.x, petRockPos.y);
+	sprite.setPosition(position.x, position.y);
 
 	sprite.setTexture(petRockTex);
 	
@@ -32,8 +32,8 @@ PetRock::PetRock(int inputHealth, sf::RenderWindow& renderWindow, sf::Texture& p
 
 
 void PetRock::move() {
-	int distanceX = petRockPos.x - player.position.x;
-	int distanceY = petRockPos.y - player.position.y;
+	int distanceX = position.x - player.position.x;
+	int distanceY = position.y - player.position.y;
 	if (sqrt(distanceX * distanceX + distanceY * distanceY) < 500) {
 		
 		//float deltaDistance = speed *DeltaTime; // the amout of pixels to move per second in one axis
@@ -42,16 +42,16 @@ void PetRock::move() {
 
 		float deltaSpeed = DeltaTime * 300;
 
-			if (petRockPos.x > player.position.x+50 ) {
+			if (position.x > player.position.x+50 ) {
 				movement.x -= deltaSpeed;
 			}
-			if (petRockPos.x < player.position.x-50) {
+			if (position.x < player.position.x-50) {
 				movement.x += deltaSpeed;
 			}
-			if (petRockPos.y > player.position.y+20) {
+			if (position.y > player.position.y+20) {
 				movement.y -= deltaSpeed;
 			}
-			if (petRockPos.y < player.position.y+40) {
+			if (position.y < player.position.y+40) {
 				movement.y += deltaSpeed;
 			}
 
@@ -65,14 +65,14 @@ void PetRock::move() {
 			//}
 			//-----------------------------------------------------
 
-			petRockPos = sprite.getPosition();
+			position = sprite.getPosition();
 		
 	}
 }
 
 void PetRock::attack() {
 
-	if (petRockPos.x > player.position.x - 51 && petRockPos.x < player.position.x + 51 && petRockPos.y > player.position.y && petRockPos.y < player.position.y + 42) {
+	if (position.x > player.position.x - 51 && position.x < player.position.x + 51 && position.y > player.position.y && position.y < player.position.y + 42) {
 		sf::Vector2f movement(0, 0);
 
 		if (attackTime.getElapsedTime().asSeconds() > 1) {
