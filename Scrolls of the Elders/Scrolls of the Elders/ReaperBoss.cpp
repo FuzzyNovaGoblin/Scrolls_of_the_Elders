@@ -25,8 +25,7 @@ ReaperBoss::ReaperBoss(int inputHealth, sf::RenderWindow& renderWindow, Characte
 	reaperBossBeamRect[2] = sf::IntRect(0, 128, 128, 128);
 
 
-
-
+	
 	sprite.setOrigin(96, 96);
 
 	currentHealth = inputHealth;
@@ -181,8 +180,11 @@ void ReaperBoss::reaperBossBeam() {
 void ReaperBoss::OrbAttack() {
 	if (attackStage == 1) {
 		for (int i = 0; i < 3; i++) {
-		/*	<Spheres> newOrb(new Spheres(renderWindow, player, DeltaTime));
+			/*<Spheres> newOrb(new Spheres(renderWindow, player, DeltaTime));
 			orbs.push_back(std::move(newOrb));*/
+
+			std::unique_ptr<Spheres> newOrb(new Spheres(renderWindow, player, DeltaTime));
+			orbs.push_back(std::move(newOrb));
 		}
 	}
 }

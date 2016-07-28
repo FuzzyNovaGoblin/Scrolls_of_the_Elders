@@ -7,11 +7,11 @@
 class Spheres
 {
 public:
-	Spheres(sf::RenderWindow &renderWindow, Player &player, float &DeltaTime);
+	Spheres(sf::RenderWindow &renderWindow, Character &player, float &DeltaTime);
 	float &DeltaTime;
 	~Spheres();
 	sf::RenderWindow &renderWindow;
-	Player &player;
+	Character &player;
 	void Follow();
 	sf::Sprite sprite;
 	sf::Texture texture;

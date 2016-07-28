@@ -28,7 +28,9 @@ public:
 	sf::IntRect reaperBossSkin[5];
 	sf::IntRect reaperBossCrystalSpike[5];
 	sf::IntRect reaperBossBeamRect[3];
-	vector<Spheres> orbs;
+
+
+	std::vector<std::unique_ptr<Spheres>> orbs;
 
 	bool attacking;
 	sf::Clock clock;

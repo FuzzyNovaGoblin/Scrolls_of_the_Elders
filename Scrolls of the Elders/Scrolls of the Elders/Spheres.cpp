@@ -2,7 +2,7 @@
 
 
 
-Spheres::Spheres(sf::RenderWindow &renderWindow, Player &player, float &DeltaTime) : DeltaTime(DeltaTime), player(player), renderWindow(renderWindow)
+Spheres::Spheres(sf::RenderWindow &renderWindow, Character &player, float &DeltaTime) : DeltaTime(DeltaTime), player(player), renderWindow(renderWindow)
 {
 	texture.loadFromFile("resources/character/Magical-Orb.png");
 	textureRect[0] = sf::IntRect(0, 0, 48, 48);
