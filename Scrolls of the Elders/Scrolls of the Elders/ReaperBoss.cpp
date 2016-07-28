@@ -8,12 +8,22 @@ ReaperBoss::ReaperBoss(int inputHealth, sf::RenderWindow& renderWindow, Characte
 	reaperBossSlashTex.loadFromFile("resources/character/Reaper Boss-Attack.png");
 	reaperBossSummonTex.loadFromFile("resources/character/Reaper Boss-Magic.png");
 	reaperBossTeleportTex.loadFromFile("resources/character/Reaper Boss-Teleport.png");
+	reaperBossCrystalSpikeTex.loadFromFile("resources/character/Reaper Boss-Attack-Spikes.png");
+	reaperBossBeamTex.loadFromFile("resources/character/Reaper Boss-Attack-Beam.png");
 	reaperBossSkin[0] = sf::IntRect(0, 0, 192, 192);
 	reaperBossSkin[1] = sf::IntRect(192, 0, 192, 192);
 	reaperBossSkin[2] = sf::IntRect(0, 192, 192, 192);
 	reaperBossSkin[3] = sf::IntRect(192, 192, 192, 192);
 	reaperBossSkin[4] = sf::IntRect(0, 384, 192, 192);
-
+	reaperBossCrystalSpike[0] = sf::IntRect(0, 0, 128, 128);
+	reaperBossCrystalSpike[1] = sf::IntRect(128, 0, 128, 128);
+	reaperBossCrystalSpike[2] = sf::IntRect(0, 128, 128, 128);
+	reaperBossCrystalSpike[3] = sf::IntRect(128, 128, 128, 128);
+	reaperBossCrystalSpike[4] = sf::IntRect(0, 256, 128, 128);
+	reaperBossBeamRect[0] = sf::IntRect(0, 0, 128, 128);
+	reaperBossBeamRect[1] = sf::IntRect(128, 0, 128, 128);
+	reaperBossBeamRect[2] = sf::IntRect(0, 128, 128, 128);
+	
 	sprite.setOrigin(96, 96);
 
 	currentHealth = inputHealth;
@@ -36,66 +46,214 @@ ReaperBoss::ReaperBoss(int inputHealth, sf::RenderWindow& renderWindow, Characte
 
 }
 
+void ReaperBoss::crystalSpike() {
+	if (attackStage == 1) {
+		spikeAttack = true;
+
+		LongAttackSprite.setTexture(reaperBossCrystalSpikeTex);
+
+		LongAttackSprite.setOrigin(64, 64);
+
+		LongAttackSprite.setPosition(player.position.x + rand() % 100, player.position.y + rand() % 100);
+	}
+	if (attackStage < 2) {
+		LongAttackSprite.setTextureRect(sf::IntRect(reaperBossCrystalSpike[0]));
+
+		attackStage += 5 * DeltaTime;
+		renderWindow.draw(LongAttackSprite);
+	}
+	else if (attackStage < 3) {
+		LongAttackSprite.setTextureRect(sf::IntRect(reaperBossCrystalSpike[1]));
+		attackStage += 5 * DeltaTime;
+		renderWindow.draw(LongAttackSprite);
+	}
+	else if (attackStage < 4) {
+		LongAttackSprite.setTextureRect(sf::IntRect(reaperBossCrystalSpike[2]));
+		attackStage += 5 * DeltaTime;
+		renderWindow.draw(LongAttackSprite);
+	}
+	else if (attackStage < 5) {
+		LongAttackSprite.setTextureRect(sf::IntRect(reaperBossCrystalSpike[3]));
+		attackStage += 5 * DeltaTime;
+		renderWindow.draw(LongAttackSprite);
+
+		if (!player.hit) {
+			if (LongAttackSprite.getGlobalBounds().intersects(player.sprite.getGlobalBounds())) {
+				player.currentHealth -= 15;
+				player.hit = true;
+			}
+		}
+	}
+	else if (attackStage < 6) {
+		LongAttackSprite.setTextureRect(sf::IntRect(reaperBossCrystalSpike[4]));
+		attackStage += 5 * DeltaTime;
+		renderWindow.draw(LongAttackSprite);
+	}
+	else if (attackStage >= 6) {
+		attackStage = 1;
+		player.hit = false;
+		spikeAttack = false;
+	}
+}
+
+void ReaperBoss::reaperBossBeam() {
+
+	if (!reaperBossBeamUsed) {
+		LongAttackSprite.setTexture(reaperBossBeamTex);
+
+		LongAttackSprite.setOrigin(64, 64);
+
+		LongAttackSprite.setPosition(player.position.x + rand() % 150 + 50, player.position.y + rand() % 150 + 50);
+	}
+
+	reaperBossBeamUsed = true;
+
+	if (LongAttackAnimation.getElapsedTime().asSeconds() > 0.5) {
+		if (reaperBossBeamInt < 2) {
+			reaperBossBeamInt += 1;
+		}
+		else {
+			reaperBossBeamInt = 0;
+		}
+		LongAttackAnimation.restart();
+	}
+
+	sf::Vector2f movement(0, 0);
+
+	float BeamSpeed = DeltaTime * 50;
+
+	sf::Vector2f beamPosition;
+
+	beamPosition = LongAttackSprite.getPosition();
+
+	if (beamPosition.x > player.position.x) {
+		movement.x -= BeamSpeed;
+	}
+	if (beamPosition.y < player.position.y) {
+		movement.y += BeamSpeed;
+	}
+	if (beamPosition.x < player.position.x) {
+		movement.x += BeamSpeed;
+	}
+	if (beamPosition.y > player.position.y) {
+		movement.y -= BeamSpeed;
+	}
+
+	LongAttackSprite.setTextureRect(sf::IntRect(reaperBossBeamRect[reaperBossBeamInt]));
+
+	LongAttackSprite.move(movement);
+
+	renderWindow.draw(LongAttackSprite);
+
+	if (reaperBossBeamInt == 0) {
+		if (!player.hit) {
+			if (LongAttackSprite.getGlobalBounds().intersects(player.sprite.getGlobalBounds())) {
+				player.currentHealth -= 2;
+				player.hit = true;
+			}
+		}
+	}
+
+	if (reaperBossBeamInt == 2) {
+		player.hit = false;
+	}
+
+	attackStage += 6 * DeltaTime;
+
+	if (attackStage >= 10) {
+		player.hit = false;
+		attackStage = 1;
+		reaperBossBeamUsed = false;
+	}
+}
+
+void ReaperBoss::OrbAttack() {
+	if (attackStage == 1) {
+		for (int i = 0; i < 3; i++) {
+		/*	<Spheres> newOrb(new Spheres(renderWindow, player, DeltaTime));
+			orbs.push_back(std::move(newOrb));*/
+		}
+	}
+}
+
 void ReaperBoss::DoShortAttack()
 {
 	sprite.setTexture(reaperBossSlashTex);
 	attacking = true;
 			
-		if (clock.getElapsedTime().asSeconds() > 0.2)
+	if (clock.getElapsedTime().asSeconds() > 0.2)
+	{
+		if (reaperBossSkinInt < 4)
 		{
-			if (reaperBossSkinInt < 4)
-			{
-				reaperBossSkinInt += 1;
-			}
-			else
-			{
-				reaperBossSkinInt = 0;
-			}
-			clock.restart();
+			reaperBossSkinInt += 1;
 		}
+		else
+		{
+			reaperBossSkinInt = 0;
+		}
+		clock.restart();
+	}
 	
-			sf::Vector2f movement(0, 0);
+	sf::Vector2f movement(0, 0);
 
-			if (attackTime.getElapsedTime().asSeconds() > 1) 
-			{
-				int damage = (strength / 2) + (rand() % strength + 1);
-				player.currentHealth -= damage;
+	if (attackTime.getElapsedTime().asSeconds() > 1) 
+	{
+		int damage = (strength / 2) + (rand() % strength + 1);
+		player.currentHealth -= damage;
 
-				attackTime.restart();
-			}
-				
-		
-		}
+		attackTime.restart();
+	}
+}
 
 void ReaperBoss::DoLongAttack()
 {
 	sprite.setTexture(reaperBossSummonTex);
 	attacking = true;
 
-		if (clock.getElapsedTime().asSeconds() > 0.15)
+	if (clock.getElapsedTime().asSeconds() > 0.15)
+	{
+		if (reaperBossSkinInt < 4)
 		{
-			if (reaperBossSkinInt < 4)
-			{
-				reaperBossSkinInt += 1;
-			}
-			else
-			{
-				reaperBossSkinInt = 0;
-			}
-			clock.restart();
+			reaperBossSkinInt += 1;
 		}
-
-		sf::Vector2f movement(0, 0);
-
-		if (attackTime.getElapsedTime().asSeconds() > 1)
+		else
 		{
-
-
-			attackTime.restart();
+			reaperBossSkinInt = 0;
 		}
+		clock.restart();
+	}
 
-		
-	//(rand() % 4 + 0);
+	sf::Vector2f movement(0, 0);
+
+	if (attackTime.getElapsedTime().asSeconds() > 1)
+	{
+		attackTime.restart();
+	}
+
+	int attackType = (rand() % 4 + 1);
+
+	if (reaperBossBeamUsed) {
+		reaperBossBeam();
+	}
+	else if (spikeAttack) {
+		crystalSpike();
+	}
+	else {
+		switch (attackType) {
+		case 1:
+			crystalSpike();
+			break;
+		case 2:
+			reaperBossBeam();
+			break;
+		case 3:
+			crystalSpike();
+			break;
+		case 4:
+			reaperBossBeam();
+			break;
+		}
+	}
 }
 
 void ReaperBoss::move()

@@ -157,6 +157,7 @@
     <ClCompile Include="PetRock.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="ReaperBoss.cpp" />
+    <ClCompile Include="Spheres.cpp" />
     <ClCompile Include="Tile.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -168,6 +169,7 @@
     <ClInclude Include="PetRock.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="ReaperBoss.h" />
+    <ClInclude Include="Spheres.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
