@@ -15,13 +15,33 @@ PetRock::PetRock(int inputHealth, sf::RenderWindow& renderWindow, sf::Texture& p
 
 	hit = false;
 
-	float tempX = rand() % 2000 + 0;
+
+	for (int i = 0; i < map.tiles.size(); i++) {
+		if (map.tiles.at(i).petRockSpawner) {
+			
+			/*tempX= map.tiles.at(i).xPos;
+			tempY= map.tiles.at(i).yPos;*/
+
+			spawnPositions.push_back(sf::Vector2f (map.tiles.at(i).xPos, map.tiles.at(i).yPos));
+		}
+	}
+
+
+
+
+	/*float tempX = rand() % 2000 + 0;
 	float tempY = rand() % 2000 + 0;
 
 	position.x = tempX;
 	position.y = tempY; 
+*/
+	/*int num = spawnPositions.size();
 
-	sprite.setPosition(position.x, position.y);
+	int point = rand() % spawnPositions.size() + 0;*/
+
+
+
+	sprite.setPosition(spawnPositions[rand() % spawnPositions.size() + 0]);
 
 	sprite.setTexture(petRockTex);
 	

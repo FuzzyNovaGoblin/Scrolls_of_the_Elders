@@ -6,7 +6,7 @@
 #include <SFML\Graphics.hpp>
 #include <SFML\Graphics\Rect.hpp>
 #include <SFML\System\Clock.hpp>
-
+#include "Map.h"
 
 using namespace std;
 
@@ -15,7 +15,11 @@ class PetRock : public Character
 {
 public:
 	
+
 	PetRock(int inputHealth, sf::RenderWindow& renderWindow, sf::Texture& petRockTex, Character& player, float& DeltaTime, Map &map);
+
+	vector<sf::Vector2f> spawnPositions;
+
 
 
 	sf::RenderWindow& renderWindow;
