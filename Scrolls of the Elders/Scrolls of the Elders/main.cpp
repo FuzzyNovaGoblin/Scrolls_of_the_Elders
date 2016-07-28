@@ -19,12 +19,18 @@
 #define PI 3.14159265
 
 
-int main() {
-	sf::RenderWindow window(sf::VideoMode(1780, 980), "Scrolls of the Elders ");
+void PlayGame(sf::RenderWindow& window) {
 	sf::View view;
-
 	sf::Image layout;
-	layout.loadFromFile("resources/environment/map.3.png");
+	
+	int mapNum = rand() % 2 + 1;
+	
+	string mapString("resources/environment/map." + std::to_string(mapNum) + ".png");
+	//string mapString("resources/environment/map." + std::to_string(mapNum) + ".png");
+	cout<< mapString;
+
+	
+	layout.loadFromFile(mapString);
 
 	sf::Texture red;
 	sf::Texture green;
@@ -38,9 +44,9 @@ int main() {
 	blue.loadFromFile("resources/environment/purplecliffrock.jpg");
 	black.loadFromFile("resources/environment/darkgrassyrock.jpg");
 	blank.loadFromFile("resources/environment/darkestrock.jpg");
-	
 
-	Map currentMap(window, 150, red, green, blue, black, blank,  layout);
+
+	Map currentMap(window, 150, red, green, blue, black, blank, layout);
 
 
 
@@ -54,17 +60,17 @@ int main() {
 	bool pause = false;
 	sf::Texture reaperBossIdleTex;
 	reaperBossIdleTex.loadFromFile("resources/character/Reaper Boss-Idle.png");
-	
-	
+
+
 	//window.setFramerateLimit(60);
 	//std::vector<Character*> petRockList;
 	std::vector<std::unique_ptr<Character>> petRockList;
-	MeleeWeapon sword ("axe", "gold", 5, 9, 10, "Golden-BattleAxe.png");
+	MeleeWeapon sword("axe", "gold", 5, 9, 10, "Golden-BattleAxe.png");
 
-	Player player(50,10,10,10,10,10,10,10,10, window, petRockList, DeltaTime, currentMap);
+	Player player(50, 10, 10, 10, 10, 10, 10, 10, 10, window, petRockList, DeltaTime, currentMap);
 	//ReaperBoss reaperBoss(500, window, player);
-	
-	
+
+
 
 	player.equipMelee(sword);
 
@@ -107,7 +113,7 @@ int main() {
 		sf::Time timeFromClock = deltaTimeClock.restart();
 		DeltaTime = timeFromClock.asSeconds();
 
-		if (spawnTime.getElapsedTime().asSeconds() > 10 && petRockList.size() < 10 ) {
+		if (spawnTime.getElapsedTime().asSeconds() > 10 && petRockList.size() < 10) {
 			for (int i = 0; i < 10; i++) { // make 10 enemies 
 				std::unique_ptr<Character> newPetRock(new PetRock(1, window, petRockTex, player, DeltaTime, currentMap));
 				petRockList.push_back(std::move(newPetRock));
@@ -115,7 +121,7 @@ int main() {
 			spawnTime.restart();
 		}
 
-		
+
 
 		if (!pause && sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
 			pause = true;
@@ -130,20 +136,20 @@ int main() {
 			if (event.type == sf::Event::Closed) {
 				window.close();
 			}
-			
+
 		} // input loop ended
 
 
 		window.setView(view);
 
 		view.setCenter(sf::Vector2f(player.sprite.getPosition().x, player.sprite.getPosition().y));
-	
+
 		window.clear();
 
 
 		if (!pause) {  //This is the pause function
-			
-			//window.draw(backGround);
+
+					   //window.draw(backGround);
 			currentMap.Update();
 
 			player.Update();
@@ -159,7 +165,30 @@ int main() {
 
 
 		window.display();
+		if (!player.alive) {
+			return;
+		}
 	}
+}
+
+
+
+
+
+
+
+int main() {
+	sf::RenderWindow window(sf::VideoMode(1780, 980), "Scrolls of the Elders ");
+	while (true) {
+		PlayGame(window);
+		//window.clear();
+		cout << "press ne key to play again" << endl;
+		system("pause");
+	
+	
+	}
+
+
 }
 
 
