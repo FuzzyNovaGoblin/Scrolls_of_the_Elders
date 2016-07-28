@@ -158,35 +158,34 @@ void ReaperBoss::Update()
 {
 	if (alive)
 	{
-	if (currentHealth <= 0) 
-	{
-		alive = false;
-	}
-	attack();
-	move();
+		if (currentHealth <= 0)
+		{
+			alive = false;
+		}
+		attack();
+		move();
 
-			if (!attacking)
+		if (!attacking)
+		{
+			sprite.setTexture(reaperBossIdleTex);
+		}
+
+		if (clock.getElapsedTime().asSeconds() > 0.5)
+		{
+			if (reaperBossSkinInt < 3)
 			{
-				sprite.setTexture(reaperBossIdleTex);
+				reaperBossSkinInt += 1;
 			}
+			else
+			{
+				reaperBossSkinInt = 0;
+			}
+			clock.restart();
+		}
 
-	if (clock.getElapsedTime().asSeconds() > 0.5) 
-	{
-		if (reaperBossSkinInt < 3) 
-		{
-			reaperBossSkinInt += 1;
-		}
-		else 
-		{
-			reaperBossSkinInt = 0;
-		}
-		clock.restart();
+		sprite.setTextureRect(sf::IntRect(reaperBossSkin[reaperBossSkinInt]));
+
+		renderWindow.draw(sprite);
+
 	}
-
-	sprite.setTextureRect(sf::IntRect(reaperBossSkin[reaperBossSkinInt]));
-
-	renderWindow.draw(sprite);
-	
 }
-
-
