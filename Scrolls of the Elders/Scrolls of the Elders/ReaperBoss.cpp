@@ -22,8 +22,8 @@ ReaperBoss::ReaperBoss(int inputHealth, sf::RenderWindow& renderWindow, Characte
 
 	hit = false;
 
-	float tempX = rand() % 500 + 1;
-	float tempY = rand() % 500 + 1;
+	float tempX = rand() % 500 + 151;
+	float tempY = rand() % 500 + 151;
 
 	reaperBossPos.x = tempX;
 	reaperBossPos.y = tempY;
@@ -92,8 +92,7 @@ void ReaperBoss::DoLongAttack()
 
 		if (attackTime.getElapsedTime().asSeconds() > 1)
 		{
-			int damage = (strength / 2) + (rand() % strength + 1);
-			player.currentHealth -= damage;
+			
 
 			attackTime.restart();
 		}
@@ -107,7 +106,7 @@ void ReaperBoss::DoLongAttack()
 
 void ReaperBoss::move()
 	{
-	if(GetDistance(position, player.position) < 800)
+	if(GetDistance(position, player.position) < 4000)
 	{
 		sf::Vector2f movement(0, 0);
 
@@ -152,7 +151,7 @@ void ReaperBoss::attack()
 			DoShortAttack();
 		}
 
-		//else if (GetDistance(position, player.position) < 800)
+		//else if (GetDistance(position, player.position) > 100 < 800)
 		//{
 		//	DoLongAttack();
 		//}
