@@ -22,8 +22,8 @@ ReaperBoss::ReaperBoss(int inputHealth, sf::RenderWindow& renderWindow, Characte
 
 	hit = false;
 
-	float tempX = rand() % 500 + 151;
-	float tempY = rand() % 500 + 151;
+	float tempX = 2267;
+	float tempY = 2605;
 
 	reaperBossPos.x = tempX;
 	reaperBossPos.y = tempY;
@@ -141,8 +141,8 @@ void ReaperBoss::move()
 		}
 
 		if (DoesCollide()) // if we collide with something
-		{
-			// undo the movement we just applied
+			{
+				// undo the movement we just applied
 			sprite.move(movement.x, movement.y * -1);
 
 			if (DoesCollide()) // if we collide with something
