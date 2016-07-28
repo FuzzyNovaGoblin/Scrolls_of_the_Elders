@@ -99,45 +99,41 @@ void ReaperBoss::DoLongAttack()
 }
 
 void ReaperBoss::move()
+{
+	sf::Vector2f movement(0, 0);
+
+	float deltaSpeed = 200 * DeltaTime;
+
+	if (position.x > player.position.x + 50) {
+		movement.x -= deltaSpeed;
+	}
+	if (position.x < player.position.x - 50) {
+		movement.x += deltaSpeed;
+	}
+	if (position.y > player.position.y + 20) {
+		movement.y -= deltaSpeed;
+	}
+	if (position.y < player.position.y + 40) {
+		movement.y += deltaSpeed;
+	}
+
+	sprite.move(movement);
+
+	if (DoesCollide()) // if we collide with something
 	{
-	position = sprite.getPosition();
-	if(GetDistance(position, player.position) < 4000)
-	{
-		sf::Vector2f movement(0, 0);
-
-		float deltaSpeed = 200 * DeltaTime;
-
-		if (position.x > player.position.x + 50) {
-			movement.x -= deltaSpeed;
-		}
-		if (position.x < player.position.x - 50) {
-			movement.x += deltaSpeed;
-		}
-		if (position.y > player.position.y + 20) {
-			movement.y -= deltaSpeed;
-		}
-		if (position.y < player.position.y + 40) {
-			movement.y += deltaSpeed;
-		}
-
-		sprite.move(movement);
+		sprite.move(movement.x * -1, movement.y);
 
 		if (DoesCollide()) // if we collide with something
 		{
-			sprite.move(movement.x * -1, movement.y);
-
-			if (DoesCollide()) // if we collide with something
-			{
-				// undo the movement we just applied
-				sprite.move(movement.x, movement.y * -1);
-			}
-		}
-
-		if (DoesCollide()) // if we collide with something
-			{
-				// undo the movement we just applied
+			// undo the movement we just applied
 			sprite.move(movement.x, movement.y * -1);
 		}
+	}
+
+	if (DoesCollide()) // if we collide with something
+		{
+			// undo the movement we just applied
+		sprite.move(movement.x, movement.y * -1);
 	}
 }
 
@@ -155,18 +151,18 @@ void ReaperBoss::attack()
 		if (GetDistance(position, player.position) < 100)
 		
 		{
-			std::cout << "Doing short attack" << std::endl;
+			move();
 			DoShortAttack();
 		}
 
-		else if (GetDistance(position, player.position) < 800)
+		else if (GetDistance(position, player.position) < 600)
 		{
-			std::cout << "Doing long attack" << std::endl;
 			DoLongAttack();
 		}
 		else
 		{
 			attacking = false;
+			move();
 		}
 		
 }
@@ -175,31 +171,34 @@ void ReaperBoss::Update()
 {
 	if (alive)
 	{
-	if (currentHealth <= 0) 
-	{
-		alive = false;
-	}
-	attack();
-	move();
-
-			if (!attacking)
-			{
-				sprite.setTexture(reaperBossIdleTex);
-			}
-
-	if (clock.getElapsedTime().asSeconds() > 0.5) 
-	{
-		if (reaperBossSkinInt < 3) 
+		if (currentHealth <= 0) 
 		{
-			reaperBossSkinInt += 1;
+			alive = false;
 		}
-		else 
-		{
-			reaperBossSkinInt = 0;
-		}
-		clock.restart();
+
+		position = sprite.getPosition();
+
+		attack();
+
+				if (!attacking)
+				{
+					sprite.setTexture(reaperBossIdleTex);
+				}
+
+				if (clock.getElapsedTime().asSeconds() > 0.5)
+				{
+					if (reaperBossSkinInt < 3)
+					{
+						reaperBossSkinInt += 1;
+					}
+					else
+					{
+						reaperBossSkinInt = 0;
+					}
+					clock.restart();
+				}
 	}
-	}
+
 
 	sprite.setTextureRect(sf::IntRect(reaperBossSkin[reaperBossSkinInt]));
 
