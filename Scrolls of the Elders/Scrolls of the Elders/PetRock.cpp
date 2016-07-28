@@ -15,8 +15,8 @@ PetRock::PetRock(int inputHealth, sf::RenderWindow& renderWindow, sf::Texture& p
 
 	hit = false;
 
-	float tempX = rand() % 6000 + 0;
-	float tempY = rand() % 6000 + 0;
+	float tempX = rand() % 2000 + 0;
+	float tempY = rand() % 2000 + 0;
 
 	petRockPos.x = tempX;
 	petRockPos.y = tempY; 
@@ -34,7 +34,7 @@ PetRock::PetRock(int inputHealth, sf::RenderWindow& renderWindow, sf::Texture& p
 void PetRock::move() {
 	int distanceX = petRockPos.x - player.position.x;
 	int distanceY = petRockPos.y - player.position.y;
-	if (sqrt(distanceX * distanceX + distanceY * distanceY) < 4000) {
+	if (sqrt(distanceX * distanceX + distanceY * distanceY) < 500) {
 		
 		//float deltaDistance = speed *DeltaTime; // the amout of pixels to move per second in one axis
 

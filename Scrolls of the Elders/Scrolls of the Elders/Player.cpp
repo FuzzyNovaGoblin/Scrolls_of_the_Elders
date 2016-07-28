@@ -263,6 +263,15 @@ void Player::Update()
 		else {
 
 		}
+
+		//console output
+		//--------------------------------
+
+		cout << "X: " << position.x << " Y: " << position.y << "\n";
+
+		//--------------------------------
+
+
 	}
 		//End of Mouse Sensor
 		
@@ -276,11 +285,6 @@ void Player::Update()
 		scoreText.setPosition(position.x-350, position.y-20);
 		//End of Death Text
 
-		//console output
-		//--------------------------------
-
-		cout << "X: " << position.x << " Y: " << position.y << "\n";
-
-		//--------------------------------
+		
 	}
 }
