@@ -2,7 +2,7 @@
 
 
 
-PetRock::PetRock(int inputHealth, sf::RenderWindow& renderWindow, sf::Texture& petRockTex, Character& player, float& DeltaTime) : Character(DeltaTime), renderWindow(renderWindow), petRockTex(petRockTex), player(player)
+PetRock::PetRock(int inputHealth, sf::RenderWindow& renderWindow, sf::Texture& petRockTex, Character& player, float& DeltaTime, Map &map) : Character(DeltaTime, map), renderWindow(renderWindow), petRockTex(petRockTex), player(player)
 {
 
 	petRockSkin[0] = sf::IntRect(0, 0, 40, 28);
@@ -54,8 +54,14 @@ void PetRock::move() {
 			if (petRockPos.y < player.position.y+40) {
 				movement.y += deltaSpeed;
 			}
-			
+
 			sprite.move(movement);
+
+			if (DoesCollide()) // if we collide with something
+			{
+				// undo the movement we just applied
+				sprite.move(movement.x * -1, movement.y * -1);
+			}
 
 			petRockPos = sprite.getPosition();
 		

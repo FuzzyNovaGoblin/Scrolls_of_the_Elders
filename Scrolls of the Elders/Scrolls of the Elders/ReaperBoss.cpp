@@ -2,7 +2,7 @@
 
 int GetDistance(sf::Vector2f a, sf::Vector2f b);
 
-ReaperBoss::ReaperBoss(int inputHealth, sf::RenderWindow& renderWindow, Character& player, float &DeltaTime) : Character(DeltaTime), renderWindow(renderWindow), player(player)
+ReaperBoss::ReaperBoss(int inputHealth, sf::RenderWindow& renderWindow, Character& player, float &DeltaTime, Map &map) : Character(DeltaTime, map), renderWindow(renderWindow), player(player)
 {
 	reaperBossIdleTex.loadFromFile("resources/character/Reaper Boss-Idle.png");
 	reaperBossSlashTex.loadFromFile("resources/character/Reaper Boss-Attack.png");
@@ -126,6 +126,12 @@ void ReaperBoss::move()
 		}
 
 		sprite.move(movement);
+
+		if (DoesCollide()) // if we collide with something
+		{
+			// undo the movement we just applied
+			sprite.move(movement.x * -1, movement.y * -1);
+		}
 
 		reaperBossPos = sprite.getPosition();
 	}

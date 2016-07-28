@@ -13,6 +13,7 @@
 #include "Item.h"
 #include "MeleeWeapon.h"
 #include "Input.h"
+#include "Map.h"
 
 
 #define PI 3.14159265
@@ -50,7 +51,7 @@ public:
 	bool attacked;
 
 
-	Player(int inputHealth, int inputMana, int inputGold, int inputStrength, int inputIntelligence, int inputDexterity, int inputDefense, int inputConstitution, int inputEndurance, sf::RenderWindow& renderWindow, std::vector<std::unique_ptr<Character>>& petRockList, float& DeltaTime);
+	Player(int inputHealth, int inputMana, int inputGold, int inputStrength, int inputIntelligence, int inputDexterity, int inputDefense, int inputConstitution, int inputEndurance, sf::RenderWindow& renderWindow, std::vector<std::unique_ptr<Character>>& petRockList, float& DeltaTime, Map &map);
 
 	MeleeWeapon rightHandWeapon;
 	std::vector<std::unique_ptr<Character>>& petRockList;

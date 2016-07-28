@@ -1,9 +1,9 @@
 #include "Player.h"
 
 
-Player::Player(int inputHealth, int inputMana, int inputGold, int inputStrength, int inputIntelligence, int inputDexterity, int inputDefense, int inputConstitution, int inputEndurance, sf::RenderWindow& renderWindow, std::vector<std::unique_ptr<Character>>& petRockList, float& DeltaTime) : 
+Player::Player(int inputHealth, int inputMana, int inputGold, int inputStrength, int inputIntelligence, int inputDexterity, int inputDefense, int inputConstitution, int inputEndurance, sf::RenderWindow& renderWindow, std::vector<std::unique_ptr<Character>>& petRockList, float& DeltaTime, Map &map) : 
 	
-	Character("DefaultName" , "DefaultDescription", inputHealth, inputMana, inputGold, inputStrength, inputIntelligence, inputDexterity, inputDefense, inputConstitution, inputEndurance,  DeltaTime), renderWindow(renderWindow), petRockList(petRockList)
+	Character("DefaultName" , "DefaultDescription", inputHealth, inputMana, inputGold, inputStrength, inputIntelligence, inputDexterity, inputDefense, inputConstitution, inputEndurance,  DeltaTime, map), renderWindow(renderWindow), petRockList(petRockList)
 {
 	asmanFont.loadFromFile("resources/font/ASMAN.ttf");
 
@@ -15,17 +15,9 @@ Player::Player(int inputHealth, int inputMana, int inputGold, int inputStrength,
 
 	//Set the attack settings
 	swingArc = 80;
-	swingTime = 0.1;
+	swingTime = 0.2;
 	degreesPerSecond = swingArc / swingTime;
 	//End of attack settings
-
-	//Doing Health Text
-	healthFont.loadFromFile("resources/font/Amatic-Bold.ttf");
-	healthText.setFont(healthFont);
-	healthText.setCharacterSize(72);
-	healthText.setColor(sf::Color(196, 33, 33));
-
-	healthText.setString("Health: " + std::to_string(currentHealth) + "/" + std::to_string(maxHealth));
 
 	//Do texture stuff
 	playerIdleTex.loadFromFile("resources/character/player-Idle.png");
@@ -40,13 +32,18 @@ Player::Player(int inputHealth, int inputMana, int inputGold, int inputStrength,
 	
 	sprite.setOrigin(50, 65);
 
-
-
-
-
+	sprite.setPosition(300, 300);
 
 	attacked = false;
 	//End of texture stuff
+
+	//Doing Health Text
+	healthFont.loadFromFile("resources/font/Amatic-Bold.ttf");
+	healthText.setFont(healthFont);
+	healthText.setCharacterSize(72);
+	healthText.setColor(sf::Color(196, 33, 33));
+
+	healthText.setString("Health: " + std::to_string(currentHealth) + "/" + std::to_string(maxHealth));
 }
 
 
@@ -214,12 +211,19 @@ void Player::Update()
 		//Doing all texture stuff
 		sprite.move(movement);
 		sprite.setTextureRect(sf::IntRect(playerSkin[playerSkinInt]));
+
+		if (DoesCollide()) // if we collide with something
+		{
+			// undo the movement we just applied
+			sprite.move(movement.x * -1, movement.y * -1);
+		}
+
 		renderWindow.draw(sprite);
 		// End of all texture stuff
 
 		//Doing Health Text
 		healthText.setString("Health: " + std::to_string(currentHealth) + "/" + std::to_string(maxHealth));
-		healthText.setPosition(position.x - 890, position.y - 490);
+		healthText.setPosition(position.x - 870, position.y - 490);
 		renderWindow.draw(healthText);
 		//End of Health Text
 

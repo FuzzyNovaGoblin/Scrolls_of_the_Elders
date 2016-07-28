@@ -7,15 +7,17 @@
 #include <SFML\Graphics\Rect.hpp>
 #include <SFML\System\Clock.hpp>
 
+#include "Map.h"
+
 
 using namespace std;
 
 class Character
 {
 public:
-	Character(float& DeltaTime);
+	Character(float& DeltaTime, Map &map);
 
-	Character(string inputName, string inputDescription, int inputHealth, int inputMana, int inputGold, int inputStrength, int inputIntelligence, int inputDexterity, int inputDefense, int inputConstitution, int inputEndurance, float &DeltaTime);
+	Character(string inputName, string inputDescription, int inputHealth, int inputMana, int inputGold, int inputStrength, int inputIntelligence, int inputDexterity, int inputDefense, int inputConstitution, int inputEndurance, float &DeltaTime, Map &map);
 
 	//Text Based Data
 
@@ -40,6 +42,7 @@ public:
 	int endurance; //Stamina + How much you can carry
 	int level; //Stats scale with level, MENU TO CHOOSE?
 	float &DeltaTime;
+	Map &map;
 	sf::FloatRect hitBox;
 	bool hit;
 	int score;
@@ -49,5 +52,6 @@ public:
 
 	// functions
 	virtual void Update();
+	bool DoesCollide();
 };
 
