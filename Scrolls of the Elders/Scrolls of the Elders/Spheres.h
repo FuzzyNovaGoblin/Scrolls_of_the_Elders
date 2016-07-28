@@ -10,7 +10,6 @@ public:
 	Spheres(sf::RenderWindow &renderWindow, Character &player, float &DeltaTime, sf::Vector2f &position);
 	sf::Vector2f &position;
 	float &DeltaTime;
-	~Spheres();
 	sf::RenderWindow &renderWindow;
 	Character &player;
 	void Follow();
@@ -21,5 +20,6 @@ public:
 	int textureInt = 0;
 	bool alive;
 	float time;
+	~Spheres();
 };
 

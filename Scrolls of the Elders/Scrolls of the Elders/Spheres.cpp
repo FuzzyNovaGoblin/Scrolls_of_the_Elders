@@ -12,7 +12,7 @@ Spheres::Spheres(sf::RenderWindow &renderWindow, Character &player, float &Delta
 
 	sprite.setOrigin(24, 24);
 
-	sprite.setPosition(position);
+	sprite.setPosition(position.x + rand() % 50, position.y + rand() % 50);
 
 	sprite.setTexture(texture);
 }
@@ -41,18 +41,18 @@ void Spheres::Follow() {
 
 		sf::Vector2f movement(0, 0);
 
-		float deltaSpeed = DeltaTime * 300;
+		float deltaSpeed = DeltaTime * 100;
 
-		if (position.x > player.position.x + 50) {
+		if (position.x > player.position.x) {
 			movement.x -= deltaSpeed;
 		}
-		if (position.y < player.position.y + 40) {
+		if (position.y < player.position.y) {
 			movement.y += deltaSpeed;
 		}
-		if (position.x < player.position.x - 50) {
+		if (position.x < player.position.x) {
 			movement.x += deltaSpeed;
 		}
-		if (position.y > player.position.y + 20) {
+		if (position.y > player.position.y) {
 			movement.y -= deltaSpeed;
 		}
 
