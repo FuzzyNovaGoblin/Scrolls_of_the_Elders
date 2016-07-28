@@ -1,6 +1,6 @@
 #include "ReaperBoss.h"
 
-int GetDistance(sf::Vector2f a, sf::Vector2f b);
+float GetDistance(sf::Vector2f a, sf::Vector2f b);
 
 ReaperBoss::ReaperBoss(int inputHealth, sf::RenderWindow& renderWindow, Character& player, float &DeltaTime, Map &map) : Character(DeltaTime, map), renderWindow(renderWindow), player(player)
 {
@@ -41,7 +41,7 @@ void ReaperBoss::DoShortAttack()
 	sprite.setTexture(reaperBossSlashTex);
 	attacking = true;
 			
-		if (clock.getElapsedTime().asSeconds() > 0.15)
+		if (clock.getElapsedTime().asSeconds() > 0.2)
 		{
 			if (reaperBossSkinInt < 4)
 			{
@@ -107,7 +107,8 @@ void ReaperBoss::DoLongAttack()
 
 void ReaperBoss::move()
 	{
-	if(GetDistance(position, player.position) < 800)
+	reaperBossPos = sprite.getPosition();
+	if(GetDistance(position, player.position) < 4000)
 	{
 		sf::Vector2f movement(0, 0);
 
@@ -130,17 +131,29 @@ void ReaperBoss::move()
 
 		if (DoesCollide()) // if we collide with something
 		{
+			sprite.move(movement.x += deltaSpeed, movement.y);
+			if (DoesCollide()) // if we collide with something
+			{
 			// undo the movement we just applied
-			sprite.move(movement.x * -1, movement.y * -1);
+				sprite.move(movement.x -= deltaSpeed, movement.y);
+			}
+			else if (DoesCollide()) // if we collide with something
+			{
+				// undo the movement we just applied
+				sprite.move(movement.x, movement.y -= deltaSpeed);
+			}
+			else if (DoesCollide()) // if we collide with something
+			{
+				// undo the movement we just applied
+				sprite.move(movement.x, movement.y += deltaSpeed);
+			}
 		}
-
-		reaperBossPos = sprite.getPosition();
 	}
 }
 
-int GetDistance(sf::Vector2f a, sf::Vector2f b) {
-	int deltaX = a.x - b.x;
-	int deltaY = a.y - b.y;
+float GetDistance(sf::Vector2f a, sf::Vector2f b) {
+	float deltaX = a.x - b.x;
+	float deltaY = a.y - b.y;
 	return sqrt(deltaX * deltaX + deltaY * deltaY);
 
 }
