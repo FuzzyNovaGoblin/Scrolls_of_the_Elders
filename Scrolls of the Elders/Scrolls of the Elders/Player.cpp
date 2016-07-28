@@ -212,11 +212,13 @@ void Player::Update()
 		sprite.move(movement);
 		sprite.setTextureRect(sf::IntRect(playerSkin[playerSkinInt]));
 
+		//Check Collision
 		if (DoesCollide()) // if we collide with something
 		{
 			// undo the movement we just applied
 			sprite.move(movement.x * -1, movement.y * -1);
 		}
+		//End of Check Collision
 
 		renderWindow.draw(sprite);
 		// End of all texture stuff
@@ -266,11 +268,12 @@ void Player::Update()
 		
 	else {
 		
+		//Death Text
 		scoreText.setFont(asmanFont);
 		scoreText.setString("Score " + std::to_string(score));
 		scoreText.setCharacterSize(200);
 		scoreText.setColor(sf::Color::Red);
 		scoreText.setPosition(position.x-350, position.y-20);
-		
+		//End of Death Text
 	}
 }
