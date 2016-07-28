@@ -38,8 +38,12 @@ public:
 	int playerSkinInt = 0;
 	bool alive;
 	sf::Clock clock;
+	sf::Clock damageDisplayClock;
 	sf::Text healthText;
 	sf::Font healthFont;
+	sf::Text damageText;
+	sf::Text critText;
+	//sf::Vector2f targetPosition;
 	string scoreString;
 	float currentAttackAngle;
 	float startingAngle;
@@ -58,8 +62,9 @@ public:
 	void attackSFML(float angle); //Actuator and Animation for Attack (Sword)
 	void attack(Character& target, int index); //Attack Function (Sword)
 	void equipMelee(MeleeWeapon meleeWeapon); //Equips the weapon
+	//void damageDisplay(int currentDamage, sf::Vector2f targetPosition);
 	void Update();
 
-	sf::Clock attackTimer;
+	//sf::Clock attackTimer;
 };
 

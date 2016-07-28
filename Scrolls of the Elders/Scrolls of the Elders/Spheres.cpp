@@ -2,7 +2,7 @@
 
 
 
-Spheres::Spheres(sf::RenderWindow &renderWindow, Character &player, float &DeltaTime) : DeltaTime(DeltaTime), player(player), renderWindow(renderWindow)
+Spheres::Spheres(sf::RenderWindow &renderWindow, Character &player, float &DeltaTime, sf::Vector2f &position) : DeltaTime(DeltaTime), player(player), renderWindow(renderWindow),position(position)
 {
 	texture.loadFromFile("resources/character/Magical-Orb.png");
 	textureRect[0] = sf::IntRect(0, 0, 48, 48);
@@ -11,6 +11,8 @@ Spheres::Spheres(sf::RenderWindow &renderWindow, Character &player, float &Delta
 	textureRect[3] = sf::IntRect(48, 48, 48, 48);
 
 	sprite.setOrigin(24, 24);
+
+	sprite.setPosition(position.x + rand() % 50, position.y + rand() % 50);
 
 	sprite.setTexture(texture);
 }
@@ -39,18 +41,18 @@ void Spheres::Follow() {
 
 		sf::Vector2f movement(0, 0);
 
-		float deltaSpeed = DeltaTime * 300;
+		float deltaSpeed = DeltaTime * 100;
 
-		if (position.x > player.position.x + 50) {
+		if (position.x > player.position.x) {
 			movement.x -= deltaSpeed;
 		}
-		if (position.y < player.position.y + 40) {
+		if (position.y < player.position.y) {
 			movement.y += deltaSpeed;
 		}
-		if (position.x < player.position.x - 50) {
+		if (position.x < player.position.x) {
 			movement.x += deltaSpeed;
 		}
-		if (position.y > player.position.y + 20) {
+		if (position.y > player.position.y) {
 			movement.y -= deltaSpeed;
 		}
 
