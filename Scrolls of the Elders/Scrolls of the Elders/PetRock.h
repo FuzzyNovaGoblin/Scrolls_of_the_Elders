@@ -29,7 +29,6 @@ public:
 	bool attackMoveYM = false;
 	sf::Clock clock;
 	sf::Clock attackTime;
-	sf::Vector2f petRockPos;
 	float timer;
 	int petRockSkinInt = 0;
 	void Update(); // get a reference to the player

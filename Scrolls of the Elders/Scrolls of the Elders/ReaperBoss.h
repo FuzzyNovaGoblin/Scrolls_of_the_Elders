@@ -24,7 +24,6 @@ public:
 	bool attacking;
 	sf::Clock clock;
 	sf::Clock attackTime;
-	sf::Vector2f reaperBossPos;
 	float timer;
 	int reaperBossSkinInt = 0;
 	void move();
