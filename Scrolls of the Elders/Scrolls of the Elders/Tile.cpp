@@ -1,9 +1,10 @@
 #include "Tile.h"
 
-Tile::Tile(sf::RenderWindow& renderWindow, sf::Texture& texture, int xPos, int yPos, int length, bool hasCollider) : renderWindow(renderWindow), texture(texture)
+Tile::Tile(sf::RenderWindow& renderWindow, sf::Texture& texture, int xPos, int yPos, int length, bool hasCollider, bool bossSpawner) : renderWindow(renderWindow), texture(texture)
 {
 	this->length = length;
 	this->hasCollider = hasCollider;
+	this->bossSpawner = bossSpawner;
 	this->xPos = xPos;
 	this->yPos = yPos;
 	graphic.setTexture(&texture);

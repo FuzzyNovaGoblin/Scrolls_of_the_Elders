@@ -33,27 +33,23 @@ Map::Map(sf::RenderWindow& renderWindow, int tileSize, sf::Texture& brick, sf::T
 			// figure out which background tile to create
 			if (ColorsEqual(pixel, sf::Color::Red)) {
 				// red is for brick
-				Tile tile(renderWindow, brick, xPos, yPos, tileSize, false);
+				Tile tile(renderWindow, brick, xPos, yPos, tileSize, false, false);
 				tiles.push_back(tile);
 			}
 			else if (ColorsEqual(pixel, sf::Color::Green)) {
 				// green is for grass
-				Tile tile(renderWindow, grass, xPos, yPos, tileSize, false);
+				Tile tile(renderWindow, grass, xPos, yPos, tileSize, false, false);
 				tiles.push_back(tile);
 			}
+		
 			else if (ColorsEqual(pixel, sf::Color::Blue)) {
 				// blue is for dirt/ sand currently
-				Tile tile(renderWindow, dirt, xPos, yPos, tileSize, true);
-				tiles.push_back(tile);
-			}
-			else if (ColorsEqual(pixel, sf::Color::Blue)) {
-				// blue is for dirt/ sand currently
-				Tile tile(renderWindow, dirt, xPos, yPos, tileSize, true);
+				Tile tile(renderWindow, dirt, xPos, yPos, tileSize, false, true);
 				tiles.push_back(tile);
 			}
 			else {
 				// default (nothing) is water
-				Tile tile(renderWindow, water, xPos, yPos, tileSize, true);
+				Tile tile(renderWindow, water, xPos, yPos, tileSize, true, false);
 				tiles.push_back(tile);
 			}
 		}

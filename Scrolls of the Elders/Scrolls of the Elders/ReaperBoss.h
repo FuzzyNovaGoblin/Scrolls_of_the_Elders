@@ -7,6 +7,8 @@
 #include <SFML\Graphics\Rect.hpp>
 #include <SFML\System\Clock.hpp>
 
+#include "Map.h"
+
 using namespace std;
 
 class ReaperBoss : public Character
@@ -20,7 +22,7 @@ public:
 	sf::Texture reaperBossSummonTex;
 	sf::Texture reaperBossTeleportTex;
 	sf::IntRect reaperBossSkin[5];
-
+	float start[2];
 	bool attacking;
 	sf::Clock clock;
 	sf::Clock attackTime;
