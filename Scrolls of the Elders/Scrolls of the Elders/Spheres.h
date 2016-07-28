@@ -7,7 +7,8 @@
 class Spheres
 {
 public:
-	Spheres(sf::RenderWindow &renderWindow, Character &player, float &DeltaTime);
+	Spheres(sf::RenderWindow &renderWindow, Character &player, float &DeltaTime, sf::Vector2f &position);
+	sf::Vector2f &position;
 	float &DeltaTime;
 	~Spheres();
 	sf::RenderWindow &renderWindow;

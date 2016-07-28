@@ -2,7 +2,7 @@
 
 
 
-Spheres::Spheres(sf::RenderWindow &renderWindow, Character &player, float &DeltaTime) : DeltaTime(DeltaTime), player(player), renderWindow(renderWindow)
+Spheres::Spheres(sf::RenderWindow &renderWindow, Character &player, float &DeltaTime, sf::Vector2f &position) : DeltaTime(DeltaTime), player(player), renderWindow(renderWindow),position(position)
 {
 	texture.loadFromFile("resources/character/Magical-Orb.png");
 	textureRect[0] = sf::IntRect(0, 0, 48, 48);
@@ -11,6 +11,8 @@ Spheres::Spheres(sf::RenderWindow &renderWindow, Character &player, float &Delta
 	textureRect[3] = sf::IntRect(48, 48, 48, 48);
 
 	sprite.setOrigin(24, 24);
+
+	sprite.setPosition(position);
 
 	sprite.setTexture(texture);
 }
