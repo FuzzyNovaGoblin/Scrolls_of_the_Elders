@@ -25,8 +25,7 @@ ReaperBoss::ReaperBoss(int inputHealth, sf::RenderWindow& renderWindow, Characte
 	reaperBossBeamRect[2] = sf::IntRect(0, 128, 128, 128);
 
 
-
-
+	
 	sprite.setOrigin(96, 96);
 
 	currentHealth = inputHealth;
@@ -181,9 +180,28 @@ void ReaperBoss::reaperBossBeam() {
 void ReaperBoss::OrbAttack() {
 	if (attackStage == 1) {
 		for (int i = 0; i < 3; i++) {
-		/*	<Spheres> newOrb(new Spheres(renderWindow, player, DeltaTime));
+			/*<Spheres> newOrb(new Spheres(renderWindow, player, DeltaTime));
 			orbs.push_back(std::move(newOrb));*/
+
+			std::unique_ptr<Spheres> newOrb(new Spheres(renderWindow, player, DeltaTime, position));
+			orbs.push_back(std::move(newOrb));
+
+			attackStage = 2;
+
+			orbsAttacking = true;
 		}
+	}
+
+	for (int i = 0; i < orbs.size(); i++) {
+		orbs.at(i)->Follow();
+		if (!orbs.at(i)->alive) {
+			orbs.erase(orbs.begin() + i);
+		}
+	}
+
+	if (orbs.size() <= 0) {
+		attackStage = 1;
+		orbsAttacking = false;
 	}
 }
 
@@ -241,13 +259,16 @@ void ReaperBoss::DoLongAttack()
 			attackTime.restart();
 		}
 
-	int attackType = (rand() % 4 + 1);
+	int attackType = (rand() % 3 + 1);
 		
 	if (reaperBossBeamUsed) {
 		reaperBossBeam();
 	}
 	else if (spikeAttack) {
 		crystalSpike();
+	}
+	else if (orbsAttacking) {
+		OrbAttack();
 	}
 	else {
 		switch (attackType) {
@@ -258,10 +279,7 @@ void ReaperBoss::DoLongAttack()
 			reaperBossBeam();
 			break;
 		case 3:
-			crystalSpike();
-			break;
-		case 4:
-			reaperBossBeam();
+			OrbAttack();
 			break;
 		}
 	}
@@ -328,10 +346,13 @@ void ReaperBoss::attack()
 		{
 			DoLongAttack();
 		}
-		else
+		else if (GetDistance(position, player.position) < 1000)
 		{
 			attacking = false;
 			move();
+		}
+		else {
+			attacking = false;
 		}
 		
 }
