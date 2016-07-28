@@ -223,7 +223,7 @@ void Player::Update()
 
 		//Doing Health Text
 		healthText.setString("Health: " + std::to_string(currentHealth) + "/" + std::to_string(maxHealth));
-		healthText.setPosition(renderWindow.mapPixelToCoords(sf::Vector2i(20, 0)));
+		healthText.setPosition(position.x - 870, position.y - 490);
 		renderWindow.draw(healthText);
 		//End of Health Text
 
