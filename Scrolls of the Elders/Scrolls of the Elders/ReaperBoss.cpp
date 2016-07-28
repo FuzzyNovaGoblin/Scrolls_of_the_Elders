@@ -202,7 +202,7 @@ void ReaperBoss::DoShortAttack()
 			{
 				reaperBossSkinInt = 0;
 			}
-			clock.restart;
+			clock.restart();
 		}
 	
 			sf::Vector2f movement(0, 0);
