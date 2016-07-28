@@ -36,7 +36,7 @@ int main() {
 	blue.loadFromFile("resources/environment/sand.png");
 	blank.loadFromFile("resources/environment/darkestrock.jpg");
 
-	Map currentMap(window, 150, red, green, blue, blank, layout);
+	Map map(window, 300, red, green, blue, blank, layout);
 
 
 
@@ -103,14 +103,14 @@ int main() {
 		sf::Time timeFromClock = deltaTimeClock.restart();
 		DeltaTime = timeFromClock.asSeconds();
 
-		if (spawnTime.getElapsedTime().asSeconds() > 10 && petRockList.size() < 500 && player.score<100) {
+		if (spawnTime.getElapsedTime().asSeconds() > 10 && petRockList.size() < 100 && player.score<100) {
 			for (int i = 0; i < 10 + player.score; i++) { // make 10 enemies 
 				std::unique_ptr<Character> newPetRock(new PetRock(1, window, petRockTex, player, DeltaTime, currentMap));
 				petRockList.push_back(std::move(newPetRock));
 			}
 			spawnTime.restart();
 		}
-		else if (spawnTime.getElapsedTime().asSeconds() > 10 && petRockList.size() < 500 && player.score >= 100) {
+		else if (spawnTime.getElapsedTime().asSeconds() > 10 && petRockList.size() < 100 && player.score >= 100) {
 			for (int i = 0; i < 100; i++) { // make 10 enemies 
 				std::unique_ptr<Character> newPetRock(new PetRock(1, window, petRockTex, player, DeltaTime, currentMap));
 				petRockList.push_back(std::move(newPetRock));

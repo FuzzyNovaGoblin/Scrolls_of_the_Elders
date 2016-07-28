@@ -29,7 +29,9 @@ public:
 	int reaperBossSkinInt = 0;
 	void move();
 	void attack();
-	//void DoShortAttack();
+	void DoShortAttack();
+	void DoLongAttack();
+	int RangedAttacks;
 	void Update();
 };
 
