@@ -33,7 +33,7 @@ Map::Map(sf::RenderWindow& renderWindow, int tileSize, sf::Texture& brick, sf::T
 			// figure out which background tile to create
 			if (ColorsEqual(pixel, sf::Color::Red)) {
 				// red is for brick
-				Tile tile(renderWindow, brick, xPos, yPos, tileSize, true);
+				Tile tile(renderWindow, brick, xPos, yPos, tileSize, false);
 				tiles.push_back(tile);
 			}
 			else if (ColorsEqual(pixel, sf::Color::Green)) {
@@ -43,7 +43,7 @@ Map::Map(sf::RenderWindow& renderWindow, int tileSize, sf::Texture& brick, sf::T
 			}
 			else if (ColorsEqual(pixel, sf::Color::Blue)) {
 				// blue is for dirt/ sand currently
-				Tile tile(renderWindow, dirt, xPos, yPos, tileSize, false);
+				Tile tile(renderWindow, dirt, xPos, yPos, tileSize, true);
 				tiles.push_back(tile);
 			}
 			else {

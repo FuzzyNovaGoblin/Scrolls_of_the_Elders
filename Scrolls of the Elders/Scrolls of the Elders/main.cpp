@@ -36,7 +36,7 @@ int main() {
 	blue.loadFromFile("resources/environment/sand.png");
 	blank.loadFromFile("resources/environment/darkestrock.jpg");
 
-	Map map(window, 300, red, green, blue, blank, layout);
+	Map currentMap(window, 150, red, green, blue, blank, layout);
 
 
 
@@ -57,7 +57,7 @@ int main() {
 	std::vector<std::unique_ptr<Character>> petRockList;
 	MeleeWeapon sword ("axe", "gold", 5, 9, 10, "Golden-BattleAxe.png");
 
-	Player player(50,10,10,10,10,10,10,10,10, window, petRockList, DeltaTime);
+	Player player(50,10,10,10,10,10,10,10,10, window, petRockList, DeltaTime, currentMap);
 	//ReaperBoss reaperBoss(500, window, player);
 	
 	
@@ -76,11 +76,11 @@ int main() {
 	pauseText.setPosition(player.position.x - 350, player.position.y - 20);
 
 	for (int i = 0; i < 10; i++) { // make 10 enemies 
-		std::unique_ptr<Character> newPetRock(new PetRock(1, window, petRockTex, player, DeltaTime));
+		std::unique_ptr<Character> newPetRock(new PetRock(1, window, petRockTex, player, DeltaTime, currentMap));
 		petRockList.push_back(std::move(newPetRock));
 	}
 	//ReaperBoss reaperBoss(500, window, player);
-	std::unique_ptr<Character> reaperBoss(new ReaperBoss(500, window, player, DeltaTime));
+	std::unique_ptr<Character> reaperBoss(new ReaperBoss(500, window, player, DeltaTime, currentMap));
 	petRockList.push_back(std::move(reaperBoss));
 
 
@@ -103,16 +103,16 @@ int main() {
 		sf::Time timeFromClock = deltaTimeClock.restart();
 		DeltaTime = timeFromClock.asSeconds();
 
-		if (spawnTime.getElapsedTime().asSeconds() > 10 && petRockList.size() < 500 && player.score<100) {
+		if (spawnTime.getElapsedTime().asSeconds() > 10 && petRockList.size() < 100 && player.score<100) {
 			for (int i = 0; i < 10 + player.score; i++) { // make 10 enemies 
-				std::unique_ptr<Character> newPetRock(new PetRock(1, window, petRockTex, player, DeltaTime));
+				std::unique_ptr<Character> newPetRock(new PetRock(1, window, petRockTex, player, DeltaTime, currentMap));
 				petRockList.push_back(std::move(newPetRock));
 			}
 			spawnTime.restart();
 		}
-		else if (spawnTime.getElapsedTime().asSeconds() > 10 && petRockList.size() < 500 && player.score >= 100) {
+		else if (spawnTime.getElapsedTime().asSeconds() > 10 && petRockList.size() < 100 && player.score >= 100) {
 			for (int i = 0; i < 100; i++) { // make 10 enemies 
-				std::unique_ptr<Character> newPetRock(new PetRock(1, window, petRockTex, player, DeltaTime));
+				std::unique_ptr<Character> newPetRock(new PetRock(1, window, petRockTex, player, DeltaTime, currentMap));
 				petRockList.push_back(std::move(newPetRock));
 			}
 			spawnTime.restart();
@@ -147,7 +147,7 @@ int main() {
 		if (!pause) {  //This is the pause function
 			
 			//window.draw(backGround);
-			map.Update();
+			currentMap.Update();
 			
 			player.Update();
 
