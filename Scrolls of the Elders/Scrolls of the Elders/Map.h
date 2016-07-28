@@ -17,6 +17,7 @@ public:
 	sf::Texture& grass;
 	sf::Texture& dirt;
 	sf::Texture& water;
+
 	// functions
 	void Update();
 };

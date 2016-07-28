@@ -46,6 +46,11 @@ Map::Map(sf::RenderWindow& renderWindow, int tileSize, sf::Texture& brick, sf::T
 				Tile tile(renderWindow, dirt, xPos, yPos, tileSize, true);
 				tiles.push_back(tile);
 			}
+			else if (ColorsEqual(pixel, sf::Color::Blue)) {
+				// blue is for dirt/ sand currently
+				Tile tile(renderWindow, dirt, xPos, yPos, tileSize, true);
+				tiles.push_back(tile);
+			}
 			else {
 				// default (nothing) is water
 				Tile tile(renderWindow, water, xPos, yPos, tileSize, true);

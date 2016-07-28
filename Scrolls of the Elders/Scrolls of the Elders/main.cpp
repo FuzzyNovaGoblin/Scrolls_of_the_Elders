@@ -33,7 +33,7 @@ int main() {
 
 	red.loadFromFile("resources/environment/darkgrassyrock.jpg");
 	green.loadFromFile("resources/environment/darkrock.jpg");
-	blue.loadFromFile("resources/environment/sand.png");
+	blue.loadFromFile("resources/environment/purplecliffrock.jpg");
 	blank.loadFromFile("resources/environment/darkestrock.jpg");
 
 	Map currentMap(window, 150, red, green, blue, blank, layout);
@@ -57,7 +57,7 @@ int main() {
 	std::vector<std::unique_ptr<Character>> petRockList;
 	MeleeWeapon sword ("axe", "gold", 5, 9, 10, "Golden-BattleAxe.png");
 
-	Player player(5000,10,10,10,10,10,10,10,10, window, petRockList, DeltaTime, currentMap);
+	Player player(50,10,10,10,10,10,10,10,10, window, petRockList, DeltaTime, currentMap);
 	//ReaperBoss reaperBoss(500, window, player);
 	
 	
