@@ -35,5 +35,6 @@ public:
 	void Update(); // get a reference to the player
 	void move();
 	void attack();
+	int collide;
 	
 };

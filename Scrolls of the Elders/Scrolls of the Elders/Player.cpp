@@ -15,17 +15,9 @@ Player::Player(int inputHealth, int inputMana, int inputGold, int inputStrength,
 
 	//Set the attack settings
 	swingArc = 80;
-	swingTime = 0.1;
+	swingTime = 0.2;
 	degreesPerSecond = swingArc / swingTime;
 	//End of attack settings
-
-	//Doing Health Text
-	healthFont.loadFromFile("resources/font/Amatic-Bold.ttf");
-	healthText.setFont(healthFont);
-	healthText.setCharacterSize(72);
-	healthText.setColor(sf::Color(196, 33, 33));
-
-	healthText.setString("Health: " + std::to_string(currentHealth) + "/" + std::to_string(maxHealth));
 
 	//Do texture stuff
 	playerIdleTex.loadFromFile("resources/character/player-Idle.png");
@@ -44,6 +36,14 @@ Player::Player(int inputHealth, int inputMana, int inputGold, int inputStrength,
 
 	attacked = false;
 	//End of texture stuff
+
+	//Doing Health Text
+	healthFont.loadFromFile("resources/font/Amatic-Bold.ttf");
+	healthText.setFont(healthFont);
+	healthText.setCharacterSize(72);
+	healthText.setColor(sf::Color(196, 33, 33));
+
+	healthText.setString("Health: " + std::to_string(currentHealth) + "/" + std::to_string(maxHealth));
 }
 
 
@@ -223,7 +223,7 @@ void Player::Update()
 
 		//Doing Health Text
 		healthText.setString("Health: " + std::to_string(currentHealth) + "/" + std::to_string(maxHealth));
-		healthText.setPosition(position.x - 890, position.y - 490);
+		healthText.setPosition(position.x - 870, position.y - 490);
 		renderWindow.draw(healthText);
 		//End of Health Text
 
