@@ -103,6 +103,7 @@ void ReaperBoss::crystalSpike() {
 		attackStage = 1;
 		player.hit = false;
 		spikeAttack = false;
+		LongAttackTime.restart();
 	}
 }
 
@@ -130,7 +131,7 @@ void ReaperBoss::reaperBossBeam() {
 
 	sf::Vector2f movement(0, 0);
 
-	float BeamSpeed = DeltaTime * 50;
+	float BeamSpeed = DeltaTime * 80;
 
 	sf::Vector2f beamPosition;
 
@@ -168,28 +169,24 @@ void ReaperBoss::reaperBossBeam() {
 		player.hit = false;
 	}
 
-	attackStage += 6 * DeltaTime;
+	attackStage += DeltaTime;
 
 	if (attackStage >= 10) {
 		player.hit = false;
 		attackStage = 1;
 		reaperBossBeamUsed = false;
-}
+		LongAttackTime.restart();
+	}
 }
 
 void ReaperBoss::OrbAttack() {
-	if (attackStage == 1) {
-		for (int i = 0; i < 3; i++) {
-			/*<Spheres> newOrb(new Spheres(renderWindow, player, DeltaTime));
-			orbs.push_back(std::move(newOrb));*/
+	if (orbs.size() < 3) {
+		std::unique_ptr<Spheres> newOrb(new Spheres(renderWindow, player, DeltaTime, position));
+		orbs.push_back(std::move(newOrb));
 
-			std::unique_ptr<Spheres> newOrb(new Spheres(renderWindow, player, DeltaTime, position));
-			orbs.push_back(std::move(newOrb));
+		attackStage += 1;
 
-			attackStage = 2;
-
-			orbsAttacking = true;
-		}
+		orbsAttacking = true;
 	}
 
 	for (int i = 0; i < orbs.size(); i++) {
@@ -199,9 +196,10 @@ void ReaperBoss::OrbAttack() {
 		}
 	}
 
-	if (orbs.size() <= 0) {
+	if (orbs.size() <= 0 || LongAttackAnimation.getElapsedTime().asSeconds() >= 10) {
 		attackStage = 1;
 		orbsAttacking = false;
+		LongAttackTime.restart();
 	}
 }
 
@@ -260,7 +258,7 @@ void ReaperBoss::DoLongAttack()
 		}
 
 	int attackType = (rand() % 3 + 1);
-		
+
 	if (reaperBossBeamUsed) {
 		reaperBossBeam();
 	}
@@ -270,7 +268,7 @@ void ReaperBoss::DoLongAttack()
 	else if (orbsAttacking) {
 		OrbAttack();
 	}
-	else {
+	else if (LongAttackTime.getElapsedTime().asSeconds() > 2.5) {
 		switch (attackType) {
 		case 1:
 			crystalSpike();

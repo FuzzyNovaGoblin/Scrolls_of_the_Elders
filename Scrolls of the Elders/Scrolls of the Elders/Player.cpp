@@ -44,6 +44,18 @@ Player::Player(int inputHealth, int inputMana, int inputGold, int inputStrength,
 	healthText.setColor(sf::Color(196, 33, 33));
 
 	healthText.setString("Health: " + std::to_string(currentHealth) + "/" + std::to_string(maxHealth));
+
+	//Doing Damage Text
+	damageText.setFont(healthFont);
+	damageText.setCharacterSize(48);
+	damageText.setColor(sf::Color::White);
+	//End of Damage Text
+
+	//Doing Crit Text
+	critText.setFont(healthFont);
+	critText.setCharacterSize(48);
+	critText.setColor(sf::Color(196, 33, 33));
+	//End of Damage Text
 }
 
 
@@ -93,8 +105,10 @@ void Player::attack(Character& target, int indexOfTarget) {
 		if (!target.hit) {
 			int currentDamage = (strength / 2) + (rand() % strength + 1);
 			currentDamage += rightHandWeapon.damage;
-			if (currentDamage > strength) {
+			if (currentDamage - rightHandWeapon.damage > strength) {
 				//Yo Grant, here is where you can tell it to do critical display
+
+				/*damageDisplay(currentDamage, target.position);*/
 
 				//This is my code, no touch...
 
@@ -110,6 +124,8 @@ void Player::attack(Character& target, int indexOfTarget) {
 			}
 			else {
 				//Yo Grant, here is where you can tell it to do a normal display
+
+				/*damageDisplay(currentDamage, target.position);*/
 
 				//This is my code, no touch...
 
@@ -132,6 +148,23 @@ void Player::attack(Character& target, int indexOfTarget) {
 
 	}
 }
+
+//void Player::damageDisplay(int damage, sf::Vector2f targetPosition) {
+//	if (damageDisplayClock.getElapsedTime().asSeconds() < 2) {
+//		if (damage > strength + rightHandWeapon.damage) {
+//			critText.setString(std::to_string(damage));
+//			critText.setPosition(targetPosition.x, targetPosition.y + 30);
+//
+//		}
+//		else {
+//			damageText.setString(std::to_string(damage));
+//			damageText.setPosition(targetPosition.x, targetPosition.y + 30);
+//		}
+//	}
+//	else {
+//		damageDisplayClock.restart();
+//	}
+//}
 
 void Player::equipMelee(MeleeWeapon meleeWeapon) {
 	rightHandWeapon = meleeWeapon;

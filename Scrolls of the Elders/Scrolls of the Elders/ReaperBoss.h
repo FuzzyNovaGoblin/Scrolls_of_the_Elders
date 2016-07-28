@@ -36,6 +36,7 @@ public:
 	sf::Clock clock;
 	sf::Clock attackTime;
 	sf::Clock LongAttackAnimation;
+	sf::Clock LongAttackTime;
 	float timer;
 	int reaperBossSkinInt = 0;
 	int reaperBossLongAttackInt = 0;
