@@ -57,7 +57,7 @@ int main() {
 	std::vector<std::unique_ptr<Character>> petRockList;
 	MeleeWeapon sword ("axe", "gold", 5, 9, 10, "Golden-BattleAxe.png");
 
-	Player player(50,10,10,10,10,10,10,10,10, window, petRockList, DeltaTime, currentMap);
+	Player player(5000,10,10,10,10,10,10,10,10, window, petRockList, DeltaTime, currentMap);
 	//ReaperBoss reaperBoss(500, window, player);
 	
 	
