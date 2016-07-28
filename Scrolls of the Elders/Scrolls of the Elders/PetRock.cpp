@@ -15,8 +15,8 @@ PetRock::PetRock(int inputHealth, sf::RenderWindow& renderWindow, sf::Texture& p
 
 	hit = false;
 
-	float tempX = rand() % 301 + 300;
-	float tempY = rand() % 301 + 300;
+	float tempX = rand() % 6000 + 0;
+	float tempY = rand() % 6000 + 0;
 
 	petRockPos.x = tempX;
 	petRockPos.y = tempY; 
@@ -56,12 +56,14 @@ void PetRock::move() {
 			}
 
 			sprite.move(movement);
-
-			if (DoesCollide()) // if we collide with something
-			{
-				// undo the movement we just applied
-				sprite.move(movement.x * -1, movement.y * -1);
-			}
+			//if you want to colide
+			//-----------------------------------------------------
+			//if (DoesCollide()) // if we collide with something
+			//{
+			//	// undo the movement we just applied
+			//	sprite.move(movement.x * -1, movement.y * -1);
+			//}
+			//-----------------------------------------------------
 
 			petRockPos = sprite.getPosition();
 		

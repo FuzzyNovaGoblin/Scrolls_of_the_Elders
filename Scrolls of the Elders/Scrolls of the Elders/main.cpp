@@ -52,7 +52,7 @@ int main() {
 	reaperBossIdleTex.loadFromFile("resources/character/Reaper Boss-Idle.png");
 	
 	
-	window.setFramerateLimit(60);
+	//window.setFramerateLimit(60);
 	//std::vector<Character*> petRockList;
 	std::vector<std::unique_ptr<Character>> petRockList;
 	MeleeWeapon sword ("axe", "gold", 5, 9, 10, "Golden-BattleAxe.png");
@@ -103,15 +103,8 @@ int main() {
 		sf::Time timeFromClock = deltaTimeClock.restart();
 		DeltaTime = timeFromClock.asSeconds();
 
-		if (spawnTime.getElapsedTime().asSeconds() > 10 && petRockList.size() < 100 && player.score<100) {
+		if (spawnTime.getElapsedTime().asSeconds() > 10 && petRockList.size() < 10 && player.score<100) {
 			for (int i = 0; i < 10 + player.score; i++) { // make 10 enemies 
-				std::unique_ptr<Character> newPetRock(new PetRock(1, window, petRockTex, player, DeltaTime, currentMap));
-				petRockList.push_back(std::move(newPetRock));
-			}
-			spawnTime.restart();
-		}
-		else if (spawnTime.getElapsedTime().asSeconds() > 10 && petRockList.size() < 100 && player.score >= 100) {
-			for (int i = 0; i < 100; i++) { // make 10 enemies 
 				std::unique_ptr<Character> newPetRock(new PetRock(1, window, petRockTex, player, DeltaTime, currentMap));
 				petRockList.push_back(std::move(newPetRock));
 			}
