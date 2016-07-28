@@ -131,8 +131,22 @@ void ReaperBoss::move()
 
 		if (DoesCollide()) // if we collide with something
 		{
-			// undo the movement we just applied
-			sprite.move(movement.x * -1, movement.y * -1);
+			sprite.move(movement.x += deltaSpeed, movement.y);
+			if (DoesCollide()) // if we collide with something
+			{
+				// undo the movement we just applied
+				sprite.move(movement.x -= deltaSpeed, movement.y);
+			}
+			else if (DoesCollide()) // if we collide with something
+			{
+				// undo the movement we just applied
+				sprite.move(movement.x, movement.y -= deltaSpeed);
+			}
+			else if (DoesCollide()) // if we collide with something
+			{
+				// undo the movement we just applied
+				sprite.move(movement.x, movement.y += deltaSpeed);
+			}
 		}
 	}
 }
