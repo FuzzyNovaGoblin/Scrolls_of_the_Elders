@@ -179,9 +179,13 @@ void PlayGame(sf::RenderWindow& window) {
 
 int main() {
 	sf::RenderWindow window(sf::VideoMode(1780, 980), "Scrolls of the Elders ");
+	srand(NULL);
+	int stage = 0;
 	while (true) {
+		
 		PlayGame(window);
-		window.clear();
+		stage++;
+		//window.clear();
 		cout << "press ne key to play again" << endl;
 		system("pause");
 	

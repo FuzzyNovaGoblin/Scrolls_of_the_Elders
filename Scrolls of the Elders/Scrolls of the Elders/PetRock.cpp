@@ -22,7 +22,7 @@ PetRock::PetRock(int inputHealth, sf::RenderWindow& renderWindow, sf::Texture& p
 			/*tempX= map.tiles.at(i).xPos;
 			tempY= map.tiles.at(i).yPos;*/
 
-			spawnPositions.push_back(sf::Vector2f (map.tiles.at(i).xPos, map.tiles.at(i).yPos));
+			spawnPositions.push_back(sf::Vector2f (map.tiles.at(i).xPos + rand() % 100 +0, map.tiles.at(i).yPos));
 		}
 	}
 
@@ -54,13 +54,14 @@ PetRock::PetRock(int inputHealth, sf::RenderWindow& renderWindow, sf::Texture& p
 void PetRock::move() {
 	int distanceX = position.x - player.position.x;
 	int distanceY = position.y - player.position.y;
+	position = sprite.getPosition();
 	if (sqrt(distanceX * distanceX + distanceY * distanceY) < 500) {
 		
 		//float deltaDistance = speed *DeltaTime; // the amout of pixels to move per second in one axis
 
 		sf::Vector2f movement(0, 0);
 
-		float deltaSpeed = DeltaTime * 300;
+		float deltaSpeed = DeltaTime * 350;
 
 			if (position.x > player.position.x+50 ) {
 				movement.x -= deltaSpeed;
@@ -85,7 +86,7 @@ void PetRock::move() {
 			//}
 			//-----------------------------------------------------
 
-			position = sprite.getPosition();
+			
 		
 	}
 }
@@ -127,7 +128,6 @@ void PetRock::Update() {
 		}
 
 		sprite.setTextureRect(sf::IntRect(petRockSkin[petRockSkinInt]));
-
 		renderWindow.draw(sprite);
 	}
 

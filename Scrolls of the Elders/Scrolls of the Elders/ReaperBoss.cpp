@@ -214,19 +214,24 @@ void ReaperBoss::DoShortAttack()
 		{
 			reaperBossSkinInt += 1;
 		}
-		else
+		else if((!reaperBossSkinInt < 4))
 		{
 			reaperBossSkinInt = 0;
+			int damage = (strength / 2);
+			player.currentHealth -= damage;
+			std::cout << damage;
 		}
+		/*if (clock.getElapsedTime().asSeconds() > 1) {
+			int damage = (strength / 2);
+			player.currentHealth -= damage;
+			std::cout << damage;
+		}*/
 		clock.restart();
+		
 	}
 
 	sf::Vector2f movement(0, 0);
 
-	if (reaperBossSkinInt >= 3) {
-		int damage = (strength / 2) + (rand() % strength + 1);
-		player.currentHealth -= damage;
-	}
 }
 
 void ReaperBoss::DoLongAttack()
