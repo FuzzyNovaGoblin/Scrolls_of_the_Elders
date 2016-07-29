@@ -337,7 +337,7 @@ void ReaperBoss::attack()
 {
 	/*	if (position.x > player.position.x - 50 && position.x < player.position.x + 50 && position.y > player.position.y - 41 && position.y < player.position.y + 41)*/
 	
-		if (GetDistance(position, player.position) < 200)
+		if (GetDistance(position, player.position) < 175)
 		
 		{
 			move();
