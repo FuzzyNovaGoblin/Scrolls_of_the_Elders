@@ -211,7 +211,7 @@ void ReaperBoss::DoShortAttack()
 	reaperBossBeamUsed = false;
 	orbsAttacking = false;
 
-	if (clock.getElapsedTime().asSeconds() > 0.15)
+	if (clock.getElapsedTime().asSeconds() > 0.10)
 	{
 		if (reaperBossSkinInt < 4)
 		{
