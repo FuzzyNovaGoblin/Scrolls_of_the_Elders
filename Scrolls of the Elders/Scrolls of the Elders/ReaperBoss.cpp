@@ -25,7 +25,7 @@ ReaperBoss::ReaperBoss(int inputHealth, sf::RenderWindow& renderWindow, Characte
 	reaperBossBeamRect[2] = sf::IntRect(0, 128, 128, 128);
 
 	healthBar.setFillColor(sf::Color::Red);
-	healthBar.setSize(sf::Vector2f(192, 16));
+	healthBar.setSize(sf::Vector2f(192, 10));
 	healthBar.setPosition(position + sf::Vector2f(0, 200));
 	
 	sprite.setOrigin(96, 96);
@@ -226,7 +226,7 @@ void ReaperBoss::DoShortAttack()
 			reaperBossSkinInt = 0;
 			int damage = (strength / 2);
 			player.currentHealth -= damage;
-			std::cout << damage;
+			/*std::cout << damage;*/
 		}
 		/*if (clock.getElapsedTime().asSeconds() > 1) {
 			int damage = (strength / 2);
