@@ -67,7 +67,7 @@ void PlayGame(sf::RenderWindow& window) {
 	std::vector<std::unique_ptr<Character>> petRockList;
 	MeleeWeapon sword("axe", "gold", 5, 9, 10, "Golden-BattleAxe.png");
 
-	Player player(150, 10, 10, 10, 10, 10, 10, 10, 10, window, petRockList, DeltaTime, currentMap);
+	Player player(100, 10, 10, 10, 10, 10, 10, 10, 10, window, petRockList, DeltaTime, currentMap);
 	//ReaperBoss reaperBoss(500, window, player);
 
 
@@ -90,7 +90,7 @@ void PlayGame(sf::RenderWindow& window) {
 		petRockList.push_back(std::move(newPetRock));
 	}
 	//ReaperBoss reaperBoss(500, window, player);
-	std::unique_ptr<Character> reaperBoss(new ReaperBoss(500, window, player, DeltaTime, currentMap));
+	std::unique_ptr<Character> reaperBoss(new ReaperBoss(750, window, player, DeltaTime, currentMap));
 	petRockList.push_back(std::move(reaperBoss));
 
 
