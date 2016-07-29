@@ -165,7 +165,7 @@ void ReaperBoss::reaperBossBeam() {
 		}
 	}
 
-	if (reaperBossBeamInt == 2) {
+	if (reaperBossBeamInt == 1) {
 		player.hit = false;
 	}
 
