@@ -41,7 +41,7 @@ void Spheres::Follow() {
 
 		sf::Vector2f movement(0, 0);
 
-		float deltaSpeed = DeltaTime * 100;
+		float deltaSpeed = DeltaTime * 180;
 
 		if (position.x > player.position.x) {
 			movement.x -= deltaSpeed;

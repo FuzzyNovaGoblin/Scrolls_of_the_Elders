@@ -96,7 +96,7 @@ void ReaperBoss::crystalSpike() {
 	}
 	else if (attackStage < 6) {
 		LongAttackSprite.setTextureRect(sf::IntRect(reaperBossCrystalSpike[4]));
-		attackStage += 5 * DeltaTime;
+		attackStage += 10 * DeltaTime;
 		renderWindow.draw(LongAttackSprite);
 	}
 	else if (attackStage >= 6) {
@@ -119,7 +119,7 @@ void ReaperBoss::reaperBossBeam() {
 
 	reaperBossBeamUsed = true;
 
-	if (LongAttackAnimation.getElapsedTime().asSeconds() > 0.5) {
+	if (LongAttackAnimation.getElapsedTime().asSeconds() > 0.3) {
 		if (reaperBossBeamInt < 2) {
 			reaperBossBeamInt += 1;
 		}
@@ -131,7 +131,7 @@ void ReaperBoss::reaperBossBeam() {
 
 	sf::Vector2f movement(0, 0);
 
-	float BeamSpeed = DeltaTime * 80;
+	float BeamSpeed = DeltaTime * 160;
 
 	sf::Vector2f beamPosition;
 
@@ -270,7 +270,7 @@ void ReaperBoss::DoLongAttack()
 	else if (orbsAttacking) {
 		OrbAttack();
 	}
-	else if (LongAttackTime.getElapsedTime().asSeconds() > 2.5) {
+	else if (LongAttackTime.getElapsedTime().asSeconds() > 0.5) {
 		switch (attackType) {
 		case 1:
 			crystalSpike();
@@ -334,7 +334,7 @@ void ReaperBoss::attack()
 {
 	/*	if (position.x > player.position.x - 50 && position.x < player.position.x + 50 && position.y > player.position.y - 41 && position.y < player.position.y + 41)*/
 	
-		if (GetDistance(position, player.position) < 150)
+		if (GetDistance(position, player.position) < 200)
 		
 		{
 			move();
