@@ -26,7 +26,7 @@ void PlayGame(sf::RenderWindow& window) {
 	theme.openFromFile("resources/audio/Child of Light - Boss Battle Theme.wav");
 	theme.play();
 	
-	int mapNum = rand() % 3 + 1;
+	int mapNum = rand() % 4 + 1;
 	
 	string mapString("resources/environment/map." + std::to_string(mapNum) + ".png");
 	//string mapString("resources/environment/map." + std::to_string(mapNum) + ".png");
@@ -180,6 +180,7 @@ void PlayGame(sf::RenderWindow& window) {
 int main() {
 	sf::RenderWindow window(sf::VideoMode(1780, 980), "Scrolls of the Elders ");
 	int stage = 0;
+	srand(time(NULL));
 	while (true) {
 		
 		PlayGame(window);
