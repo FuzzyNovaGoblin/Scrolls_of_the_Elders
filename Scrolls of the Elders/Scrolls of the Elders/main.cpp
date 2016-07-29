@@ -26,7 +26,7 @@ void PlayGame(sf::RenderWindow& window) {
 	theme.openFromFile("resources/audio/Child of Light - Boss Battle Theme.wav");
 	theme.play();
 	
-	int mapNum = rand() % 2 + 1;
+	int mapNum = rand() % 3 + 1;
 	
 	string mapString("resources/environment/map." + std::to_string(mapNum) + ".png");
 	//string mapString("resources/environment/map." + std::to_string(mapNum) + ".png");
@@ -43,7 +43,7 @@ void PlayGame(sf::RenderWindow& window) {
 
 
 	red.loadFromFile("resources/environment/darkgrassyrock.jpg");
-	green.loadFromFile("resources/environment/darkrock.jpg");
+	green.loadFromFile("resources/environment/playerSpawn.jpg");
 	blue.loadFromFile("resources/environment/purplecliffrock.jpg");
 	black.loadFromFile("resources/environment/darkgrassyrock.jpg");
 	blank.loadFromFile("resources/environment/darkestrock.jpg");
