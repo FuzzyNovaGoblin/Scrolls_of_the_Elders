@@ -67,7 +67,7 @@ void PlayGame(sf::RenderWindow& window) {
 	std::vector<std::unique_ptr<Character>> petRockList;
 	MeleeWeapon sword("axe", "gold", 5, 9, 10, "Golden-BattleAxe.png");
 
-	Player player(50, 10, 10, 10, 10, 10, 10, 10, 10, window, petRockList, DeltaTime, currentMap);
+	Player player(150, 10, 10, 10, 10, 10, 10, 10, 10, window, petRockList, DeltaTime, currentMap);
 	//ReaperBoss reaperBoss(500, window, player);
 
 
@@ -179,7 +179,6 @@ void PlayGame(sf::RenderWindow& window) {
 
 int main() {
 	sf::RenderWindow window(sf::VideoMode(1780, 980), "Scrolls of the Elders ");
-	srand(NULL);
 	int stage = 0;
 	while (true) {
 		

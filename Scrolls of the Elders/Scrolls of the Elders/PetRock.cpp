@@ -22,7 +22,7 @@ PetRock::PetRock(int inputHealth, sf::RenderWindow& renderWindow, sf::Texture& p
 			/*tempX= map.tiles.at(i).xPos;
 			tempY= map.tiles.at(i).yPos;*/
 
-			spawnPositions.push_back(sf::Vector2f (map.tiles.at(i).xPos + rand() % 100 +0, map.tiles.at(i).yPos));
+			spawnPositions.push_back(sf::Vector2f (map.tiles.at(i).xPos + rand() % 150 +0, map.tiles.at(i).yPos + rand() % 150 + 0));
 		}
 	}
 
