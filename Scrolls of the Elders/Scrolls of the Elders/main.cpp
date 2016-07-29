@@ -185,7 +185,7 @@ int main() {
 		PlayGame(window);
 		stage++;
 		//window.clear();
-		cout << "press ne key to play again" << endl;
+		cout << endl << "Press any key to play again" << endl;
 		system("pause");
 	
 	
