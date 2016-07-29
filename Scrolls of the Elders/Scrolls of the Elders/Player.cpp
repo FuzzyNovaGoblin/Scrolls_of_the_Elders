@@ -11,7 +11,18 @@ Player::Player(int inputHealth, int inputMana, int inputGold, int inputStrength,
 
 	attackState = false;
 
-	sprite.setPosition(450, 450);
+	
+
+
+	for (int i = 0; i < map.tiles.size(); i++) {
+		if (map.tiles.at(i).charSpawner) {
+			spawnPos[0] = map.tiles.at(i).xPos;
+			spawnPos[1] = map.tiles.at(i).yPos;
+		}
+		}
+
+		sprite.setPosition(spawnPos[0], spawnPos[1]);
+
 
 	//Set the attack settings
 	swingArc = 80;
@@ -32,7 +43,6 @@ Player::Player(int inputHealth, int inputMana, int inputGold, int inputStrength,
 	
 	sprite.setOrigin(50, 65);
 
-	sprite.setPosition(300, 300);
 
 	attacked = false;
 	//End of texture stuff
