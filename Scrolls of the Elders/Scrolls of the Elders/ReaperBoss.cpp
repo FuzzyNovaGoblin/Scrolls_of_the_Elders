@@ -24,11 +24,15 @@ ReaperBoss::ReaperBoss(int inputHealth, sf::RenderWindow& renderWindow, Characte
 	reaperBossBeamRect[1] = sf::IntRect(128, 0, 128, 128);
 	reaperBossBeamRect[2] = sf::IntRect(0, 128, 128, 128);
 
-
+	healthBar.setFillColor(sf::Color::Red);
+	healthBar.setSize(sf::Vector2f(192, 16));
+	healthBar.setPosition(position + sf::Vector2f(0, 200));
 	
 	sprite.setOrigin(96, 96);
 
-	currentHealth = inputHealth;
+	maxHealth = inputHealth;
+
+	currentHealth = maxHealth;
 
 	strength = 10;
 
@@ -336,27 +340,24 @@ float GetDistance(sf::Vector2f a, sf::Vector2f b) {
 void ReaperBoss::attack()
 {
 	/*	if (position.x > player.position.x - 50 && position.x < player.position.x + 50 && position.y > player.position.y - 41 && position.y < player.position.y + 41)*/
-	
-		if (GetDistance(position, player.position) < 200)
-		
-		{
-			move();
-			DoShortAttack();
-		}
 
-		else if (GetDistance(position, player.position) < 600)
-		{
-			DoLongAttack();
-		}
-		else if (GetDistance(position, player.position) < 1000)
-		{
-			attacking = false;
-			move();
-		}
-		else {
-			attacking = false;
-		}
-		
+	if (GetDistance(position, player.position) < 175)
+	{
+		move();
+		DoShortAttack();
+	}
+	else if (GetDistance(position, player.position) < 600)
+	{
+		DoLongAttack();
+	}
+	else if (GetDistance(position, player.position) < 1000)
+	{
+		attacking = false;
+		move();
+	}
+	else {
+		attacking = false;
+	}
 }
 
 void ReaperBoss::Update()
@@ -369,6 +370,11 @@ void ReaperBoss::Update()
 		}
 
 		position = sprite.getPosition();
+
+		healthBar.setPosition(position + sf::Vector2f(-96, 96));
+		int healthBarPercentage = 192 * currentHealth / maxHealth;
+		healthBar.setSize(sf::Vector2f(healthBarPercentage, healthBar.getSize().y));
+		renderWindow.draw(healthBar);
 
 		attack();
 

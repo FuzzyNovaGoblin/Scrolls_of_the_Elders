@@ -30,7 +30,8 @@ void PlayGame(sf::RenderWindow& window) {
 	
 	string mapString("resources/environment/map." + std::to_string(mapNum) + ".png");
 	//string mapString("resources/environment/map." + std::to_string(mapNum) + ".png");
-	cout<< mapString;
+	string outputMapString("Loaded Map " + std::to_string(mapNum) + ".");
+	cout << outputMapString << endl;
 
 	
 	layout.loadFromFile(mapString);
@@ -186,7 +187,7 @@ int main() {
 		PlayGame(window);
 		stage++;
 		//window.clear();
-		cout << "press ne key to play again" << endl;
+		cout << "Press any key to play again" << endl;
 		system("pause");
 	
 	
