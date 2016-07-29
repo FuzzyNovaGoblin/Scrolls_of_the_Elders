@@ -336,15 +336,11 @@ float GetDistance(sf::Vector2f a, sf::Vector2f b) {
 void ReaperBoss::attack()
 {
 	/*	if (position.x > player.position.x - 50 && position.x < player.position.x + 50 && position.y > player.position.y - 41 && position.y < player.position.y + 41)*/
-		
-	if (GetDistance(position, player.position) < 100) {
-		DoShortAttack();
-	}
-		
+
 	if (GetDistance(position, player.position) < 175)
-		
 	{
 		move();
+		DoShortAttack();
 	}
 	else if (GetDistance(position, player.position) < 600)
 	{
