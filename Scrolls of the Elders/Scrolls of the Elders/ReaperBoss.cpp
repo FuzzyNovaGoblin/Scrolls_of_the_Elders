@@ -312,7 +312,6 @@ void ReaperBoss::move()
 
 		if (DoesCollide()) // if we collide with something
 		{
-			// undo the movement we just applied
 			sprite.move(movement.x, movement.y * -1);
 		}
 	}
@@ -320,7 +319,7 @@ void ReaperBoss::move()
 	if (DoesCollide()) // if we collide with something
 		{
 			// undo the movement we just applied
-		sprite.move(movement.x, movement.y * -1);
+		sprite.move(movement.x * -1, movement.y * -1);
 	}
 }
 
