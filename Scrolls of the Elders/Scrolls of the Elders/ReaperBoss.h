@@ -25,6 +25,7 @@ public:
 	sf::Texture reaperBossCrystalSpikeTex;
 	sf::Texture reaperBossBeamTex;
 	sf::Sprite LongAttackSprite;
+	sf::RectangleShape healthBar;
 	sf::IntRect reaperBossSkin[5];
 	sf::IntRect reaperBossCrystalSpike[5];
 	sf::IntRect reaperBossBeamRect[3];
