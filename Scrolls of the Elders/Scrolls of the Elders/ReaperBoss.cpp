@@ -159,7 +159,7 @@ void ReaperBoss::reaperBossBeam() {
 	if (reaperBossBeamInt == 0) {
 		if (!player.hit) {
 			if (LongAttackSprite.getGlobalBounds().intersects(player.sprite.getGlobalBounds())) {
-				player.currentHealth -= 2;
+				player.currentHealth -= 5;
 				player.hit = true;
 			}
 		}
@@ -207,6 +207,9 @@ void ReaperBoss::DoShortAttack()
 {
 	sprite.setTexture(reaperBossSlashTex);
 	attacking = true;
+	spikeAttack = false;
+	reaperBossBeamUsed = false;
+	orbsAttacking = false;
 
 	if (clock.getElapsedTime().asSeconds() > 0.15)
 	{
