@@ -226,7 +226,6 @@ void ReaperBoss::DoShortAttack()
 			reaperBossSkinInt = 0;
 			int damage = (strength / 2);
 			player.currentHealth -= damage;
-			/*std::cout << damage;*/
 		}
 		/*if (clock.getElapsedTime().asSeconds() > 1) {
 			int damage = (strength / 2);
