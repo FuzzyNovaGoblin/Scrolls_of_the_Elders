@@ -1,4 +1,5 @@
 #include "PetRock.h"
+#include <math.h>
 
 
 
@@ -8,7 +9,7 @@ PetRock::PetRock(int inputHealth, sf::RenderWindow& renderWindow, sf::Texture& p
 	petRockSkin[0] = sf::IntRect(0, 0, 40, 28);
 	petRockSkin[1] = sf::IntRect(0, 28, 40, 28);
 	petRockSkin[2] = sf::IntRect(0, 56, 40, 28);
-	
+
 	currentHealth = inputHealth;
 
 	strength = 4;
@@ -18,7 +19,7 @@ PetRock::PetRock(int inputHealth, sf::RenderWindow& renderWindow, sf::Texture& p
 
 	for (int i = 0; i < map.tiles.size(); i++) {
 		if (map.tiles.at(i).petRockSpawner) {
-			
+
 			/*tempX= map.tiles.at(i).xPos;
 			tempY= map.tiles.at(i).yPos;*/
 
@@ -33,7 +34,7 @@ PetRock::PetRock(int inputHealth, sf::RenderWindow& renderWindow, sf::Texture& p
 	float tempY = rand() % 2000 + 0;
 
 	position.x = tempX;
-	position.y = tempY; 
+	position.y = tempY;
 */
 	/*int num = spawnPositions.size();
 
@@ -44,7 +45,7 @@ PetRock::PetRock(int inputHealth, sf::RenderWindow& renderWindow, sf::Texture& p
 	sprite.setPosition(spawnPositions[rand() % spawnPositions.size() + 0]);
 
 	sprite.setTexture(petRockTex);
-	
+
 	timer = clock.getElapsedTime().asSeconds();
 	sprite.setOrigin(20, 14);
 
@@ -56,7 +57,7 @@ void PetRock::move() {
 	int distanceY = position.y - player.position.y;
 	position = sprite.getPosition();
 	if (sqrt(distanceX * distanceX + distanceY * distanceY) < 500) {
-		
+
 		//float deltaDistance = speed *DeltaTime; // the amout of pixels to move per second in one axis
 
 		sf::Vector2f movement(0, 0);
@@ -86,8 +87,8 @@ void PetRock::move() {
 			//}
 			//-----------------------------------------------------
 
-			
-		
+
+
 	}
 }
 
@@ -97,7 +98,7 @@ void PetRock::attack() {
 		sf::Vector2f movement(0, 0);
 
 		if (attackTime.getElapsedTime().asSeconds() > 1) {
-	
+
 			int damage = (strength / 2) + (rand() % strength + 1);
 			player.currentHealth -= damage;
 
@@ -110,7 +111,7 @@ void PetRock::attack() {
 
 void PetRock::Update() {
 	if (alive) {
-		
+
 		if (currentHealth <= 0) {
 			alive = false;
 		}

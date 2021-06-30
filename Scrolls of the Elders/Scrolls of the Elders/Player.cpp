@@ -1,17 +1,16 @@
 #include "Player.h"
 
 
-Player::Player(int inputHealth, int inputMana, int inputGold, int inputStrength, int inputIntelligence, int inputDexterity, int inputDefense, int inputConstitution, int inputEndurance, sf::RenderWindow& renderWindow, std::vector<std::unique_ptr<Character>>& petRockList, float& DeltaTime, Map &map) : 
-	
+Player::Player(int inputHealth, int inputMana, int inputGold, int inputStrength, int inputIntelligence, int inputDexterity, int inputDefense, int inputConstitution, int inputEndurance, sf::RenderWindow& renderWindow, std::vector<std::unique_ptr<Character>>& petRockList, float& DeltaTime, Map &map) :
+
 	Character("DefaultName" , "DefaultDescription", inputHealth, inputMana, inputGold, inputStrength, inputIntelligence, inputDexterity, inputDefense, inputConstitution, inputEndurance,  DeltaTime, map), renderWindow(renderWindow), petRockList(petRockList)
 {
-	asmanFont.loadFromFile("resources/font/ASMAN.ttf");
+
+	asmanFont.loadFromFile("resources/font/ASMAN.TTF");
 
 	score = 0;
 
 	attackState = false;
-
-	
 
 
 	for (int i = 0; i < map.tiles.size(); i++) {
@@ -31,7 +30,7 @@ Player::Player(int inputHealth, int inputMana, int inputGold, int inputStrength,
 	//End of attack settings
 
 	//Do texture stuff
-	playerIdleTex.loadFromFile("resources/character/player-Idle.png");
+	playerIdleTex.loadFromFile("resources/character/Player-Idle.png");
 	playerForwardTex.loadFromFile("resources/character/Player-Walking.png");
 	playerRightTex.loadFromFile("resources/character/Player-Walking-Right.png");
 	playerLeftTex.loadFromFile("resources/character/Player-Walking-Left.png");
@@ -40,7 +39,7 @@ Player::Player(int inputHealth, int inputMana, int inputGold, int inputStrength,
 	playerSkin[1] = sf::IntRect(128, 0, 128, 128);
 	playerSkin[2] = sf::IntRect(0, 128, 128, 128);
 	playerSkin[3] = sf::IntRect(128, 128, 128, 128);
-	
+
 	sprite.setOrigin(50, 65);
 
 
@@ -182,7 +181,7 @@ void Player::equipMelee(MeleeWeapon meleeWeapon) {
 
 void Player::Update()
 {
-	
+
 	if (alive) {
 		//Do all other checks here:
 		position = sprite.getPosition();
@@ -317,9 +316,9 @@ void Player::Update()
 
 	}
 		//End of Mouse Sensor
-		
+
 	else {
-		
+
 		//Death Text
 		scoreText.setFont(asmanFont);
 		scoreText.setString("Score " + std::to_string(score));
@@ -328,6 +327,6 @@ void Player::Update()
 		scoreText.setPosition(position.x-350, position.y-20);
 		//End of Death Text
 
-		
+
 	}
 }

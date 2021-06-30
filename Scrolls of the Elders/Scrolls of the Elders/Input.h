@@ -1,11 +1,11 @@
 #pragma once
-#include <SFML\Graphics.hpp>
+#include <SFML/Graphics.hpp>
 class Input
 {
 public:
 	Input();
 	~Input();
-	void Input::Listen(sf::Event& event) {
+	void Listen(sf::Event& event) {
 		if (event.type == sf::Event::KeyPressed)
 		{
 			if (event.key.code == sf::Keyboard::W)
@@ -46,7 +46,6 @@ public:
 				//movingRight = false;
 			}
 		}
-		
+
 	}
 };
-

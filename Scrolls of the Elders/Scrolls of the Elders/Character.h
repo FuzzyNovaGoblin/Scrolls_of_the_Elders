@@ -3,9 +3,9 @@
 #include <string>
 #include <vector>
 
-#include <SFML\Graphics.hpp>
-#include <SFML\Graphics\Rect.hpp>
-#include <SFML\System\Clock.hpp>
+#include <SFML/Graphics.hpp>
+#include <SFML/Graphics/Rect.hpp>
+#include <SFML/System/Clock.hpp>
 
 #include "Map.h"
 
@@ -23,7 +23,7 @@ public:
 
 	string name; //Duh... it's a name
 	string description; //A description, you know, for when you hover your mouse over them
-	
+
 	//Stats
 
 	sf::Vector2f position;
@@ -55,4 +55,3 @@ public:
 	virtual void Update();
 	bool DoesCollide();
 };
-

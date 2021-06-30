@@ -1,8 +1,8 @@
 #pragma once
 #include "Player.h"
-#include <SFML\Graphics.hpp>
-#include <SFML\Graphics\Rect.hpp>
-#include <SFML\System\Clock.hpp>
+#include <SFML/Graphics.hpp>
+#include <SFML/Graphics/Rect.hpp>
+#include <SFML/System/Clock.hpp>
 
 class Spheres
 {
@@ -22,4 +22,3 @@ public:
 	float time;
 	~Spheres();
 };
-

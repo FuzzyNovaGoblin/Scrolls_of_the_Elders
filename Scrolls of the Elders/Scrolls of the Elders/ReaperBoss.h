@@ -4,9 +4,9 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include <SFML\Graphics.hpp>
-#include <SFML\Graphics\Rect.hpp>
-#include <SFML\System\Clock.hpp>
+#include <SFML/Graphics.hpp>
+#include <SFML/Graphics/Rect.hpp>
+#include <SFML/System/Clock.hpp>
 
 #include "Map.h"
 
@@ -56,4 +56,3 @@ public:
 	void Update();
 	int reaperBossBeamInt = 0;
 };
-

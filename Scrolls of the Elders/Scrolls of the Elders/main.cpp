@@ -3,10 +3,10 @@
 #include <vector>
 #include <math.h>
 
-#include <SFML\Graphics.hpp>
-#include <SFML\Graphics\Rect.hpp>
-#include <SFML\System\Clock.hpp>
-#include <SFML\Audio.hpp>
+#include <SFML/Graphics.hpp>
+#include <SFML/Graphics/Rect.hpp>
+#include <SFML/System/Clock.hpp>
+#include <SFML/Audio.hpp>
 #include <memory>
 
 #include "Player.h"
@@ -25,15 +25,15 @@ void PlayGame(sf::RenderWindow& window) {
 	sf::Music theme;
 	theme.openFromFile("resources/audio/Child of Light - Boss Battle Theme.wav");
 	theme.play();
-	
+
 	int mapNum = rand() % 4 + 1;
-	
+
 	string mapString("resources/environment/map." + std::to_string(mapNum) + ".png");
 	//string mapString("resources/environment/map." + std::to_string(mapNum) + ".png");
 	string outputMapString("Loaded Map " + std::to_string(mapNum) + ".");
 	cout << outputMapString << endl;
 
-	
+
 	layout.loadFromFile(mapString);
 
 	sf::Texture red;
@@ -60,8 +60,7 @@ void PlayGame(sf::RenderWindow& window) {
 	sf::Clock spawnTime;
 	bool pause = false;
 	sf::Texture reaperBossIdleTex;
-	reaperBossIdleTex.loadFromFile("resources/character/Reaper Boss-Idle.png");
-
+	reaperBossIdleTex.loadFromFile("resources/character/Reaper_Boss-Idle.png");
 
 	//window.setFramerateLimit(60);
 	//std::vector<Character*> petRockList;
@@ -79,14 +78,14 @@ void PlayGame(sf::RenderWindow& window) {
 
 	sf::Font asmanFont;
 	sf::Text pauseText;
-	asmanFont.loadFromFile("resources/font/ASMAN.ttf");
+	asmanFont.loadFromFile("resources/font/ASMAN.TTF");
 	pauseText.setFont(asmanFont);
 	pauseText.setString("Paused");
 	pauseText.setCharacterSize(200);
 	pauseText.setColor(sf::Color::Red);
 	pauseText.setPosition(player.position.x - 350, player.position.y - 20);
 
-	for (int i = 0; i < 10; i++) { // make 10 enemies 
+	for (int i = 0; i < 10; i++) { // make 10 enemies
 		std::unique_ptr<Character> newPetRock(new PetRock(1, window, petRockTex, player, DeltaTime, currentMap));
 		petRockList.push_back(std::move(newPetRock));
 	}
@@ -115,7 +114,7 @@ void PlayGame(sf::RenderWindow& window) {
 		DeltaTime = timeFromClock.asSeconds();
 
 		if (spawnTime.getElapsedTime().asSeconds() > 10 && petRockList.size() < 10) {
-			for (int i = 0; i < 10; i++) { // make 10 enemies 
+			for (int i = 0; i < 10; i++) { // make 10 enemies
 				std::unique_ptr<Character> newPetRock(new PetRock(1, window, petRockTex, player, DeltaTime, currentMap));
 				petRockList.push_back(std::move(newPetRock));
 			}
@@ -167,9 +166,12 @@ void PlayGame(sf::RenderWindow& window) {
 
 		window.display();
 		if (!player.alive) {
+			cerr << "player not alive\n";
 			return;
 		}
 	}
+	cerr << window.isOpen() << endl;
+
 }
 
 
@@ -183,18 +185,15 @@ int main() {
 	int stage = 0;
 	srand(time(NULL));
 	while (true) {
-		
+
 		PlayGame(window);
 		stage++;
 		//window.clear();
 		cout << "Press any key to play again" << endl;
 		system("pause");
-	
-	
+
+
 	}
 
 
 }
-
-
-

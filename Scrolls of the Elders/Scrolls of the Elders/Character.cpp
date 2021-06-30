@@ -2,6 +2,7 @@
 
 Character::Character(float& DeltaTime, Map &map) : DeltaTime(DeltaTime), map(map)
 {
+	alive = true;
 	name = "Default Name";
 	description = "If you see this, there is a bug, please submit a bug report.";
 	maxHealth = 100;

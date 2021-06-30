@@ -4,7 +4,7 @@ float GetDistance(sf::Vector2f a, sf::Vector2f b);
 
 ReaperBoss::ReaperBoss(int inputHealth, sf::RenderWindow& renderWindow, Character& player, float &DeltaTime, Map &map) : Character(DeltaTime, map), renderWindow(renderWindow), player(player)
 {
-	reaperBossIdleTex.loadFromFile("resources/character/Reaper Boss-Idle.png");
+	reaperBossIdleTex.loadFromFile("resources/character/Reaper_Boss-Idle.png");
 	reaperBossSlashTex.loadFromFile("resources/character/Reaper Boss-Attack.png");
 	reaperBossSummonTex.loadFromFile("resources/character/Reaper Boss-Magic.png");
 	reaperBossTeleportTex.loadFromFile("resources/character/Reaper Boss-Teleport.png");
@@ -27,7 +27,7 @@ ReaperBoss::ReaperBoss(int inputHealth, sf::RenderWindow& renderWindow, Characte
 	healthBar.setFillColor(sf::Color::Red);
 	healthBar.setSize(sf::Vector2f(192, 10));
 	healthBar.setPosition(position + sf::Vector2f(0, 200));
-	
+
 	sprite.setOrigin(96, 96);
 
 	maxHealth = inputHealth;
@@ -37,8 +37,9 @@ ReaperBoss::ReaperBoss(int inputHealth, sf::RenderWindow& renderWindow, Characte
 	strength = 10;
 
 	hit = false;
+	attacking = false;
 
-	for (int i = 0; i < map.tiles.size(); i++) {
+	for (size_t i = 0; i < map.tiles.size(); i++) {
 		if (map.tiles.at(i).bossSpawner) {
 			spawnPos[0] = map.tiles.at(i).xPos;
 			spawnPos[1] = map.tiles.at(i).yPos;
@@ -55,7 +56,7 @@ ReaperBoss::ReaperBoss(int inputHealth, sf::RenderWindow& renderWindow, Characte
 	sprite.setPosition(spawnPos[0], spawnPos[1]);
 
 	sprite.setTexture(reaperBossIdleTex);
-	
+
 	timer = clock.getElapsedTime().asSeconds();
 
 }
@@ -193,7 +194,7 @@ void ReaperBoss::OrbAttack() {
 		orbsAttacking = true;
 	}
 
-	for (int i = 0; i < orbs.size(); i++) {
+	for (size_t i = 0; i < orbs.size(); i++) {
 		orbs.at(i)->Follow();
 		if (!orbs.at(i)->alive) {
 			orbs.erase(orbs.begin() + i);
@@ -221,7 +222,7 @@ void ReaperBoss::DoShortAttack()
 		{
 			reaperBossSkinInt += 1;
 		}
-		else if((!reaperBossSkinInt < 4))
+		else if(!reaperBossSkinInt < 4)
 		{
 			reaperBossSkinInt = 0;
 			int damage = (strength / 2);
@@ -233,7 +234,7 @@ void ReaperBoss::DoShortAttack()
 			std::cout << damage;
 		}*/
 		clock.restart();
-		
+
 	}
 
 	sf::Vector2f movement(0, 0);
@@ -363,7 +364,7 @@ void ReaperBoss::Update()
 {
 	if (alive)
 	{
-		if (currentHealth <= 0) 
+		if (currentHealth <= 0)
 		{
 			alive = false;
 		}
@@ -400,5 +401,5 @@ void ReaperBoss::Update()
 	sprite.setTextureRect(sf::IntRect(reaperBossSkin[reaperBossSkinInt]));
 
 	renderWindow.draw(sprite);
-	
+
 }

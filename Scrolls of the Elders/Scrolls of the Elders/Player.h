@@ -5,9 +5,9 @@
 #include <math.h>
 #include <memory>
 
-#include <SFML\Graphics.hpp>
-#include <SFML\Graphics\Rect.hpp>
-#include <SFML\System\Clock.hpp>
+#include <SFML/Graphics.hpp>
+#include <SFML/Graphics/Rect.hpp>
+#include <SFML/System/Clock.hpp>
 
 #include "Character.h"
 #include "Item.h"
@@ -36,7 +36,6 @@ public:
 	sf::IntRect petRockSkin[3];
 	float animationSpeed;
 	int playerSkinInt = 0;
-	bool alive;
 	sf::Clock clock;
 	sf::Clock damageDisplayClock;
 	sf::Text healthText;
@@ -67,4 +66,3 @@ public:
 
 	//sf::Clock attackTimer;
 };
-
